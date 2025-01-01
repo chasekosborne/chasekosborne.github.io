@@ -123,7 +123,7 @@
         <div class="figure">
             <img src="../image/greensfn/Figure_2.svg" alt="" style="width: 100%; display: block; margin: 0 auto;" />
             <div class="caption">
-                <span class="caption-label">Figure 2.</span> Electric field caused by free point charge interfering with the conducting plate.
+                <span class="caption-label">Figure 2.</span>A non physical electric field caused by free point charge interfering with the conducting plate.
             </div>
         </div>
         <p>
@@ -161,7 +161,7 @@
             in this system.  Moreover, harder problems seem to have less obvious answers as to where you might need to place these image charges. So why does this work?
         </p>
 
-        <h2 id="Greensfn">Green's Function</h2>
+        <h2 id="Greensfn">Green's Function in Free Space</h2>
         <p>
             We may start with a seemingly unrelated discussion solving differential equations in a very general case, suppose we are given a very general formula for the a forced differential equation,
             where the 'forced' term comes from the function \( f(x) \), it's common to think about it as the function driving the dynamics of the system.
@@ -228,32 +228,42 @@
             \]
             Because of the spherical symmetry of the boundry, we know that \( \hat{n} = \hat{r} \) and so we are only concerned with the derivative of \( G_{n} \)
             in the radial direction. Since we are only concerned with spheres in 3-dimensions for now, \( dS = r^{2}d\Omega{}_{3} = r^{2}sin\theta{}d\theta{}d\phi{}\).
+            
             \[
-            \int_{\partial{}B_{r}}\frac{\partial{}G_{n}(\vec{x};\vec{y})}{\partial{}r} r^{2}d\Omega{}_{3} = 1
+            \int_{\partial{}B_{r}}\frac{\partial{}G_{3}(\vec{x};\vec{y})}{\partial{}r} r^{2}d\Omega{}_{3} = 1
             \]
             \[
-            \frac{\partial{}G_{n}(\vec{r})}{\partial{}r} r^{2}\int_{\partial{}B_{r}}\Omega{}_{3} = 1
+            \frac{\partial{}G_{3}(\vec{r})}{\partial{}r} r^{2}\int_{\partial{}B_{r}}\Omega{}_{3} = 1
             \]
             Here, without all the formality, the integral is simply an integral over angles of a simple sphere. So,
             \[
-            \frac{\partial{}G_{n}(\vec{r})}{\partial{}r} 4\pi{}r^{2} = 1
+            \frac{\partial{}G_{3}(\vec{r})}{\partial{}r} 4\pi{}r^{2} = 1
             \]
             \[
-            \frac{\partial{}G_{n}(\vec{r})}{\partial{}r} = \frac{1}{4\pi{}r^{2}}
+            \frac{\partial{}G_{3}(\vec{r})}{\partial{}r} = \frac{1}{4\pi{}r^{2}}
             \]
-            Is now reduced to a separable ODE.
+            Is now reduced to a separable ODE. One might note that this property explains the factor of \( 4\pi{} \) in the couloumb force.
+            Integrating with respect to \(r\) and using the relation  \( r = |\vec{x}-\vec{y}|\). We will get the free-space Green's function solution.
+            \[
+            \tag{5} G_{3}(\vec{x};\vec{y})= -\frac{1}{4\pi{}|\vec{x}-\vec{y}|}
+            \]
+        </p>
+        
+        <h2 id="Greensfn">Green's Function in Half-Space</h2>
+        <p>
+            If we now limit the space in which we are able to solve this differential equation to the positive half of the real number plane, i.e. imposing the previous boundry
+            conditions from our motivating question. We of course know now that this free space solution will not work with the new boundry condiiton.
+            <p>
+                \[ 
+                G(\vec{x};\vec{y})|_{z=0} ≠ 0 \\
+                \]
+            </p>
         </p>
     </div>
     <div id='bibliography'>
         <div class='wrap'>
             <ol class="bibliography">
-                <li><span id="gfskinner">Skinner, D. (n.d.). Green’s functions for PDEs. <i>Cambridge University</i>, 126–142.</span></li>
-                <li><span id="merton1973theory">Merton, R. C. (1973). Theory of rational option pricing. <i>The Bell Journal of Economics and Management Science</i>, 141–183.</span></li>
-                <li><span id="ito1944stochastic">Itô, K. (1944). Stochastic integral. <i>Proceedings of the Imperial Academy</i>, <i>20</i>(8), 519–524.</span></li>
-                <li><span id="ito1951formula">Itô, K. (1951). On a formula concerning stochastic differentials. <i>Nagoya Mathematical Journal</i>, <i>3</i>, 55–65.</span></li>
-                <li><span id="bru2002comments">Bru, B., &amp; Yor, M. (2002). Comments on the life and mathematical legacy of Wolfgang Doeblin. <i>Finance and Stochastics</i>, <i>6</i>, 3–47.</span></li>
-                <li><span id="derman2002boy">Derman, E. (2002). The Boy’s Guide to Pricing &amp; Hedging. <i>Available at SSRN 364760</i>.</span></li>
-                <li><span id="nielsen1992understanding">Nielsen, L. T. (1992). <i>Understanding N (d1) and N (d2): Risk Adjusted Probabilities in the Black-scholes Model 1</i>. Insead Fontainebleau, France.</span></li></ol>
+                <li><span id="gfskinner">Skinner, D. (n.d.). <a href="https://www.damtp.cam.ac.uk/user/dbs26/1BMethods/GreensPDE.pdf" target="_blank">Green’s functions for PDEs</a>. <i>Cambridge University</i>, 126–142.</span></li>
         </div>
     </div>
 </div>

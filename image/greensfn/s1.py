@@ -46,8 +46,8 @@ ax.text(a / 2, -0.1, 'd', color='black', fontsize=10, ha='center', va='center')
 
 # Labels and legend
 ax.set_title('Point Charge Near a Grounded Conducting Plate')
-ax.set_xlabel('z-axis')
-ax.set_ylabel('x-axis')
+ax.set_xlabel('x-axis')
+ax.set_ylabel('z-axis')
 ax.set_xlim([x_min, x_max])
 ax.set_ylim([y_min, y_max])
 #ax.legend()

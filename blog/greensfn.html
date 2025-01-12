@@ -82,8 +82,10 @@
         </p>
         <p>
             \[ 
-            V(x, y, z)|_{z=0} = 0 \\
-            V(x, y, z \rightarrow{} \infty{}) = 0
+            \tag{1} V(x, y, z)|_{z=0} = 0
+            \]
+            \[            
+            \tag{2} V(x, y, z \rightarrow{} \infty{}) = 0
             \]
         </p>
         <p>
@@ -97,17 +99,17 @@
             \vec{\nabla{}} \cdot{} -\vec{\nabla{}}V = \frac{\rho{}}{\epsilon{}_{0}}
             \] 
             \[
-            \tag{1} \nabla{}^{2}V = -\frac{\rho{}}{\epsilon{}_{0}}
+            \tag{3} \nabla{}^{2}V = -\frac{\rho{}}{\epsilon{}_{0}}
             \] 
         </p>
         <p>
-            While it is true that getting to \((1)\) is a neccessary step in solving these problems as we will come to see later, we will first explore the shortcut we can make in solving this problem just by making a guess. As it is significantly
+            While it is true that getting to \((3)\) is a neccessary step in solving these problems as we will come to see later, we will first explore the shortcut we can make in solving this problem just by making a guess. As it is significantly
             more straightforward. Ignoring the conducting plate for a moment, we may guess the electrostatic potential from the formula for a localized charge
         </p>
         <p>
             \[ V(\vec{r}) = \frac{1}{4\pi{}\epsilon{}_{0}}\int^{}_{}\frac{\rho{}(\vec{r})}{|\vec{r}-\vec{r}'|}dV' \]
             \[ V(\vec{r}) = \frac{1}{4\pi{}\epsilon{}_{0}}\int^{}_{}\frac{q\delta{}(\vec{r}-\vec{r}')}{|\vec{r}-\vec{r}'|}dV' \]
-            \[ \tag{2} V(\vec{r}) = \frac{q}{4\pi{}\epsilon{}_{0}|\vec{r}-d\hat{z}|} \]
+            \[ \tag{4} V(\vec{r}) = \frac{q}{4\pi{}\epsilon{}_{0}|\vec{r}-d\hat{z}|} \]
         </p>
         <p>
             And while correct for a lone point charge, it fails to account for the boundry condition imposed by the conducting plate \( V(\vec{r})|_{x=0} = 0\)
@@ -118,7 +120,7 @@
             \[ = \frac{q}{4\pi{}\epsilon{}_{0}\sqrt{x^{2}+y^{2}+d^{2}}} \hspace{10px} \]
         </p>
         <p>
-            It's apparent here that \( (2)\) fails to satisfy boundry conditions since it is nonzero for all \(x\) and \( y\), we can also see graphically that the field lines hit the conducting plate at all angles.
+            It's apparent here that \( (4)\) fails to satisfy boundry conditions since it is nonzero for all \(x\) and \( y\), we can also see graphically that the field lines hit the conducting plate at all angles.
         </p>
         <div class="figure">
             <img src="../image/greensfn/Figure_2.svg" alt="" style="width: 100%; display: block; margin: 0 auto;" />
@@ -129,7 +131,7 @@
         <p>
             In order for the plate to be an equipotential, i.e. (\( V(\vec{r})|_{x=0} = 0\)). We must find a way for the field lines to hit perpendicular to the conducting plate. Fortunately, by
             "placing" a second charge, we can impose this condition. One might be able to guess where we may be able to place this charge. Formally, this is what is known as the image charge \( q_{I}\).
-            With a distance \( a_{I}\) from the plate at the origin. Fortunately, with the appropriate boundry conditions, we may obtain these unknowns.
+            With a distance \( a_{I}\) from the plate at the origin. Fortunately, with boundry conditions \((1)\) and \((2)\), we may obtain these unknowns.
         </p>
         <p>
             \[ V(\vec{r}) = \frac{q}{4\pi{}\epsilon{}_{0}\sqrt{x^{2}+y^{2}+(z-d)^{2}}} + \frac{q_{I}}{4\pi{}\epsilon{}_{0}\sqrt{x^{2}+y^{2}+(z+a_{I})^{2}}} \]
@@ -193,16 +195,16 @@
             \[ u(x) = \int_{a}^{b}G(x;x_{0})f(x_{0})dx_{0} \]
             As a side note, it's perfectly fine to switch between \( ;\) and \( , \) since the parameterization or extra dimension of \( x_{0} \)
             are treated based on its use. This function proves to be extremely useful. So long as you know the Green's function, you have your solution.
-            If we now look back to \( (1) \), we might see how we may be able to solve this equation in general
+            If we now look back to \( (3) \), we might see how we may be able to solve this equation in general
             \[ 
-                \tag{2} \nabla{}^{2}u(\vec{x}) = -F(\vec{x})
+                \tag{5} \nabla{}^{2}u(\vec{x}) = -F(\vec{x})
             \]
             Of course, in electrostatics \( u(\vec{x}) = V(\vec{x}) \), and \( F(\vec{x}) = \frac{\rho{}(\vec{x})}{\epsilon{}_{0}} \).
         </p>
         <p>
             This Green's function is known, when we look at the fundamental solution to the Poisson equation
             \[
-                \tag{3} \nabla{}^{2}G_{n}(\vec{x};\vec{y}) = \delta{}^{(n)}(\vec{x}-\vec{y})
+                \tag{6} \nabla{}^{2}G_{n}(\vec{x};\vec{y}) = \delta{}^{(n)}(\vec{x}-\vec{y})
             \]
             Since we are working in multiple dimensions, the notation and solution are a little more rigorus. I will briefly explain what
             we are looking at. The \( G_{n}(\vec{x};\vec{y}) \) and \( \delta{}^{(n)}(\vec{x}-\vec{y}) \) functions represent a multivariate form
@@ -245,20 +247,26 @@
             Is now reduced to a separable ODE. One might note that this property explains the factor of \( 4\pi{} \) in the couloumb force.
             Integrating with respect to \(r\) and using the relation  \( r = |\vec{x}-\vec{y}|\). We will get the free-space Green's function solution.
             \[
-            \tag{5} G_{3}(\vec{x};\vec{y})= -\frac{1}{4\pi{}|\vec{x}-\vec{y}|}
+            \tag{7} G_{3}(\vec{x};\vec{y})= -\frac{1}{4\pi{}|\vec{x}-\vec{y}|}
             \]
+            One might note that this solution is an important component in the electric potential, and describes clearly where this factor of \( 4\pi{}\) comes from.
+            And shows that this solution holds in general based on equation \( (3) \) (Gauss' Law).
         </p>
         
         <h2 id="Greensfn">Green's Function in Half-Space</h2>
         <p>
-            If we now limit the space in which we are able to solve this differential equation to the positive half of the real number plane, i.e. imposing the previous boundry
-            conditions from our motivating question. We of course know now that this free space solution will not work with the new boundry condiiton.
-            But, by using the same guess from our original problem we know that this will give us our valid solution. Which will look something like.
+            If we now limit the space in which we are able to solve this differential equation to the positive half of the real number plane, i.e. imposing boundry
+            conditions \( (1) \) and \( (2) \). We of course know now that this free space solution will not work with the boundry conditon \( (2) \) from our discussion of \( (4) \).
+            However, by making the same guess as we did with the image charge, it is clear from our motivating problem that this guess will in fact work.
             <p>
-                \[
-                
+                \[ 
+                G_{3}(\vec{r};\vec{y}) = \frac{1}{4\pi{}\epsilon{}_{0}\sqrt{x^{2}+y^{2}+(z-y)^{2}}} + \frac{1}{4\pi{}\epsilon{}_{0}\sqrt{x^{2}+y^{2}+(z+y)^{2}}} 
                 \]
             </p>
+            With this, the underlying mathematics does require a guess, there is no nice way of solving this kind of problem without it. However, there are many cases in which this general
+            method can give you a better idea on what exactly might need to be added in order to satisfy these boundry conditions. And helps simplify the problem to solving for a distance variable. 
+            Where you may then apply the physical properties of this problem using Gauss' law to then determine the charge, often from boundry the boundry condition \(  (1) \). Meaning similar problems
+            can be reduced to finding the correct Green's function. Which I hope to come back to in a later post.
         </p>
     </div>
     <div id='bibliography'>

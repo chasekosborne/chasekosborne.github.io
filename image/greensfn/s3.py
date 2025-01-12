@@ -32,8 +32,8 @@ ax.text(a + 0.05, -0.3, 'q', color='red', fontsize=10, ha='left')
 
 # Labels and title
 ax.set_title('Point Charge Near a Grounded Conducting Plate (Initial Guess)')
-ax.set_xlabel('z-axis')
-ax.set_ylabel('x-axis')
+ax.set_xlabel('x-axis')
+ax.set_ylabel('z-axis')
 ax.set_xlim([x_min, x_max])
 ax.set_ylim([y_min, y_max])
 ax.grid(False)

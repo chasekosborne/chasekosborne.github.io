@@ -64,7 +64,7 @@ MathJax.Hub.Config({
             <h1>Beating Nim</h1>
             <h4>
                 
-                How to play Nim perfectly, an introduction to proofs in cominatorial games.
+                How to play Nim perfectly, an introduction to proofs in combinatorial games.
                 
             </h4>
             <div class='bylines'>
@@ -89,7 +89,7 @@ MathJax.Hub.Config({
         <div class="figure">
             <img src="../image/nim/diagram2.svg" alt="" style="width: 100%; display: block; margin: 0 auto;" />
             <div class="caption">
-                <span class="caption-label">Figure. 2</span> Example game of Nim with three rows of items with 9, 5, and 7 items respectively. Player 2 removes the last item and wins the game.
+                <span class="caption-label">Figure. 1</span> Example game of Nim with three rows of items with 9, 5, and 7 items respectively. Player 2 removes the last item and wins the game.
             </div>
         </div>
         <p>
@@ -97,16 +97,42 @@ MathJax.Hub.Config({
             What I am looking to do is go through this strategy and prove mathematically why this wil garuntee a win.
         </p>
         <h2 id="Nim">The Strategy</h2>
+        <p>
+            When playing as the first player, the concept to keep in mind to win is the Nim sum. Each row has a number of items, and a binary representation of this number that is used to
+            calculate this sum, by using the logical XOR operator (\( \oplus{} \)) with each binary representation of the number of items in each row. Using the example in Figure. 2. 
+            The optimal game of Nim will look something like:
+        </p>
+
+        <div class="figure">
+            <img src="../image/nim/diagram3.svg" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <div class="caption">
+                <span class="caption-label">Figure. 2</span> Example game of Nim with starting configuration from Figure 1. In this case Player 1 removes the last item and wins the game, keeping the
+                Nim sum at zero on his turns.
+        </div>
+        <p>
+            As we will prove later, so long as Player 1 plays the game optimally, this Nim sum will remain nonzero at the end of Player 2's turns no matter what move is made. And this is what allows for 
+            Player 1 to win the game every time. No matter what.
+        </p>
+        <p>
+            This is pretty interesting on its own. But outside of being a party trick. <i>How</i> exactly can one make sure that the Nim sum is 0 at the end of their turn? And why
+            does this even work in the first place?
+        </p>
+        <p>
+            This is pretty interesting on its own. But outside of being a party trick. <i>How</i> exactly can one make sure that the Nim sum is 0 at the end of their turn? And why
+            does this even work in the first place?
+        </p>
+        </div>
         <h2 id="Nim">The Proof</h2>
+        <p>
+            Now with the winning strategy known, we may now be able to begin proving why this strategy works. To formally state this as a theorem:
+        </p>
+        <p>
+            <u><strong>Theorem:</strong></u>
+        </p>
+        <p>
+            <strong>Proof:</strong>
+        </p>
         <h2 id="Nim">Play Nim</h2>
-            <div class="game-container">
-                <h1>Nim</h1>
-                <button class="new-game-btn" onclick="strt()">New Game</button>
-                <div id="game-board">
-                    <table id="tb"></table>
-                </div>
-                <div id="final" class="game-message">Click "New Game" to begin</div>
-            </div>
         <div id='bibliography'>
         <div class='wrap'>
             <ol class="bibliography"></ol>

@@ -70,7 +70,7 @@ MathJax.Hub.Config({
             <div class='bylines'>
                 <div class='byline'>
                     <h3>Published</h3>
-                    <p>20 January 2024</p>
+                    <p>20 January 2025</p>
                 </div>
             </div>
             <div class='clear'></div>
@@ -121,10 +121,63 @@ MathJax.Hub.Config({
             This is pretty interesting on its own. But outside of being a party trick. <i>How</i> exactly can one make sure that the Nim sum is 0 at the end of their turn? And why
             does this even work in the first place?
         </p>
+        <p>
+            To answer the first question, binary counting and operations are very unintuitive for humans to do quickly. So we will need to develop another method to keep track of our Nim sum.
+            To do this, the first constraint we will need to put on ourselves is keeping track of how many groups of \( \{2, 4, 8, 16, ... ,2^{n}\} \) items are present in each row, considering only the 
+            largest group \(2^{n}\) one can make for each row. For Player 1 to maintain their advantage, they need an even number of groups present for each configuration of row.
+        </p>
+        <div class="figure">
+            <img src="../image/nim/diagram4.svg" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <div class="caption">
+                <span class="caption-label">Figure. 3</span> Example game of Nim with starting configuration from Figure 1. Notice that we need to make sure that we have an even number of groups of 8.
+        </div>
+        <p>
+            In the case of Figure 3 above, we will need to remove an item from the first row, given this rule alone we will need to remove at least five items so that we do not have an odd number of groups of eight,
+            or four. But we must be careful, we can't just remove an arbitrary amount of items greater than four. We need to make sure that we are also treating the remainders, or lower powers of 2 properly as well.
+            In this case, there are a few ways to think about or remembering how to do this. The best way is to try breaking these remainders further into groups, and just referring back to our inital rule and trying
+            to balance this number so all groups are even, this works especially well for larger numbers of items.
+        </p>
+        <div class="figure">
+            <img src="../image/nim/diagram5.svg" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <div class="caption">
+                <span class="caption-label">Figure. 4</span> Algorithm of breaking down remainders into groups of powers of 2. Checking residuals recursively until an uneven number of groups is found.
+        </div>
+        <p>
+            Doing this recursive check after each term wil garuntee that the nim sum is zero at the end of Player 1's turn. And this is the strategy that will allow for Player 1 to win every time. A short explanation of
+            this comes about from the definition of the XOR operator. Since it works bitwise, and there are 3 numbers representing the number of items in binary, we only need to concern ourselves with 8 possible operations:
+        </p>
+            \[
+                1 \oplus 1 \oplus 1 = 1 \\  
+            \]
+            \[
+                1 \oplus 0 \oplus 0 = 1 \\
+            \]
+            \[
+                0 \oplus 1 \oplus 0 = 1 \\
+            \]
+            \[
+                0 \oplus 0 \oplus 1 = 1 \\
+            \]
+            \[ 
+                1 \oplus 1 \oplus 0 = 0 \\
+            \]
+            \[
+                1 \oplus 0 \oplus 1 = 0 \\
+            \]
+            \[
+                0 \oplus 1 \oplus 1 = 0 \\
+            \]
+            \[
+                0 \oplus 0 \oplus 0 = 0 \\
+            \]
+        <p>
+            Note how the result of the operation is only zero when there are an even number of ones involved in the operation. This is exactly why we need to make sure that we have an even number of groups of each power of 2 in each row.
+            As it maintains the condition that the XOR operator will output zero for each sum for all items and their binary representation. We will see that this condition will hold for games of all possible rows and item numbers.
+        </p>
         </div>
         <h2 id="Nim">The Proof</h2>
         <p>
-            Now with the winning strategy known, we may now be able to begin proving why this strategy works. To formally state this as a theorem:
+            Now with the winning strategy known, we may now be able to begin proving why this strategy works. We will begin with a seemingly unrelated discussion of graphs
         </p>
         <p>
             <u><strong>Theorem:</strong></u>

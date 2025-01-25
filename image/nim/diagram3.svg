@@ -7,8 +7,35 @@
    viewBox="0 0 307.70254 545.88373"
    version="1.1"
    id="svg1"
+   sodipodi:docname="diagram3.svg"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   inkscape:export-filename="diagram3.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showguides="false"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="763.67532"
+     inkscape:cy="1349.1597"
+     inkscape:window-width="1147"
+     inkscape:window-height="1000"
+     inkscape:window-x="-7"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1" />
   <defs
      id="defs1">
     <rect
@@ -29,6 +56,36 @@
        width="468.91718"
        height="34.734966"
        id="rect4-0" />
+    <rect
+       x="47.703163"
+       y="9.8357038"
+       width="474.8186"
+       height="34.734921"
+       id="rect4-2" />
+    <rect
+       x="47.703163"
+       y="9.8357038"
+       width="468.91718"
+       height="34.734966"
+       id="rect4-0-5" />
+    <rect
+       x="47.703163"
+       y="9.8357038"
+       width="474.8186"
+       height="34.734921"
+       id="rect4-2-0" />
+    <rect
+       x="47.703163"
+       y="9.8357038"
+       width="474.8186"
+       height="34.734921"
+       id="rect4-2-0-9" />
+    <rect
+       x="47.703163"
+       y="9.8357038"
+       width="189.58319"
+       height="36.14621"
+       id="rect4-4" />
     <rect
        x="614.28912"
        y="40.861805"
@@ -359,9 +416,14 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4);display:inline;opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.77953;stroke-dasharray:none;stroke-opacity:1"><tspan
        x="47.703125"
        y="35.576946"
-       id="tspan19"><tspan
+       id="tspan58"><tspan
          style="fill:#000000;stroke:none"
-         id="tspan10">Start</tspan></tspan></text>
+         id="tspan57">Start</tspan></tspan></text>
+  <text
+     xml:space="preserve"
+     transform="matrix(0.26458333,0,0,0.26458333,153.81446,7.9248299)"
+     id="text3-8"
+     style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4-4);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:3.77953;stroke-dasharray:none;stroke-opacity:1" />
   <rect
      style="fill:#71c837;fill-opacity:1;stroke:#000000;stroke-width:0.774284;stroke-dasharray:none;stroke-opacity:1"
      id="rect1-46"
@@ -519,13 +581,13 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4-0);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.77953;stroke-dasharray:none;stroke-opacity:1"><tspan
        x="47.703125"
        y="35.576946"
-       id="tspan60"><tspan
+       id="tspan62"><tspan
          style="fill:#000000;stroke:none"
-         id="tspan57">Turn 1:</tspan><tspan
+         id="tspan59">Turn 1:</tspan><tspan
          style="fill:#3b447d;stroke:none"
-         id="tspan58"> </tspan><tspan
+         id="tspan60"> </tspan><tspan
          style="fill:#7688fa;stroke:none"
-         id="tspan59">Player 1 takes 5 from Row 1</tspan></tspan></text>
+         id="tspan61">Player 1 takes 5 from Row 1</tspan></tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728634,-0.28397127)"
@@ -533,7 +595,7 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan61">Nim Sum</tspan></text>
+       id="tspan63">Nim Sum</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728634,16.764787)"
@@ -541,9 +603,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan63">(8)<tspan
+       id="tspan65">(8)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan62">2</tspan> = 1000</tspan></text>
+   id="tspan64">2</tspan> = 1000</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728634,37.754201)"
@@ -551,9 +613,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan65">(5)<tspan
+       id="tspan67">(5)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan64">2</tspan> = 0101</tspan></text>
+   id="tspan66">2</tspan> = 0101</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728634,58.88987)"
@@ -561,9 +623,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-3);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan67">(6)<tspan
+       id="tspan69">(6)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan66">2</tspan> = 0110</tspan></text>
+   id="tspan68">2</tspan> = 0110</tspan></text>
   <path
      style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.465183;stroke-dasharray:none;stroke-opacity:1"
      d="m 167.07183,19.717486 c 125.52177,0 125.29275,0 125.29275,0"
@@ -571,17 +633,31 @@
   <text
      xml:space="preserve"
      style="font-size:7.05556px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
+     x="241.53148"
+     y="28.811653"
+     id="text10"><tspan
+       sodipodi:role="line"
+       id="tspan10"
+       style="stroke:none;stroke-width:0.5"
+       x="241.53148"
+       y="28.811653" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:7.05556px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
      x="266.81076"
      y="34.389118"
      id="text14"><tspan
+       sodipodi:role="line"
        id="tspan14"
        style="stroke-width:0.5"
        x="266.81076"
        y="34.389118">1000</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="43.561344"
        id="tspan15">0101</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="52.733574"
@@ -592,6 +668,7 @@
      x="259.31631"
      y="38.692158"
      id="text17"><tspan
+       sodipodi:role="line"
        id="tspan17"
        style="stroke-width:0.5"
        x="259.31631"
@@ -602,6 +679,7 @@
      x="259.31631"
      y="48.010353"
      id="text17-9"><tspan
+       sodipodi:role="line"
        id="tspan17-2"
        style="stroke-width:0.5"
        x="259.31631"
@@ -612,6 +690,7 @@
      x="234.07758"
      y="62.144348"
      id="text18"><tspan
+       sodipodi:role="line"
        id="tspan18"
        style="stroke-width:0.5"
        x="234.07758"
@@ -627,9 +706,21 @@
   <text
      xml:space="preserve"
      style="font-size:7.05556px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
+     x="258.55655"
+     y="64.452049"
+     id="text19"><tspan
+       sodipodi:role="line"
+       id="tspan19"
+       style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5"
+       x="258.55655"
+       y="64.452049" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:7.05556px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
      x="266.89526"
      y="62.769783"
      id="text20"><tspan
+       sodipodi:role="line"
        id="tspan20"
        style="stroke-width:0.5"
        x="266.89526"
@@ -640,6 +731,7 @@
      x="274.74319"
      y="72.513206"
      id="text20-9"><tspan
+       sodipodi:role="line"
        id="tspan20-8"
        style="stroke-width:0.5"
        x="274.74319"
@@ -654,6 +746,7 @@
      x="278.66718"
      y="158.66908"
      id="text20-9-6"><tspan
+       sodipodi:role="line"
        id="tspan20-8-0"
        style="stroke-width:0.5"
        x="278.66718"
@@ -668,6 +761,7 @@
      x="277.54062"
      y="245.5081"
      id="text20-9-6-2"><tspan
+       sodipodi:role="line"
        id="tspan20-8-0-5"
        style="stroke-width:0.5"
        x="277.54062"
@@ -703,9 +797,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-3);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan69">(3)<tspan
+       id="tspan71">(3)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan68">2</tspan> = 0011</tspan></text>
+   id="tspan70">2</tspan> = 0011</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728634,122.87954)"
@@ -713,9 +807,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-8);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan71">(5)<tspan
+       id="tspan73">(5)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan70">2</tspan> = 0101</tspan></text>
+   id="tspan72">2</tspan> = 0101</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728634,144.01521)"
@@ -723,23 +817,26 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-3-7);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan73">(6)<tspan
+       id="tspan75">(6)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan72">2</tspan> = 0110</tspan></text>
+   id="tspan74">2</tspan> = 0110</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:7.05556px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
      x="266.81076"
      y="119.51447"
      id="text14-6"><tspan
+       sodipodi:role="line"
        id="tspan14-5"
        style="stroke-width:0.5"
        x="266.81076"
        y="119.51447">0011</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="128.68671"
        id="tspan15-0">0101</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="137.85893"
@@ -750,6 +847,7 @@
      x="259.31631"
      y="123.8175"
      id="text17-8"><tspan
+       sodipodi:role="line"
        id="tspan17-6"
        style="stroke-width:0.5"
        x="259.31631"
@@ -760,6 +858,7 @@
      x="259.31631"
      y="133.13571"
      id="text17-9-0"><tspan
+       sodipodi:role="line"
        id="tspan17-2-2"
        style="stroke-width:0.5"
        x="259.31631"
@@ -770,6 +869,7 @@
      x="233.42278"
      y="147.17616"
      id="text18-4"><tspan
+       sodipodi:role="line"
        id="tspan18-8"
        style="stroke-width:0.5"
        x="233.42278"
@@ -784,6 +884,7 @@
      x="266.89526"
      y="147.89514"
      id="text20-5"><tspan
+       sodipodi:role="line"
        id="tspan20-0"
        style="stroke-width:0.5"
        x="266.89526"
@@ -929,11 +1030,11 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4-0-3);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.77953;stroke-dasharray:none;stroke-opacity:1"><tspan
        x="47.703125"
        y="35.576946"
-       id="tspan76"><tspan
+       id="tspan78"><tspan
          style="fill:#000000;stroke:none"
-         id="tspan74">Turn 2: </tspan><tspan
+         id="tspan76">Turn 2: </tspan><tspan
          style="fill:#fa7676;stroke:none"
-         id="tspan75">Player 2 takes 5 from row 2 </tspan></tspan></text>
+         id="tspan77">Player 2 takes 5 from row 2 </tspan></tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728653,189.74726)"
@@ -941,9 +1042,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-3-4);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan78">(3)<tspan
+       id="tspan80">(3)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan77">2</tspan> = 0011</tspan></text>
+   id="tspan79">2</tspan> = 0011</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728653,210.73667)"
@@ -951,9 +1052,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-8-4);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan80">(0)<tspan
+       id="tspan82">(0)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan79">2</tspan> = 0000</tspan></text>
+   id="tspan81">2</tspan> = 0000</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728653,231.87234)"
@@ -961,23 +1062,26 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-3-7-6);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan82">(6)<tspan
+       id="tspan84">(6)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan81">2</tspan> = 0110</tspan></text>
+   id="tspan83">2</tspan> = 0110</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:7.05556px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
      x="266.81076"
      y="207.37161"
      id="text14-6-6"><tspan
+       sodipodi:role="line"
        id="tspan14-5-0"
        style="stroke-width:0.5"
        x="266.81076"
        y="207.37161">0011</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="216.54384"
        id="tspan15-0-1">0000</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="225.71606"
@@ -988,6 +1092,7 @@
      x="259.31631"
      y="211.67465"
      id="text17-8-5"><tspan
+       sodipodi:role="line"
        id="tspan17-6-7"
        style="stroke-width:0.5"
        x="259.31631"
@@ -998,6 +1103,7 @@
      x="259.31631"
      y="220.99284"
      id="text17-9-0-5"><tspan
+       sodipodi:role="line"
        id="tspan17-2-2-4"
        style="stroke-width:0.5"
        x="259.31631"
@@ -1008,6 +1114,7 @@
      x="233.42278"
      y="235.03329"
      id="text18-4-1"><tspan
+       sodipodi:role="line"
        id="tspan18-8-2"
        style="stroke-width:0.5"
        x="233.42278"
@@ -1022,6 +1129,7 @@
      x="266.89526"
      y="235.75227"
      id="text20-5-0"><tspan
+       sodipodi:role="line"
        id="tspan20-0-1"
        style="stroke-width:0.5"
        x="266.89526"
@@ -1060,6 +1168,7 @@
      x="277.54062"
      y="333.87012"
      id="text20-9-6-2-2"><tspan
+       sodipodi:role="line"
        id="tspan20-8-0-5-0"
        style="stroke-width:0.5"
        x="277.54062"
@@ -1157,11 +1266,11 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4-0-3-4);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.77953;stroke-dasharray:none;stroke-opacity:1"><tspan
        x="47.703125"
        y="35.576946"
-       id="tspan85"><tspan
+       id="tspan87"><tspan
          style="fill:#000000;stroke:none"
-         id="tspan83">Turn 3: </tspan><tspan
+         id="tspan85">Turn 3: </tspan><tspan
          style="fill:#7688fa;stroke:none"
-         id="tspan84">Player 2 takes 3 from row 3 </tspan></tspan></text>
+         id="tspan86">Player 2 takes 3 from row 3 </tspan></tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728633,278.10929)"
@@ -1169,9 +1278,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-3-4-7);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan87">(3)<tspan
+       id="tspan89">(3)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan86">2</tspan> = 0011</tspan></text>
+   id="tspan88">2</tspan> = 0011</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728633,299.0987)"
@@ -1179,9 +1288,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-8-4-8);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan89">(0)<tspan
+       id="tspan91">(0)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan88">2</tspan> = 0000</tspan></text>
+   id="tspan90">2</tspan> = 0000</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728633,320.23437)"
@@ -1189,23 +1298,26 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-3-7-6-3);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan91">(3)<tspan
+       id="tspan93">(3)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan90">2</tspan> = 0011</tspan></text>
+   id="tspan92">2</tspan> = 0011</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:7.05556px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
      x="266.81076"
      y="295.73361"
      id="text14-6-6-9"><tspan
+       sodipodi:role="line"
        id="tspan14-5-0-6"
        style="stroke-width:0.5"
        x="266.81076"
        y="295.73361">0011</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="304.90585"
        id="tspan15-0-1-5">0000</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="314.07806"
@@ -1216,6 +1328,7 @@
      x="259.31628"
      y="300.03665"
      id="text17-8-5-0"><tspan
+       sodipodi:role="line"
        id="tspan17-6-7-9"
        style="stroke-width:0.5"
        x="259.31628"
@@ -1226,6 +1339,7 @@
      x="259.31628"
      y="309.35486"
      id="text17-9-0-5-9"><tspan
+       sodipodi:role="line"
        id="tspan17-2-2-4-6"
        style="stroke-width:0.5"
        x="259.31628"
@@ -1236,6 +1350,7 @@
      x="233.42278"
      y="323.39529"
      id="text18-4-1-8"><tspan
+       sodipodi:role="line"
        id="tspan18-8-2-3"
        style="stroke-width:0.5"
        x="233.42278"
@@ -1250,6 +1365,7 @@
      x="266.89526"
      y="324.11429"
      id="text20-5-0-8"><tspan
+       sodipodi:role="line"
        id="tspan20-0-1-4"
        style="stroke-width:0.5"
        x="266.89526"
@@ -1288,6 +1404,7 @@
      x="277.54062"
      y="424.3465"
      id="text20-9-6-2-27"><tspan
+       sodipodi:role="line"
        id="tspan20-8-0-5-6"
        style="stroke-width:0.5"
        x="277.54062"
@@ -1361,11 +1478,11 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4-0-3-48);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.77953;stroke-dasharray:none;stroke-opacity:1"><tspan
        x="47.703125"
        y="35.576946"
-       id="tspan94"><tspan
+       id="tspan96"><tspan
          style="fill:#000000;stroke:none"
-         id="tspan92">Turn 4: </tspan><tspan
+         id="tspan94">Turn 4: </tspan><tspan
          style="fill:#fa7676;stroke:none"
-         id="tspan93">Player 2 takes 3 from row 3 </tspan></tspan></text>
+         id="tspan95">Player 2 takes 3 from row 3 </tspan></tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728622,368.58565)"
@@ -1373,9 +1490,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-3-4-8);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan96">(3)<tspan
+       id="tspan98">(3)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan95">2</tspan> = 0011</tspan></text>
+   id="tspan97">2</tspan> = 0011</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728622,389.57506)"
@@ -1383,9 +1500,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-8-4-2);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan98">(0)<tspan
+       id="tspan100">(0)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan97">2</tspan> = 0000</tspan></text>
+   id="tspan99">2</tspan> = 0000</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728622,410.71073)"
@@ -1393,23 +1510,26 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-3-7-6-4);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan100">(0)<tspan
+       id="tspan102">(0)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan99">2</tspan> = 0000</tspan></text>
+   id="tspan101">2</tspan> = 0000</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:7.05556px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
      x="266.81076"
      y="386.20999"
      id="text14-6-6-4"><tspan
+       sodipodi:role="line"
        id="tspan14-5-0-1"
        style="stroke-width:0.5"
        x="266.81076"
        y="386.20999">0011</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="395.38223"
        id="tspan15-0-1-1">0000</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="404.55444"
@@ -1420,6 +1540,7 @@
      x="259.31631"
      y="390.51303"
      id="text17-8-5-8"><tspan
+       sodipodi:role="line"
        id="tspan17-6-7-7"
        style="stroke-width:0.5"
        x="259.31631"
@@ -1430,6 +1551,7 @@
      x="259.31631"
      y="399.83124"
      id="text17-9-0-5-4"><tspan
+       sodipodi:role="line"
        id="tspan17-2-2-4-2"
        style="stroke-width:0.5"
        x="259.31631"
@@ -1440,6 +1562,7 @@
      x="233.42276"
      y="413.87167"
      id="text18-4-1-7"><tspan
+       sodipodi:role="line"
        id="tspan18-8-2-7"
        style="stroke-width:0.5"
        x="233.42276"
@@ -1454,6 +1577,7 @@
      x="266.89526"
      y="414.59067"
      id="text20-5-0-3"><tspan
+       sodipodi:role="line"
        id="tspan20-0-1-1"
        style="stroke-width:0.5"
        x="266.89526"
@@ -1492,6 +1616,7 @@
      x="277.54062"
      y="512.7085"
      id="text20-9-6-2-2-0"><tspan
+       sodipodi:role="line"
        id="tspan20-8-0-5-0-2"
        style="stroke-width:0.5"
        x="277.54062"
@@ -1541,11 +1666,11 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect4-0-3-4-5);display:inline;fill:none;fill-opacity:1;stroke:#000000;stroke-width:3.77953;stroke-dasharray:none;stroke-opacity:1"><tspan
        x="47.703125"
        y="35.576946"
-       id="tspan103"><tspan
+       id="tspan105"><tspan
          style="fill:#000000;stroke:none"
-         id="tspan101">Turn 5: </tspan><tspan
+         id="tspan103">Turn 5: </tspan><tspan
          style="fill:#7688fa;stroke:none"
-         id="tspan102">Player 2 takes 3 from row 3 </tspan></tspan></text>
+         id="tspan104">Player 2 takes 3 from row 3 </tspan></tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728622,456.94768)"
@@ -1553,9 +1678,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-3-4-7-5);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan105">(0)<tspan
+       id="tspan107">(0)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan104">2</tspan> = 0000</tspan></text>
+   id="tspan106">2</tspan> = 0000</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728622,477.93709)"
@@ -1563,9 +1688,9 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-8-4-8-1);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan107">(0)<tspan
+       id="tspan109">(0)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan106">2</tspan> = 0000</tspan></text>
+   id="tspan108">2</tspan> = 0000</tspan></text>
   <text
      xml:space="preserve"
      transform="matrix(0.26458333,0,0,0.26458333,7.6728622,499.07276)"
@@ -1573,23 +1698,26 @@
      style="font-size:26.6667px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;white-space:pre;shape-inside:url(#rect2-5-5-3-7-6-3-7);display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:18.8976"><tspan
        x="614.28906"
        y="66.602337"
-       id="tspan109">(0)<tspan
+       id="tspan111">(0)<tspan
    style="font-size:65%;baseline-shift:sub"
-   id="tspan108">2</tspan> = 0000</tspan></text>
+   id="tspan110">2</tspan> = 0000</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:7.05556px;line-height:1.3;font-family:Helvetica;-inkscape-font-specification:Helvetica;text-align:start;letter-spacing:0px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1"
      x="266.81076"
      y="474.57199"
      id="text14-6-6-9-7"><tspan
+       sodipodi:role="line"
        id="tspan14-5-0-6-8"
        style="stroke-width:0.5"
        x="266.81076"
        y="474.57199">0000</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="483.74423"
        id="tspan15-0-1-5-8">0000</tspan><tspan
+       sodipodi:role="line"
        style="stroke-width:0.5"
        x="266.81076"
        y="492.91644"
@@ -1600,6 +1728,7 @@
      x="259.31628"
      y="478.87503"
      id="text17-8-5-0-9"><tspan
+       sodipodi:role="line"
        id="tspan17-6-7-9-1"
        style="stroke-width:0.5"
        x="259.31628"
@@ -1610,6 +1739,7 @@
      x="259.31628"
      y="488.19324"
      id="text17-9-0-5-9-3"><tspan
+       sodipodi:role="line"
        id="tspan17-2-2-4-6-5"
        style="stroke-width:0.5"
        x="259.31628"
@@ -1620,6 +1750,7 @@
      x="233.42276"
      y="502.23367"
      id="text18-4-1-8-9"><tspan
+       sodipodi:role="line"
        id="tspan18-8-2-3-8"
        style="stroke-width:0.5"
        x="233.42276"
@@ -1634,6 +1765,7 @@
      x="266.89526"
      y="502.95267"
      id="text20-5-0-8-0"><tspan
+       sodipodi:role="line"
        id="tspan20-0-1-4-7"
        style="stroke-width:0.5"
        x="266.89526"
@@ -1668,6 +1800,7 @@
      x="57.943748"
      y="498.47501"
      id="text56"><tspan
+       sodipodi:role="line"
        id="tspan56"
        style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-opacity:1"
        x="57.943748"

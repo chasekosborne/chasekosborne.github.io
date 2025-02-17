@@ -87,7 +87,7 @@ MathJax.Hub.Config({
             Two players take turns removing items from the rows, and the player who removes the last item wins. An example game may look something like:
         </p>
         <div class="figure">
-            <img src="../image/nim/diagram2.svg" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <img src="../image/nim/diagram2.svg" alt="" style="width: 90%; display: block; margin: 0 auto;" />
             <div class="caption">
                 <span class="caption-label">Figure. 1</span> Example game of Nim with three rows of items with 9, 5, and 7 items respectively. Player 2 removes the last item and wins the game.
             </div>
@@ -104,7 +104,7 @@ MathJax.Hub.Config({
         </p>
 
         <div class="figure">
-            <img src="../image/nim/diagram3.svg" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <img src="../image/nim/diagram3.svg" alt="" style="width: 90%; display: block; margin: 0 auto;" />
             <div class="caption">
                 <span class="caption-label">Figure. 2</span> Example game of Nim with starting configuration from Figure 1. In this case Player 1 removes the last item and wins the game, keeping the
                 Nim sum at zero on his turns.
@@ -127,7 +127,7 @@ MathJax.Hub.Config({
             largest group \(2^{n}\) one can make for each row. For Player 1 to maintain their advantage, they need an even number of groups present for each configuration of row.
         </p>
         <div class="figure">
-            <img src="../image/nim/diagram4.svg" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <img src="../image/nim/diagram4.svg" alt="" style="width: 60%; display: block; margin: 0 auto;" />
             <div class="caption">
                 <span class="caption-label">Figure. 3</span> Example game of Nim with starting configuration from Figure 1. Notice that we need to make sure that we have an even number of groups of 8.
         </div>
@@ -138,7 +138,7 @@ MathJax.Hub.Config({
             to balance this number so all groups are even, this works especially well for larger numbers of items.
         </p>
         <div class="figure">
-            <img src="../image/nim/diagram5.svg" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <img src="../image/nim/diagram5.svg" alt="" style="width: 80%; display: block; margin: 0 auto;" />
             <div class="caption">
                 <span class="caption-label">Figure. 4</span> Algorithm of breaking down remainders into groups of powers of 2. Checking residuals recursively until an uneven number of groups is found.
         </div>
@@ -175,22 +175,62 @@ MathJax.Hub.Config({
             As it maintains the condition that the XOR operator will output zero for each sum for all items and their binary representation. We will see that this condition will hold for games of all possible rows and item numbers.
         </p>
         </div>
-        <h2 id="Nim">The Proof</h2>
+        <h2 id="Proof">The Proof</h2>
         <p>
-            Now with the winning strategy known, we may now be able to begin proving why this strategy works. We will begin with a seemingly unrelated discussion of graphs
+            The proof of the optimal strategy was first formalized by Charles L. Bouton in 1901. It relies on dividing game positions into two types:
         </p>
+        <ul>
+            <li><strong>P-positions</strong> (Previous player wins): The Nim sum is 0.</li>
+            <li><strong>N-positions</strong> (Next player wins): The Nim sum is nonzero.</li>
+        </ul>
         <p>
-            <u><strong>Theorem:</strong></u>
+            <strong>Theorem:</strong> <i>A position is a P-position if and only if the Nim sum is 0.</i>
         </p>
         <p>
             <strong>Proof:</strong>
         </p>
-        <h2 id="Nim">Play Nim</h2>
+        <p>
+            We proceed by induction:
+        </p>
+        <ol>
+            <li>**Base Case:** If all piles are empty, the Nim sum is 0, and the player to move loses.</li>
+            <li>**Inductive Step:** If a position has a nonzero Nim sum, there exists at least one move to a position with a zero Nim sum.
+                Since XOR works bitwise, there must be some pile where removing items results in a zero Nim sum.
+            </li>
+        </ol>
+        <p>
+            Thus, any move from a P-position leads to an N-position, and any move from an N-position can be forced into a P-position.
+            This ensures that the first player wins if the initial position is an N-position.
+        </p>
+        <p>
+            The key takeaway is that the game is completely determined by the initial Nim sum.
+        </p>
+
+        <h2 id="PlayNim">Play Nim</h2>
+        <p>
+            Try playing an interactive game of Nim below! The AI will play optimally against you.
+        </p>
+        <div id="nim-game">
+            <div id="game-board"></div>
+            <p>
+                Select a row and the number of items to remove:
+            </p>
+            <select id="row-select">
+                <option value="0">Row 1</option>
+                <option value="1">Row 2</option>
+                <option value="2">Row 3</option>
+            </select>
+            <input type="number" id="remove-count" min="1" value="1">
+            <button onclick="playerMove(parseInt(document.getElementById('row-select').value), parseInt(document.getElementById('remove-count').value))">
+                Remove
+            </button>
+        </div>
+
         <div id='bibliography'>
-        <div class='wrap'>
-            <ol class="bibliography"></ol>
+            <div class='wrap'>
+                <ol class="bibliography"></ol>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Understanding Vulkan</title>
+
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content=''>
+    <meta name='keywords' content='black scholes, black scholes pde, black scholes formula, risk-neutrality, no arbitrage, options, derivatives, derivatives pricing, lognormal distribution'>
+    <meta name='author' content='Gregory Gundersen'>
+
+    <link href='../css/blog.css' rel='stylesheet'/>
+    <link href='../css/trac.css' rel='stylesheet'/>
+    <link href='../css/markdown.css' rel='stylesheet'/>
+
+    <link rel='shortcut icon' href='../image/favicon.png' />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js" integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js" integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='../index.html'>Home</a></li>
+        <li><a href='../blog.html'>Blog</a></li>
+    </ul>
+</div>
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>
+                    
+                Understanding Vulkan
+                    
+            </h1>
+            <h4>
+                
+                I explain the Vulkan API to myself in hopes that somebody else may be able to find this useful
+                
+            </h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>10 November 2024</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+        <h2 id="technical-difficulties">Introduction</h2>
+        Recently I have been working on a personal project that has required that I use a computer graphics API. Instead of taking the easy route and using OpenGL (a software I have used before briefly). I decided to build
+        my engine from scratch using Vulkan. This proved to be much more time consuming. Fortunately, it has given me a better understanding of how exactly computer graphics work. In this post, I will attempt to explain what I've learned
+        over the past few months with my project. I am not a great software developer, and most of the code in my current project I can attribute to 
+        <a>this</a href="https://www.youtube.com/playlist?list=PL8327DO66nu9qYVKLDmdLW_84-yE4auCR" target="_blank"> tutorial series by Brandon Gaela on YouTube. If you are interested more in coding something like this yourself, I would 
+        highly reccommend checking this out.
+
+        <h2 id="technical-difficulties">Introduction</h2>
+        Recently I have been working on a personal project that has required that I use a computer graphics API. Instead of taking the easy route and using OpenGL (a software I have used before briefly). I decided to build
+        my engine from scratch using Vulkan. This proved to be much more time consuming. Fortunately, it has given me a better understanding of how exactly computer graphics work. In this post, I will attempt to explain what I've learned
+        over the past few months with my project. I am not a great software developer, and most of the code in my current project I can attribute to 
+        <a>this</a href="https://www.youtube.com/playlist?list=PL8327DO66nu9qYVKLDmdLW_84-yE4auCR" target="_blank"> tutorial series by Brandon Gaela on YouTube. If you are interested more in coding something like this yourself, I would 
+        highly reccommend checking this out.
+    </div>
+    
+    <div id='bibliography'>
+        <div class='wrap'>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // Configuration options
+        delimiters: [
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ]
+      });
+    });
+</script> 
+</body>
+</html>

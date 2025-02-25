@@ -145,6 +145,16 @@ table td {
 .tag-page h1 span {
   font-size: 14px;
 }
+.header-with-exit {
+  display: flex;
+   justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-top: 1em;
+  padding-bottom: 1rem;
+  padding-bottom: 1rem;
+  padding-top: 1em;
+}
 .article {
   font-size: 15px;
   line-height: 1.6em;
@@ -310,9 +320,7 @@ table td {
 
 .tag-page h2 {
   font-size: 26px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 1rem;
-  padding-top: 1em;
+
 }
 .footnotes {
   margin-top: 100px;

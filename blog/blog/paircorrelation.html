@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pair Correlation</title>
+
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content=''>
+    <meta name='keywords' content='black scholes, black scholes pde, black scholes formula, risk-neutrality, no arbitrage, options, derivatives, derivatives pricing, lognormal distribution'>
+    <meta name='author' content='Gregory Gundersen'>
+
+    <link href='../css/blog.css' rel='stylesheet'/>
+    <link href='../css/trac.css' rel='stylesheet'/>
+    <link href='../css/markdown.css' rel='stylesheet'/>
+
+    <link rel='shortcut icon' href='../image/favicon.png' />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js" integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js" integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='../index.html'>Home</a></li>
+        <li><a href='../blog.html'>Blog</a></li>
+    </ul>
+</div>
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>
+                
+        The Pair Correlation Function
+                
+	    </h1>
+            <h4>
+                
+                Motivation and Overview.
+                
+            </h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>17 February 2024</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+
+        <h2 id="technical-difficulties">Introduction</h2>
+
+        <p>
+            The pair Correlation function \(g(r)\) is a metric on how the density of particles varies from a given distance \(r\) from a reference particle. 
+            When the particles you are observing can be approximated as radially symmetric, it is common to denote \(g(r)\) as the radial distribution function.
+        </p>
+        <p>
+            If we are given a volume \(V\) with \(N\) particles, we define the number density as 
+        </p>
+        <p>
+            \[
+            \rho{} = \frac{N}{V}
+            \]
+        </p>
+        <p>
+            In any given sample, we can expect the the average density of particles in an arbitrary sphereical shell of radius \(r\) to \(r+dr\) within the sample to be 
+        </p>
+        <p>
+            \[
+            \rho{}g(r)
+            \]
+        </p>
+        <p>
+            Of course in the case of an ideal gas, where particles do not interact with eachother and therefore have no variation in density (in other words
+            meaning they are uniformly distributed) \(g(r) = 1\).
+        </p>
+
+        <h2 id="technical-difficulties">Technical Notes</h2>
+            This function obfuscates a lot of the statistical mechanics embedded in it. Meaning if you'd wanted to calculate \(g(r)\) yourself.
+            Your first step would be to calculate the pair correlation function from a sample, even in the simplest case of an ideal gas you would likely get something 
+            that looked like
+        <div class="figure">
+            <img src="../image/paircorrelation/radial_distribution.gif" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <div class="caption">
+                <span class="caption-label">Figure 1.</span> Radial distribution function calculated from sample point (left), followed with a histogram of the pair
+                 correlation function (right), compared to its theoretical value. 
+            </div>
+        </div>
+        <p>
+            This is because the pair corelation is an <i>ensemble average</i> of densities of particles at a given distance from a reference particle. To get meaningful
+            results, we need to take the average of the pair correlation function over many samples.
+        </p>
+        <p>
+            There are two ways we can do so: <br>
+            <strong>Microstate Average</strong> - The average over the reference particles in a single sample. <br>
+            <strong>Ensemble Average</strong> - The average over various samples of possible states in the system.
+        </p>
+        <div class="figure">
+            <img src="../image/paircorrelation/evolving_gr.gif" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <div class="caption">
+                <span class="caption-label">Figure 2.</span> Radial distribution function calculated from sample point (left), followed with a microstate average of 
+                the pair correlation function (right), compared to its theoretical value. 
+            </div>
+        </div>
+        <p>
+            Here, we will mainly concern ourselves with the microstate average, since we are only concerned with the pair correlation function of a single sample.
+            Expections are otherwise clarified.
+        </p>
+        <p>
+            One final thing to note about running simulations for a given pair correlation function. Any boundry method that isn't periodic will introduce artifacts
+            to some degree. It may increase in the amount of randomness at high radii, as well as introduce a positive/negative bias in the pair correlation function.
+        </p>
+    </div>
+    <div id='bibliography'>
+        <div class='wrap'>
+            <ol class="bibliography">
+                <li><span id="gfskinner">Skinner, D. (n.d.). <a href="https://www.damtp.cam.ac.uk/user/dbs26/1BMethods/GreensPDE.pdf" target="_blank">Green’s functions for PDEs</a>. <i>Cambridge University</i>, 126–142.</span></li>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // Configuration options
+        delimiters: [
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ]
+      });
+    });
+</script> 
+</body>
+</html>

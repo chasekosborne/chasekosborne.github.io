@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Chase K Osborne</title>
+	<meta charset='UTF-8'>
+	<meta content='width=device-width, initial-scale=1' name='viewport'/>
+	
+	<meta name='description' content='Mathematician and Compuational Physicist'>
+	<meta name='keywords' content='computer science, machine learning, statistics, statistical physics, physics'>
+	<meta name='author' content='Chase K Osborne'>
+
+	<link rel='stylesheet' type='text/css' href='css/main.css'/>
+	<link rel='shortcut icon' href='image/favicon.png' />
+</head>
+<body>
+	<div id='landing'>
+		<h1>Chase K Osborne</h1>
+		<ul id='links'>
+			<!--<li>
+				<a href='/publications'>Publications</a>
+			</li> -->
+			<li>
+				<a href='blog.html'>Blog</a>
+			</li>
+			<li class='dropdown'>
+				<a href=''>Links</a><span class='arrow'>▾</span></a>
+				<div class='dropdown-content'>
+					<a href='https://github.com/chasekosborne' target='_blank'>Github</a>
+					<a href='https://www.linkedin.com/in/chase-osborne-20468b239/' target='_blank'>LinkedIn</a>
+				</div>
+			</li>		
+			<li id='contact'>
+				osborne.chase701@gmail.com
+			</li>
+		</ul>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			const dropdown = document.querySelector('.dropdown');
+			const arrow = dropdown.querySelector('.arrow');
+	
+			dropdown.addEventListener('mouseenter', function() {
+				arrow.textContent = '▴'; // Change to up arrow
+			});
+	
+			dropdown.addEventListener('mouseleave', function() {
+				arrow.textContent = '▾'; // Change to down arrow
+			});
+		});
+	</script>
+</body>
+</html>

@@ -42,7 +42,7 @@
 	    </h1>
             <h4>
                 
-                Motivation and Overview.
+                Derivation, overview, and guide to producing pair correlation functions from spatial data.
                 
             </h4>
             <div class='bylines'>
@@ -67,7 +67,7 @@
         </p>
         <p>
             \[
-            \rho{} = \frac{N}{V}
+            \tag{1} \rho{} = \frac{N}{V}
             \]
         </p>
         <p>
@@ -80,18 +80,94 @@
         </p>
         <p>
             Of course in the case of an ideal gas, where particles do not interact with eachother and therefore have no variation in density (in other words
-            meaning they are uniformly distributed) \(g(r) = 1\).
+            meaning they are uniformly distributed) \(g(r) = 1\). Which is often used as a baseline for the function itself.
+        </p>
+
+        <h2 id="technical-difficulties">Derivation</h2>
+        <p>
+            As we previously have defined, we have a system of \(N\) particles in a volume \(V\). Our number density is defined in equation (1). If we assume some temperature
+            in this system \(T\) of course we may define the Boltzmann constant as \(\beta{}=\frac{1}{kT}\). For those unfamiliar with statistical mechanics, you can think of
+            this constant as a conversion factor between energy and temperature That will help us with determining the probability of a particle being in a given state. In essence,
+            is the goal of statistical mechanics.
+        </p>
+        <p>
+            We can define the probability of a particle being in a state \(\psi_{i}\) (i.e. position, momenum, angular momentum) with energy \(E_{i}\) as:
+        </p>
+        \[
+        \tag{2} \mathbb{P}(\psi_{i}{}) = \frac{e^{-\beta{}E_{i}{}}}{Z}
+        \]
+        <p>
+            With the partition funciton \(Z\) defined as:
+        </p>
+        \[
+        Z = \sum_{i} e^{-\beta{}E_{i}{}}
+        \]
+        <p>
+            Similarly, if we were interested in particularly in interactions between particles, we could could concern ourselves with the <i>interaction potential</i>. The potential is
+            what mediates the interaction between particles. We can isolate this equation to consider only potential energy \(U_{N}\) to only consider this form to concern ourselves only 
+            with the interaction between particles, often with respect to some distance parameter dependent on all other particles.
+        </p>
+        <p>
+            So, by denoting the set of distances within a given sample  \( \{ \mathbf{r}_{1}, ...  ,\mathbf{r}_{N} \}\), in which case we have made them vectors.
+            And defining our potential for each particle with respect to these distances \(U_{N}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{N})\). We can define the probability of a set
+            of particles being at any given set of positions as:
+        </p>
+        \[
+        \tag{3} \mathbb{P}^{[N]}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{N}) = \frac{e^{-\beta{}U_{N}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{N})}}{Z_{N}}
+        \]
+        <p>
+            With the partition funciton \(Z\) defined as:
+        </p>
+        \[
+        Z_{N} = \int{}...\int{} e^{-\beta{}U_{N}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{N})} d\mathbf{r}_{1} ...  d\mathbf{r}_{N}
+        \]
+        <p>
+            As you might note, the set of states is continuous, so we must integrate over all possible states. As opposed to the partition function in equation (2) where we 
+            assume the set of energies in this case to be discrete. As another note, this is likely difficult, if not impossible to calculate in practice.
+        </p>
+        <p>
+            With this in mind, let's make this computation easier by fixing the positions of the first \(n\) particles. This is a common assumption in statistical mechanics, and is known as the 
+            fixed particle approximation. This allows us to simplify our calculations by reducing the number of variables we need to integrate over. Our probability then becomes.
+        </p>
+        \[
+        \tag{4} \mathbb{P}^{[n]}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{n}) = \frac{1}{Z_{N}}\int{}e^{-\beta{}U_{N}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{N})} d\mathbf{r}_{n+1} ...  d\mathbf{r}_{N} 
+        \]
+        \[
+        = \frac{e^{-\beta{}U_{N}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{n})}}{Z_{N}}\int{}e^{-\beta{}U_{N}(\mathbf{r}_{n+1}, ...  ,\mathbf{r}_{N})} d\mathbf{r}_{n+1} ...  d\mathbf{r}_{N} 
+        \]
+        <p>
+            If this step is still confusing (as it was for me). If we're only interested interested in any two particles, and the positions between them, we can say what is the probability that they will be
+            at two different positions (i.e. a given distance away from one another) will be given by the function:
+        </p>
+        \[
+        \mathbb{P}^{[2]}(\mathbf{r}_{1},\mathbf{r}_{2}) = \frac{e^{-\beta{}U_{N}(\mathbf{r}_{1}, \mathbf{r}_{2})}}{Z_{N}}\int{}e^{-\beta{}U_{N}(\mathbf{r}_{3}, ...  ,\mathbf{r}_{N})} d\mathbf{r}_{3} ...  d\mathbf{r}_{N} 
+        \]
+        <p>
+            You can interpret this equation as describing the ratio two fixed particles being at given positions \( \mathbf{r}_{1}\) and \(\mathbf{r}_{2} \) over all positions of \( \mathbf{r}_{1}\) and \(\mathbf{r}_{2} \).
+            This in essence is what the pair correlation function looks to calculate.
+        </p>
+        <p>
+            <i>So why do we use it?</i>
+        </p>
+        <p>
+            Exactly, as I had thought. This is what is known as the <i>2-Particle Probability Distribution Function</i> and while it is quite useful in its own right, it describes the system in terms of absolute positions.
+            This is not easy to measure, especially in something like a fluid or a gas. So something like the relative distances between particles is something that would be more useful to us, and tell us about the system.
+        </p>
+        <p>
+            Our nect step in defining a radial distribution function, is to define the particle density.
         </p>
 
         <h2 id="technical-difficulties">Technical Notes</h2>
+        <p>
             This function obfuscates a lot of the statistical mechanics embedded in it. Meaning if you'd wanted to calculate \(g(r)\) yourself.
             Your first step would be to calculate the pair correlation function from a sample, even in the simplest case of an ideal gas you would likely get something 
-            that looked like
+            that looked like:
+        </p>
         <div class="figure">
             <img src="../image/paircorrelation/radial_distribution.gif" alt="" style="width: 100%; display: block; margin: 0 auto;" />
             <div class="caption">
                 <span class="caption-label">Figure 1.</span> Radial distribution function calculated from sample point (left), followed with a histogram of the pair
-                 correlation function (right), compared to its theoretical value. 
+                correlation function (right), compared to its theoretical value. 
             </div>
         </div>
         <p>
@@ -118,13 +194,20 @@
             One final thing to note about running simulations for a given pair correlation function. Any boundry method that isn't periodic will introduce artifacts
             to some degree. It may increase in the amount of randomness at high radii, as well as introduce a positive/negative bias in the pair correlation function.
         </p>
+        <p>
+            If you can recall, the pair correlation function is a measure of the density of particles at a given distance from a reference particle. Applying this concept
+            to a 
+        </p>
     </div>
+
+
     <div id='bibliography'>
         <div class='wrap'>
             <ol class="bibliography">
-                <li><span id="gfskinner">Skinner, D. (n.d.). <a href="https://www.damtp.cam.ac.uk/user/dbs26/1BMethods/GreensPDE.pdf" target="_blank">Green’s functions for PDEs</a>. <i>Cambridge University</i>, 126–142.</span></li>
+                <li><span id="gfskinner">Wikipedia (n.d.). <a href="https://www.damtp.cam.ac.uk/user/dbs26/1BMethods/GreensPDE.pdf" target="_blank">Radial Distribution Function</a>.</span></li>
         </div>
     </div>
+
 </div>
 <script>
     document.addEventListener("DOMContentLoaded", function () {

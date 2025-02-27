@@ -42,7 +42,7 @@
 	    </h1>
             <h4>
                 
-                Derivation, overview, and guide to producing pair correlation functions from spatial data.
+                Derivation, overview, and guide to producing correlation functions from spatial data.
                 
             </h4>
             <div class='bylines'>
@@ -137,7 +137,7 @@
         \]
         <p>
             If this step is still confusing (as it was for me). If we're only interested interested in any two particles, and the positions between them, we can say what is the probability that they will be
-            at two different positions (i.e. a given distance away from one another) will be given by the function:
+            at two fixed positions (i.e. a given distance away from one another) will be given by the function:
         </p>
         \[
         \mathbb{P}^{[2]}(\mathbf{r}_{1},\mathbf{r}_{2}) = \frac{e^{-\beta{}U_{N}(\mathbf{r}_{1}, \mathbf{r}_{2})}}{Z_{N}}\int{}e^{-\beta{}U_{N}(\mathbf{r}_{3}, ...  ,\mathbf{r}_{N})} d\mathbf{r}_{3} ...  d\mathbf{r}_{N} 
@@ -147,14 +147,40 @@
             This in essence is what the pair correlation function looks to calculate.
         </p>
         <p>
-            <i>So why do we use it?</i>
+            <i>So why don't we use it?</i>
         </p>
         <p>
             Exactly, as I had thought. This is what is known as the <i>2-Particle Probability Distribution Function</i> and while it is quite useful in its own right, it describes the system in terms of absolute positions.
             This is not easy to measure, especially in something like a fluid or a gas. So something like the relative distances between particles is something that would be more useful to us, and tell us about the system.
         </p>
         <p>
-            Our nect step in defining a radial distribution function, is to define the particle density.
+            Our next step in defining this radial distribution function, is to define the particle density.
+        </p>
+        <p>
+            This can be quite unintuitive, as the definiton of the N-Particle-Density looks very similar to the N-Particle Probability Distribution Function. The best way to begin to look at this is to consider the simplest case.
+        </p>
+        \[
+        \mathbb{P}(r) = \frac{1}{V} \hspace{15px} and, \hspace{15px} \rho{} = \frac{N}{V} \hspace{15px} therefore, \hspace{15px} N\mathbb{P}(r) = \rho{}
+        \]
+        <p>
+            In the case that the particles do not interact, and are perfectly uniform. You can see that the probability is based on the volume of the circular sample. Where the density is based on the number of particles in the volume.
+        </p>   
+        <p>  
+            When we scale this back up to finding the set of particle positions to be in a given configuration yielding density \(\rho{}^{[N]}\), we can see that the probability of a set of particles being:
+        </p>
+        \[
+            \rho^{[N]}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{N}) = N!\mathbb{P}^{[N]}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{N})
+        \]
+        <p>  
+            Once again, calculating this is difficult, so we can use the fixed particle approximation to simplify this to:
+        </p>
+        \[
+            \tag{5} \rho^{[n]}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{n}) = \frac{N!}{(N-n)!}\mathbb{P}^{[n]}(\mathbf{r}_{1}, ...  ,\mathbf{r}_{n})
+        \]
+        <p>  
+            The purpose of using a factorial lies in the fact that the variable positions of each \(N\) particles can commute, 
+            and swap places with any of the other \(N\) different positions to obtain the same density, and therefore needs factored into the equation.
+            Once we fix the first n particles, their positions become definite and the factorial is no longer needed for them since they are fixed in place.
         </p>
 
         <h2 id="technical-difficulties">Technical Notes</h2>
@@ -193,10 +219,6 @@
         <p>
             One final thing to note about running simulations for a given pair correlation function. Any boundry method that isn't periodic will introduce artifacts
             to some degree. It may increase in the amount of randomness at high radii, as well as introduce a positive/negative bias in the pair correlation function.
-        </p>
-        <p>
-            If you can recall, the pair correlation function is a measure of the density of particles at a given distance from a reference particle. Applying this concept
-            to a 
         </p>
     </div>
 

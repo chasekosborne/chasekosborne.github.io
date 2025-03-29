@@ -108,6 +108,7 @@ MathJax.Hub.Config({
             <div class="caption">
                 <span class="caption-label">Figure. 2</span> Example game of Nim with starting configuration from Figure 1. In this case Player 1 removes the last item and wins the game, keeping the
                 Nim sum at zero on his turns.
+            </div>
         </div>
         <p>
             As we will prove later, so long as Player 1 plays the game optimally, this Nim sum will remain nonzero at the end of Player 2's turns no matter what move is made. And this is what allows for 
@@ -177,11 +178,11 @@ MathJax.Hub.Config({
         </div>
         <h2 id="Proof">The Proof</h2>
         <p>
-            The proof of the optimal strategy was first formalized by Charles L. Bouton in 1901. It relies on dividing game positions into two types:
+            Firstly, to prove this, we will define a winning position (P-position) and a losing position (N-position):
         </p>
         <ul>
-            <li><strong>P-positions</strong> (Previous player wins): The Nim sum is 0.</li>
-            <li><strong>N-positions</strong> (Next player wins): The Nim sum is nonzero.</li>
+            <li>P-positions (Previous player wins): The Nim sum is 0.</li>
+            <li>N-positions (Next player wins): The Nim sum is nonzero.</li>
         </ul>
         <p>
             <strong>Theorem:</strong> <i>A position is a P-position if and only if the Nim sum is 0.</i>
@@ -193,8 +194,8 @@ MathJax.Hub.Config({
             We proceed by induction:
         </p>
         <ol>
-            <li>**Base Case:** If all piles are empty, the Nim sum is 0, and the player to move loses.</li>
-            <li>**Inductive Step:** If a position has a nonzero Nim sum, there exists at least one move to a position with a zero Nim sum.
+            <li><u>Base Case</u>: If all piles are empty, the Nim sum is 0, and the player to move loses.</li>
+            <li><u>Inductive Step:</u> If a position has a nonzero Nim sum, there exists at least one move to a position with a zero Nim sum.
                 Since XOR works bitwise, there must be some pile where removing items results in a zero Nim sum.
             </li>
         </ol>
@@ -202,35 +203,35 @@ MathJax.Hub.Config({
             Thus, any move from a P-position leads to an N-position, and any move from an N-position can be forced into a P-position.
             This ensures that the first player wins if the initial position is an N-position.
         </p>
+        <p style="text-align: right;">QED</p>
         <p>
-            The key takeaway is that the game is completely determined by the initial Nim sum.
+            The key takeaway is that the game is completely determined by the initial Nim sum. Assuming both players play optimally, the first
+            player can always win if the initial Nim sum is nonzero.
         </p>
-
+        
         <h2 id="PlayNim">Play Nim</h2>
         <p>
             Try playing an interactive game of Nim below! The AI will play optimally against you.
         </p>
+        
         <div id="nim-game">
             <div id="game-board"></div>
             <p>
                 Select a row and the number of items to remove:
             </p>
-            <select id="row-select">
-                <option value="0">Row 1</option>
-                <option value="1">Row 2</option>
-                <option value="2">Row 3</option>
-            </select>
-            <input type="number" id="remove-count" min="1" value="1">
-            <button onclick="playerMove(parseInt(document.getElementById('row-select').value), parseInt(document.getElementById('remove-count').value))">
-                Remove
+            <button id="restart-button" style="margin-top: 20px; padding: 8px 16px;">
+                Restart Game
             </button>
-        </div>
-
-        <div id='bibliography'>
-            <div class='wrap'>
-                <ol class="bibliography"></ol>
-            </div>
+            <br><br>
         </div>
     </div>
+    
+        <div id='bibliography'>
+            <div class='wrap'>
+                <ol class="bibliography">
+                <li><span id="ppjon">Charles L. Bouton. (1901). <a href="https://www.jstor.org/stable/1967631?seq=1" target="_blank">Nim, A Game with a Complete Mathematical Theory</a>. <i>Annals of Mathematics</i>, 3(1/4), 35-39. https://doi.org/10.2307/1967631
+                </span></li>
+            </div>
+        </div>
 </body>
 </html>

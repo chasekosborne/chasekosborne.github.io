@@ -1,0 +1,244 @@
+<html>
+<head>
+    <title>Nim</title>
+    
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content=''>
+	<meta name='keywords' content='computer science, machine learning, statistics, statistical mechanics, physics'>
+    <meta name='author' content='Chase Osborne'>
+
+    <link href='../css/blog.css' rel='stylesheet'/>
+    <link href='../css/trac.css' rel='stylesheet'/>
+    <link href='../css/markdown.css' rel='stylesheet'/>
+    <link href='../css/nim.css' rel='stylesheet'>
+
+    <link rel='shortcut icon' href='../image/favicon.png' />
+    <script defer src="nim_logic.js"></script>
+    <script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  jax: ['input/TeX', 'output/HTML-CSS'],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    extensions: ['color.js']
+  },
+  messageStyle: 'none',
+  'HTML-CSS': { preferredFont: 'TeX', availableFonts: ['STIX','TeX'] }
+});
+</script>
+
+
+  <script type='text/javascript'
+          src='https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-mml-chtml.js'>
+  </script>
+  <!-- <script src='//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML' type='text/javascript'></script> -->
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.3/dist/katex.min.css" integrity="sha384-ThssJ7YtjywV52Gj4JE/1SQEDoMEckXyhkFVwaf4nDSm5OBlXeedVYjuuUd0Yua+" crossorigin="anonymous"> -->
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-31890516-2"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-31890516-2');
+</script>
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='../index.html'>Home</a></li>
+        <li><a href='../blog.html'>Blog</a></li>
+    </ul>
+</div>
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>Group Symmetries Within Physics</h1>
+            <h4>
+                They are everywhere, and they are beautiful.
+            </h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>20 January 2025</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+        <h2 id="Nim">What are groups</h2>
+        <p>
+            <u><i>Defintion:</i></u> <b>Group</b> <br>
+            A non-empty set \(G\) together with a binary operation '\(\cdot{}\)' that combines two elements \(a,b\in{G}\)
+            (denoted \(a\cdot{}b\)) such that the following three group axioms are satisfied:
+            \begin{enumerate}
+                \item Associativity\\
+                For all $a, b, c\in{}G$, $\exists{} \hspace{25px} (a\cdot{}b)\cdot{}c=a\cdot{}(b\cdot{}c)$ 
+                \item Identity element\\
+                $\exists{} e \in{}G$ such that, $\forall{}a\in{G}$, $e\cdot{}a=a$ and $a\cdot{}e=a$
+                \item Inverse element\\
+                For each $a\in{}G$, $\exists{}b\in{}G$ such that $a\cdot{}b=e$ and $b\cdot{}a=e$, where $e$ is the identity element
+            \end{enumerate}
+            Note how this does not include commutativity, in group theory, this condition is optional. We call commutative groups that obey this condition \textit{abelian}.
+        <p>
+            There are \( n \) rows/categories/sections, here in each row there are \( a_1, a_2, a_3, \ldots, a_n \) items (Could be stones, matchsticks, pencils, or whatever you like).
+            Two players take turns removing items from the rows, and the player who removes the last item wins. An example game may look something like:
+        </p>
+        <div class="figure">
+            <img src="../image/nim/diagram2.svg" alt="" style="width: 90%; display: block; margin: 0 auto;" />
+            <div class="caption">
+                <span class="caption-label">Figure. 1</span> Example game of Nim with three rows of items with 9, 5, and 7 items respectively. Player 2 removes the last item and wins the game.
+            </div>
+        </div>
+        <p>
+            In this example, player 2 wins. However, by design of the game, there is a strategy for the first player that, if played right, will guaruntee a win for the first player always.
+            What I am looking to do is go through this strategy and prove mathematically why this wil garuntee a win.
+        </p>
+        <h2 id="Nim">The Strategy</h2>
+        <p>
+            When playing as the first player, the concept to keep in mind to win is the Nim sum. Each row has a number of items, and a binary representation of this number that is used to
+            calculate this sum, by using the logical XOR operator (\( \oplus{} \)) with each binary representation of the number of items in each row. Using the example in Figure. 2. 
+            The optimal game of Nim will look something like:
+        </p>
+
+        <div class="figure">
+            <img src="../image/nim/diagram3.svg" alt="" style="width: 90%; display: block; margin: 0 auto;" />
+            <div class="caption">
+                <span class="caption-label">Figure. 2</span> Example game of Nim with starting configuration from Figure 1. In this case Player 1 removes the last item and wins the game, keeping the
+                Nim sum at zero on his turns.
+            </div>
+        </div>
+        <p>
+            As we will prove later, so long as Player 1 plays the game optimally, this Nim sum will remain nonzero at the end of Player 2's turns no matter what move is made. And this is what allows for 
+            Player 1 to win the game every time. No matter what.
+        </p>
+        <p>
+            This is pretty interesting on its own. But outside of being a party trick. <i>How</i> exactly can one make sure that the Nim sum is 0 at the end of their turn? And why
+            does this even work in the first place?
+        </p>
+        <p>
+            This is pretty interesting on its own. But outside of being a party trick. <i>How</i> exactly can one make sure that the Nim sum is 0 at the end of their turn? And why
+            does this even work in the first place?
+        </p>
+        <p>
+            To answer the first question, binary counting and operations are very unintuitive for humans to do quickly. So we will need to develop another method to keep track of our Nim sum.
+            To do this, the first constraint we will need to put on ourselves is keeping track of how many groups of \( \{2, 4, 8, 16, ... ,2^{n}\} \) items are present in each row, considering only the 
+            largest group \(2^{n}\) one can make for each row. For Player 1 to maintain their advantage, they need an even number of groups present for each configuration of row.
+        </p>
+        <div class="figure">
+            <img src="../image/nim/diagram4.svg" alt="" style="width: 60%; display: block; margin: 0 auto;" />
+            <div class="caption">
+                <span class="caption-label">Figure. 3</span> Example game of Nim with starting configuration from Figure 1. Notice that we need to make sure that we have an even number of groups of 8.
+        </div>
+        <p>
+            In the case of Figure 3 above, we will need to remove an item from the first row, given this rule alone we will need to remove at least five items so that we do not have an odd number of groups of eight,
+            or four. But we must be careful, we can't just remove an arbitrary amount of items greater than four. We need to make sure that we are also treating the remainders, or lower powers of 2 properly as well.
+            In this case, there are a few ways to think about or remembering how to do this. The best way is to try breaking these remainders further into groups, and just referring back to our inital rule and trying
+            to balance this number so all groups are even, this works especially well for larger numbers of items.
+        </p>
+        <div class="figure">
+            <img src="../image/nim/diagram5.svg" alt="" style="width: 80%; display: block; margin: 0 auto;" />
+            <div class="caption">
+                <span class="caption-label">Figure. 4</span> Algorithm of breaking down remainders into groups of powers of 2. Checking residuals recursively until an uneven number of groups is found.
+        </div>
+        <p>
+            Doing this recursive check after each term wil garuntee that the nim sum is zero at the end of Player 1's turn. And this is the strategy that will allow for Player 1 to win every time. A short explanation of
+            this comes about from the definition of the XOR operator. Since it works bitwise, and there are 3 numbers representing the number of items in binary, we only need to concern ourselves with 8 possible operations:
+        </p>
+            \[
+                1 \oplus 1 \oplus 1 = 1 \\  
+            \]
+            \[
+                1 \oplus 0 \oplus 0 = 1 \\
+            \]
+            \[
+                0 \oplus 1 \oplus 0 = 1 \\
+            \]
+            \[
+                0 \oplus 0 \oplus 1 = 1 \\
+            \]
+            \[ 
+                1 \oplus 1 \oplus 0 = 0 \\
+            \]
+            \[
+                1 \oplus 0 \oplus 1 = 0 \\
+            \]
+            \[
+                0 \oplus 1 \oplus 1 = 0 \\
+            \]
+            \[
+                0 \oplus 0 \oplus 0 = 0 \\
+            \]
+        <p>
+            Note how the result of the operation is only zero when there are an even number of ones involved in the operation. This is exactly why we need to make sure that we have an even number of groups of each power of 2 in each row.
+            As it maintains the condition that the XOR operator will output zero for each sum for all items and their binary representation. We will see that this condition will hold for games of all possible rows and item numbers.
+        </p>
+        </div>
+        <h2 id="Proof">The Proof</h2>
+        <p>
+            Firstly, to prove this, we will define a winning position (P-position) and a losing position (N-position):
+        </p>
+        <ul>
+            <li>P-positions (Previous player wins): The Nim sum is 0.</li>
+            <li>N-positions (Next player wins): The Nim sum is nonzero.</li>
+        </ul>
+        <p>
+            <strong>Theorem:</strong> <i>A position is a P-position if and only if the Nim sum is 0.</i>
+        </p>
+        <p>
+            <strong>Proof:</strong>
+        </p>
+        <p>
+            We proceed by induction:
+        </p>
+        <ol>
+            <li><u>Base Case</u>: If all piles are empty, the Nim sum is 0, and the player to move loses.</li>
+            <li><u>Inductive Step:</u> If a position has a nonzero Nim sum, there exists at least one move to a position with a zero Nim sum.
+                Since XOR works bitwise, there must be some pile where removing items results in a zero Nim sum.
+            </li>
+        </ol>
+        <p>
+            Thus, any move from a P-position leads to an N-position, and any move from an N-position can be forced into a P-position.
+            This ensures that the first player wins if the initial position is an N-position.
+        </p>
+        <p style="text-align: right;">QED</p>
+        <p>
+            The key takeaway is that the game is completely determined by the initial Nim sum. Assuming both players play optimally, the first
+            player can always win if the initial Nim sum is nonzero.
+        </p>
+        
+        <h2 id="PlayNim">Play Nim</h2>
+        <p>
+            Try playing an interactive game of Nim below! The AI will play optimally against you.
+        </p>
+        
+        <div id="nim-game">
+            <div id="game-board"></div>
+            <p>
+                Select a row and the number of items to remove:
+            </p>
+            <button id="restart-button" style="margin-top: 20px; padding: 8px 16px;">
+                Restart Game
+            </button>
+            <br><br>
+        </div>
+    </div>
+    
+        <div id='bibliography'>
+            <div class='wrap'>
+                <ol class="bibliography">
+                <li><span id="ppjon">Charles L. Bouton. (1901). <a href="https://www.jstor.org/stable/1967631?seq=1" target="_blank">Nim, A Game with a Complete Mathematical Theory</a>. <i>Annals of Mathematics</i>, 3(1/4), 35-39. https://doi.org/10.2307/1967631
+                </span></li>
+            </div>
+        </div>
+</body>
+</html>

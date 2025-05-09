@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vibe Coding</title>
+
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content=''>
+    <meta name='keywords' content='coding, programming, development, software engineering, productivity'>
+    <meta name='author' content='Chase Kosborne'>
+
+    <link href='../css/blog.css' rel='stylesheet'/>
+    <link href='../css/trac.css' rel='stylesheet'/>
+    <link href='../css/markdown.css' rel='stylesheet'/>
+
+    <link rel='shortcut icon' href='../image/favicon.png' />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js" integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js" integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='../index.html'>Home</a></li>
+        <li><a href='../blog.html'>Blog</a></li>
+    </ul>
+</div>
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>
+                Vibe Coding
+            </h1>
+            <h4>
+                My thoughts on ai assistance and the future of programming
+            </h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>9 May 2025</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+
+        <h2 id="introduction">My Experience With Programming</h2>
+
+        <p>
+            I have been writing code since right around 12 years old, so about 8 years. And only recently within the past year or so I have really started to put some 
+            serious time into getting good at writing code. From my time in college starting around 2021, AI as a tool has been iterated over and improved upon at a rapid pace.
+            For me, it was always somewhat demotivating seeing the AI tools get better and better while I was still writing at the same rate. What might
+            take me a few hours to write up a python script, something like ChatGPT, or Deepseek could do what felt like near instantaneously. 
+        </p>
+
+        <p>
+            With this, I have often run into mental blocks where, no matter how much I tried to force myself to write code, there was always this notion in the back of my mind
+             that I was doing it the hard way, that I could just go online to ChatGPT, or whatever AI tool I could get available for free at the time (college is expensive).
+              And sometimes I did, and it was really handy for those moments. But I couldn't help but feel, especially in my research, that I was missing out on a lot of
+               the deeper concepts and subtleties that came with writing code for doing careful analysis when I relied on AI too much.
+        </p>
+
+        <p>
+            This is one of the first posts where I really get into personal opinion, a lot of this reflects my own personal sentiments on the topic, and since AI is
+             something that has existed for the entirety of my professional life. I felt compelled to speak about it and give my thoughts on how that has affected me, 
+             good and bad. 
+        </p>
+
+        <h2 id="the-good">The Good</h2>
+
+        <p>
+            For the most part, I think using AI for menial coding tasks such as writing scripts or formatting and adding in smaller code snippets has been a huge time saver.
+            Currently, I am using Cursor to write this post, and it is fantastic, it saves me a lot of the time on formatting and allows me to focus more on the content rather
+            than copy pasting the same snippets over and over again. And is frankly the reason I came straight from my final exam to write this post.
+        </p>
+        <div class="figure">
+            <div style="text-align: center; margin: 20px 0;">
+                <canvas id="cellularAutomata" width="600" height="400" style="border: 1px solid #ccc; background: #f8f8f8;"></canvas>
+                <div style="margin-top: 10px;">
+                    <button onclick="automata.start()" style="margin: 0 5px;">Start</button>
+                    <button onclick="automata.stop()" style="margin: 0 5px;">Stop</button>
+                    <button onclick="automata.reset()" style="margin: 0 5px;">Reset</button>
+                </div>
+            </div>
+            John Conway's Game of Life, programmed by Cursor in maybe 30 seconds or so.
+        </div>
+
+
+        <h2 id="the-bad">The Bad</h2>
+
+    </div>
+
+    <div id='bibliography'>
+        <div class='wrap'>
+            <ol class="bibliography">
+                <li><span id="flow">Csikszentmihalyi, M. (1990). <i>Flow: The Psychology of Optimal Experience</i>. Harper & Row.</span></li>
+            </ol>
+        </div>
+    </div>
+</div>
+<script src="../js/cellular_automata.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const canvas = document.getElementById('cellularAutomata');
+        window.automata = new CellularAutomata(canvas, 10);
+        automata.draw();
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // Configuration options
+        delimiters: [
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ]
+      });
+    });
+</script> 
+</body>
+</html> 

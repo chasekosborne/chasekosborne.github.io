@@ -4,15 +4,20 @@ function xorSum(piles) {
 
 function bestMove(piles) {
     let sum = xorSum(piles);
-    if (sum === 0) return null;
-
-    for (let i = 0; i < piles.length; i++) {
-        let target = piles[i] ^ sum;
-        if (target < piles[i]) {
-            return [i, piles[i] - target];
+    
+    // First try to find a winning move
+    if (sum !== 0) {
+        for (let i = 0; i < piles.length; i++) {
+            let target = piles[i] ^ sum;
+            if (target < piles[i]) {
+                return [i, piles[i] - target];
+            }
         }
     }
-    return null;
+    
+    // If no winning move, take one stone from the largest pile
+    let maxPileIndex = piles.indexOf(Math.max(...piles));
+    return [maxPileIndex, 1];
 }
 
 function updateGame() {
@@ -83,15 +88,25 @@ function aiMove() {
 }
 
 function restartGame() {
+    originalPiles = generateInitialPiles();
     piles = [...originalPiles];
+    maxPileSize = Math.max(...originalPiles);
     lastMover = null;
     updateGame();
 }
 
+function generateInitialPiles() {
+    let piles;
+    do {
+        piles = Array(4).fill(0).map(() => Math.floor(Math.random() * 8)); // 0 to 87 inclusive
+    } while (xorSum(piles) === 0 || piles.every(x => x === 0));
+    return piles;
+}
+
 // Game state
-const originalPiles = [3, 5, 7];
+let originalPiles = generateInitialPiles();
 let piles = [...originalPiles];
-const maxPileSize = Math.max(...originalPiles);
+let maxPileSize = Math.max(...originalPiles);
 let lastMover = null;
 
 document.addEventListener("DOMContentLoaded", () => {

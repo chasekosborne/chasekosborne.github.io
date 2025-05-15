@@ -8,6 +8,10 @@ html {
 }
 body {
   margin: 0;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
 }
 body .content {
   margin-bottom: 120px;
@@ -40,6 +44,8 @@ h1 {
 .wrap {
   max-width: 700px;
   margin: 0 auto;
+  padding: 0 7px;
+  box-sizing: border-box;
 }
 .mono {
   font-family: monospace;
@@ -161,6 +167,9 @@ table td {
   color: rgba(0, 0, 0, 0.8);
   margin-top: 50px;
   margin-bottom: 50px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 .article blockquote {
   margin: 0;
@@ -329,14 +338,109 @@ table td {
 }
 @media screen and (max-width: 700px) {
   body {
-    margin: 0 7px;
+    margin: 0;
+    padding: 0 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .wrap {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
   }
   .front-matter-image {
     display: none;
+  }
+  .article {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+  /* Ensure equations are properly contained on mobile */
+  .katex-display {
+    margin: 1em -10px;
+    padding: 1em 10px;
+    width: calc(100% + 20px);
+  }
+  .katex-display > .katex {
+    padding: 0 10px;
   }
 }
 
 .katex-display>.katex>.katex-html {
   display: block;
   position: relative;
+}
+
+/* Equation overflow handling */
+.katex-display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1em 0;
+    margin: 1em 0;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+.katex-display > .katex {
+    display: inline-block;
+    white-space: nowrap;
+    text-align: initial;
+}
+
+/* Ensure equations don't break layout */
+.katex-display > .katex > .katex-html {
+    display: block;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+    text-align: center;
+    width: 100%;
+}
+
+/* Add a subtle scrollbar for better UX */
+.katex-display::-webkit-scrollbar {
+    height: 3px;
+}
+
+.katex-display::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.katex-display::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+.katex-display::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Minimal button styles */
+.minimal-button {
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    color: rgba(0, 0, 0, 0.8);
+    padding: 6px 12px;
+    margin: 0 4px;
+    font-size: 14px;
+    font-family: -apple-system, Helvetica, arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 3px;
+}
+
+.minimal-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+.minimal-button:active {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Update canvas border to match button style */
+canvas {
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }

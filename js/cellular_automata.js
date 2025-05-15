@@ -1,5 +1,5 @@
 class CellularAutomata {
-    constructor(canvas, cellSize = 10) {
+    constructor(canvas, cellSize = 30) {
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.cellSize = cellSize;
@@ -9,7 +9,8 @@ class CellularAutomata {
         this.rows = Math.floor(canvas.height / cellSize);
         
         // Initialize grid
-        this.grid = this.createGrid();
+        this.grid = this.createEmptyGrid();
+        this.addGlider();
         
         // Animation control
         this.isRunning = false;
@@ -22,12 +23,32 @@ class CellularAutomata {
         
         // Add event listeners
         this.canvas.addEventListener('click', this.handleClick);
+        // Add touch support for mobile
+        this.canvas.addEventListener('touchstart', this.handleTouch.bind(this));
     }
 
-    createGrid() {
-        return Array(this.rows).fill().map(() => 
-            Array(this.cols).fill().map(() => Math.random() > 0.7 ? 1 : 0)
-        );
+    createEmptyGrid() {
+        return Array(this.rows).fill().map(() => Array(this.cols).fill(0));
+    }
+
+    addGlider() {
+        // Calculate center position
+        const centerRow = Math.floor(this.rows / 2);
+        const centerCol = Math.floor(this.cols / 2);
+        
+        // Glider pattern
+        const glider = [
+            [0, 1, 0],
+            [0, 0, 1],
+            [1, 1, 1]
+        ];
+        
+        // Place glider in center
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                this.grid[centerRow + i - 1][centerCol + j - 1] = glider[i][j];
+            }
+        }
     }
 
     draw() {
@@ -97,6 +118,22 @@ class CellularAutomata {
         }
     }
 
+    handleTouch(event) {
+        event.preventDefault(); // Prevent scrolling when touching the canvas
+        const touch = event.touches[0];
+        const rect = this.canvas.getBoundingClientRect();
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        
+        const col = Math.floor(x / this.cellSize);
+        const row = Math.floor(y / this.cellSize);
+        
+        if (row >= 0 && row < this.rows && col >= 0 && col < this.cols) {
+            this.grid[row][col] = this.grid[row][col] ? 0 : 1;
+            this.draw();
+        }
+    }
+
     start() {
         if (!this.isRunning) {
             this.isRunning = true;
@@ -113,7 +150,8 @@ class CellularAutomata {
     }
 
     reset() {
-        this.grid = this.createGrid();
+        this.grid = this.createEmptyGrid();
+        this.addGlider();
         this.draw();
     }
 

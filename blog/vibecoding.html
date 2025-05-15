@@ -39,12 +39,12 @@
                 Vibe Coding
             </h1>
             <h4>
-                My thoughts on ai assistance and the future of programming
+                My thoughts on AI assistance and the future of programming
             </h4>
             <div class='bylines'>
                 <div class='byline'>
                     <h3>Published</h3>
-                    <p>9 May 2025</p>
+                    <p>15 May 2025</p>
                 </div>
             </div>
             <div class='clear'></div>
@@ -55,7 +55,7 @@
         <h2 id="introduction">My Experience With Programming</h2>
 
         <p>
-            I have been writing code since right around 12 years old, so about 8 years. And only recently within the past year or so I have really started to put some 
+            I have been writing code since right around 12 years old, so about 8 years. And only recently within the past year have I really started to put some 
             serious time into getting good at writing code. From my time in college starting around 2021, AI as a tool has been iterated over and improved upon at a rapid pace.
             For me, it was always somewhat demotivating seeing the AI tools get better and better while I was still writing at the same rate. What might
             take me a few hours to write up a python script, something like ChatGPT, or Deepseek could do what felt like near instantaneously. 
@@ -63,11 +63,14 @@
 
         <p>
             With this, I have often run into mental blocks where, no matter how much I tried to force myself to write code, there was always this notion in the back of my mind
-             that I was doing it the hard way, that I could just go online to ChatGPT, or whatever AI tool I could get available for free at the time (college is expensive).
-              And sometimes I did, and it was really handy for those moments. But I couldn't help but feel, especially in my research, that I was missing out on a lot of
-               the deeper concepts and subtleties that came with writing code for doing careful analysis when I relied on AI too much.
+            that I was doing it the hard way, that I could just go online to ChatGPT, or whatever AI tool I could get available for free at the time (college is expensive).
+            And sometimes I did, and it was really handy for those moments. But I couldn't help but feel, especially in my research, that I was missing out on a lot of
+            the deeper concepts and subtleties that came with writing code for doing careful analysis when I relied on AI too much.
         </p>
 
+        <p>
+            <b>Disclaimer:</b>
+        </p>
         <p>
             This is one of the first posts where I really get into personal opinion, a lot of this reflects my own personal sentiments on the topic, and since AI is
              something that has existed for the entirety of my professional life. I felt compelled to speak about it and give my thoughts on how that has affected me, 
@@ -75,33 +78,103 @@
         </p>
 
         <h2 id="the-good">The Good</h2>
-
         <p>
-            For the most part, I think using AI for menial coding tasks such as writing scripts or formatting and adding in smaller code snippets has been a huge time saver.
-            Currently, I am using Cursor to write this post, and it is fantastic, it saves me a lot of the time on formatting and allows me to focus more on the content rather
-            than copy pasting the same snippets over and over again. And is frankly the reason I came straight from my final exam to write this post.
+            While using AI for code is somewhat unfavorable to some of my older colleagues, I quite enjoy using AI within my workflow to help with basic syntax stuff, often when I 
+            am making these blog posts, and setting up a format I would like to be able to present these ideas, I have found it to be so much quicker to have Cursor or ChatGPT to 
+            get all of the boilerplate HTML or CSS out on the page. As someone who writes a lot of C/C++ code as well, I think AI is great for checking and cleaning up any messy or
+            incorrect syntax, as well as checking for potential memory leaks in my code. In fact, I think AI is quite good at all of these things. And I must say that it has saved me 
+            a lot of hassle when it comes to doing some of the more menial chores of coding. For that reason alone I don't think it should be dismissed.
         </p>
         <div class="figure">
-            <div style="text-align: center; margin: 20px 0;">
-                <canvas id="cellularAutomata" width="600" height="400" style="border: 1px solid #ccc; background: #f8f8f8;"></canvas>
-                <div style="margin-top: 10px;">
-                    <button onclick="automata.start()" style="margin: 0 5px;">Start</button>
-                    <button onclick="automata.stop()" style="margin: 0 5px;">Stop</button>
-                    <button onclick="automata.reset()" style="margin: 0 5px;">Reset</button>
+            <div style="width: 100%; max-width: 600px; margin: 20px auto;">
+                <canvas id="cellularAutomata" width="600" height="450" style="width: 100%; border: 1px solid rgba(0, 0, 0, 0.1); background: #f8f8f8;"></canvas>
+                <div style="margin-top: 15px; text-align: center;">
+                    <button onclick="automata.start()" class="minimal-button">Start</button>
+                    <button onclick="automata.stop()" class="minimal-button">Stop</button>
+                    <button onclick="automata.reset()" class="minimal-button">Reset</button>
                 </div>
             </div>
-            John Conway's Game of Life, programmed by Cursor in maybe 30 seconds or so.
+            <div class="caption">
+                <span class="caption-label">Figure 1.</span> John Conway's Game of Life, programmed by Cursor in maybe 30 seconds or so.
+            </div>
         </div>
+        <p>
+            With much of my current research not surrounding much in-depth LLM research, I am not the one to speak on any direct statistics or make any strong claims about what the future
+            of this AI will look at with detailed reasoning and figures. But, by my guess is it is AI is here to stay, and that it will only improve with time. How much it will improve I
+            cannot definiively say. But by the looks of it it seems like it will cut out a lot of the more time consuming work of any time-consuming, research-based tasks. As of 5/15/25,
+            I have recently come across <a href="https://www.youtube.com/watch?v=zZr54G7ec7A" target="_blank">Terrence Tao's video</a> of using various LLM agents to formalize proofs in mathmematics.
+            And something there really got me to think about what the future of AI could potentially be capable of doing within the next 10 years from now.
+        </p>
+        <p>
+            In its current state, I think that AI may not be capable of proving conceptually difficult open ended questions in mathemtics, where a strong formulation has yet to be discovered.
+            Take any one of the millenium prize problems, for instance, I think it is unlikely that something like AI would be able to directly attempt to come at a solution to actually prove or
+            disprove something to the level of complexity due to our underdevloped formalism to attack these problems. But we could certainly use it to try what <i>doesn't</i> work.
+        </p>
+        <p>
+            As of the day prior, I came across <a href="https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/" target="_blank">DeepMind's post</a>
+            about their new agent AlphaEvolve, in which it had made optimizations to algorithms we had previously believed might have a <i>better</i> solution. And, in the current state of models, I don't
+            think we will be able to make agents that are so 'intellegent' that the can simply grasp and solve these difficult mathematical problems zero-shot. What I do believe that our ceiling with these
+            models would look like is the most cleverly optimized brute-force algorithm for solving proofs ever devised. In which case may be capable of at best in my prediction to save Physicists, Mathemeticians
+            and any other technical researcher's life using formal logic significantly easier.
+        </p>
 
 
         <h2 id="the-bad">The Bad</h2>
-
+        <p>
+            This is all to say that assuming my best case scenario with AI holds, then it is still up to the expert to know how to 'push' AI in the right direction. And be able to do their own careful analysis
+            of the problem themselves, wether that be a mathematical problem, or a general logic puzzle. I think it is integral that one also knows the technical details required to understand the problem that
+            they are using AI to solve, only then can they really verify the solution provided by AI and be able to get meaningful results and confident products.
+        </p>
+        <div class="figure">
+            <div style="display: flex; gap: 20px; width: 100%; max-width: 1200px; margin: 20px auto; flex-wrap: wrap;">
+                <div style="flex: 2; min-width: 300px;">
+                    <canvas id="stockChart" style="width: 100%; height: 400px; border: 1px solid rgba(0, 0, 0, 0.1); background: #f8f8f8;"></canvas>
+                </div>
+                <div style="flex: 1; min-width: 200px;">
+                    <canvas id="depthChart" style="width: 100%; height: 400px; border: 1px solid rgba(0, 0, 0, 0.1); background: #f8f8f8;"></canvas>
+                </div>
+            </div>
+            <div style="margin-top: 15px; text-align: center;">
+                <button onclick="stockSimulator.start()" class="minimal-button">Start</button>
+                <button onclick="stockSimulator.stop()" class="minimal-button">Stop</button>
+                <button onclick="stockSimulator.reset()" class="minimal-button">Reset</button>
+            </div>
+            <div class="caption">
+                <span class="caption-label">Figure 2.</span> Stock price simulator showing price movement, volume, and order book depth. Made with Cursor in approximately 30 mins.
+            </div>
+        </div>
+        <p>
+            I think in my case this currently glaring issue really shines in research, or more technical projects. Where in one case, AI might posses superior technical skills, but lacks the insight of an expert that
+            has worked with the subject for many years to come up with a nuanced solution to an ultra-specific problem. And might miss out on this crucial details that will otherwise be passed over. 
+            <a href="paircorrelation.html" target="_blank">My previous blog</a> post on Pair Correlation Functions is a perfect example of this. That post for me truly served as a reference, as well 
+            as sanity check on making sure that if I were trying to plot this function based on spatial data, I was doing so in a way that was meaningful to the spatial data I was working with.
+            With artificial intellegence, no matter what I had used a the time, could not produce a valid correlation function from the data I was working with, resulting in many hours wasted trying to
+            understand what the AI was missing. It wasn't until I looked through the code myself and really researched how I could best extrapolate a meaningful function that I was able to walk through,
+            ChatGPT's best attempt and rewrite how the software had handled boundry conditions, and eventually the whole script surroudning it. That I would be able to begin to get useful data. It
+            ended up being not very useful for the research we were doing, but ultimately I had learned an important lesson about using AI for code: <i>AI is as only as knowledgeable of the errors it makes
+            as you are.</i>
+        </p>
+        <p>
+            The second case is when you are technically efficient in writing code in some manner, and the code is simply too much for AI to manage fully. In which case you are just better off figuring
+            out the logic of your software yourself. In my experience, what feels like wasting time trying to debug your code can oftentimes give you a deeper insight into what the effects are of the code
+            you've written, and can help you avoid similar mistakes in the future.
+        </p>
+        <h2 id="the-bad">The Conclusion</h2>
+        <p>
+            To me, AI has been the ultimate productivity tool. But that comes with requiring that you understand the code that is being written. I think in the fututre, it is only going to get better
+            at optimizing how we write code and do these more menial tasks within these displines, allowing us more space to think deeper about these technical topics more conceptually. I don't think
+            the neccessity for techincal skill in these subjects is going anywhere anytime soon. But I certainly think that this job will become increasingly more automated, and that I personally have
+            learned to embrace this when it comes to working smarter, while trying to be intentional about the more crucial code that I write within my career. I wanted to make this post as a message
+            of transparency. To say, "I use this", but to be clear that I do my best to in no way rely on AI to supplement my knowledge in these subjects. Perhaps maybe in the not so far future, this 
+            won't be as big of a concern, but currently I think it is worth discussing.
+        </p>
     </div>
 
     <div id='bibliography'>
         <div class='wrap'>
             <ol class="bibliography">
-                <li><span id="flow">Csikszentmihalyi, M. (1990). <i>Flow: The Psychology of Optimal Experience</i>. Harper & Row.</span></li>
+                <li><span id="tao">Tao, T. (2025). <i>Using LLM Agents to Formalize Mathematical Proofs</i>. [Video]. YouTube. <a href="https://www.youtube.com/watch?v=zZr54G7ec7A" target="_blank">https://www.youtube.com/watch?v=zZr54G7ec7A</a></span></li>
+                <li><span id="deepmind">DeepMind. (2025). <i>AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms</i>. DeepMind Blog. <a href="https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/" target="_blank">https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/</a></span></li>
             </ol>
         </div>
     </div>
@@ -115,14 +188,36 @@
     });
 </script>
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      renderMathInElement(document.body, {
-        // Configuration options
-        delimiters: [
-          { left: "\\(", right: "\\)", display: false },
-          { left: "\\[", right: "\\]", display: true }
-        ]
-      });
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false}
+            ],
+            throwOnError: false,
+            output: 'html',
+            strict: false,
+            trust: true,
+            macros: {
+                "\\eqref": "\\href{#1}{}",  // Handle equation references
+                "\\label": "\\href{#1}{}"    // Handle labels
+            }
+        });
+    });
+</script>
+<script src="../js/stock_simulator.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const stockChart = document.getElementById('stockChart');
+        const depthChart = document.getElementById('depthChart');
+        
+        // Set initial canvas dimensions
+        stockChart.width = stockChart.offsetWidth;
+        stockChart.height = 400;
+        depthChart.width = depthChart.offsetWidth;
+        depthChart.height = 400;
+        
+        window.stockSimulator = new StockSimulator(stockChart, depthChart);
     });
 </script> 
 </body>

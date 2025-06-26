@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Operator's Handbook</title>
+
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content="Understanding Ripley's K function for doing analysis of point clusters">
+    <meta name='keywords' content='physics, particle physics, detectors, experimental physics, CERN, LHC, EIC, ePIC, BNL'>
+    <meta name='author' content='Chase Osborne'>
+
+    <link href='../css/blog.css' rel='stylesheet'/>
+    <link href='../css/trac.css' rel='stylesheet'/>
+    <link href='../css/markdown.css' rel='stylesheet'/>
+
+    <link rel='shortcut icon' href='../image/favicon.png' />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js" integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js" integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='../index.html'>Home</a></li>
+        <li><a href='../blog.html'>Blog</a></li>
+    </ul>
+</div>
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>
+                The Operator's Handbook
+            </h1>
+            <h4>
+                A reference of useful functions/tables for learning & doing Quantum Mechanics.
+            </h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>26 June 2025</p>
+                </div>
+                <div class='byline' style="float:right;">
+                    <h3>Updated</h3>
+                    <p>26 June 2025</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+        <p>
+        At some point it gets difficult to memorize and reference these particular functions or tables. 
+        So to make my life easier I have decided to undertake the challenge of collecting and organizing this
+        information all into one place.
+        </p>
+        <p>
+        I plan to come back often and update this page, so if there are any suggestions or changes to make to make
+        it easier for others to reference as well, please feel free to do so.
+        </p>
+
+        <h2 id="orthogonal-functions">Orthogonal Functions</h2>
+
+        <details>
+          <summary><strong>Hermite Polynomials \( H_{n} \)</strong></summary>
+          <p><strong>Formula:</strong> <span>\[H_n(x) = (-1)^{n}e^{x^{2}}\frac{d^{n}}{dx^{n}}e^{-x^{2}} \]</span></p>
+          <p><strong>Description:</strong> <br>
+          Part of the solution to the Quantum Harmonic Oscillator
+          </p>
+        </details>
+
+        <hr>
+
+        <details>
+            <summary><strong>Associated Laguerre Polynomials \( L_{n}^{k} \)</strong></summary>
+            <p><strong>Differential Equation:</strong> 
+                <span>\[ xy''+ (k+1-x)y'+ny = 0 \]</span></p>
+
+            <p><strong>Formula:</strong> 
+            <span>\[ L_{n}^{k}(x)=\sum^{n}_{m=0}\frac{(n-k)!}{(n-m)!(k+m)!}\frac{x^{k}}{m!} \]</span></p>
+
+            <p><strong>Description:</strong> <br>
+            Part of the solution to the radial component of the Hydrogen wave function
+            </p>
+        </details>
+
+        <hr>
+
+        <details open>
+            <summary><strong>Associated Legendre Polynomials \( P_{l}^{m} \) </strong></summary>
+            <p><strong>Differential Equation:</strong> 
+                <span>\[ (1-x^{2})y'' -2xy' + \left[l(l+1)-\frac{m^{2}}{1-x^{2}} \right]ny = 0 \]</span></p>
+            <p><strong>Formula:</strong> 
+                <span>\[ P_{l}^{m}(x)=\frac{(-1)^{m}}{2^{l}l!}(1-x^{2})^{m/2}\frac{d^{l+m}}{dx^{l+m}} \]</span></p>
+
+            <p><strong>Description:</strong> <br>
+                Placeholder
+            </p>
+        </details>
+
+
+
+
+    <div id='bibliography'>
+        <div class='wrap'>
+            <ol class="bibliography">
+            </ol>
+        </div>
+    </div>
+</div>
+</body>
+</html> 

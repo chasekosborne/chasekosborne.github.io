@@ -444,3 +444,26 @@ table td {
 canvas {
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
+
+.eq-table {
+  margin-bottom: 32px;
+  min-width: 600px;
+  max-width: 100%;
+  width: 100%;
+  table-layout: fixed;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.eq-table th, .eq-table td {
+  padding: 16px 16px;
+  min-height: 32px;
+  font-size: 16px;
+  width: auto;
+  word-break: break-word;
+}

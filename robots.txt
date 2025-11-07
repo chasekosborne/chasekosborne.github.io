@@ -1,0 +1,18 @@
+# robots.txt for chasekosborne.github.io
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://chasekosborne.github.io/sitemap.xml
+
+# Disallow specific directories if needed (currently allowing all)
+# Disallow: /OldSimulations/
+
+# Allow search engines to crawl everything
+Allow: /blog/
+Allow: /css/
+Allow: /js/
+Allow: /image/
+Allow: /work/
+

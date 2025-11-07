@@ -63,97 +63,108 @@
 </div>
         <div id='tags'>
     <ul id='tag-nav'>
-        
-            <li><a href='blog/tags/projects.html'>Projects</a></li>
-            <li><a href='blog/tags/topics.html'>Topics</a></li>
-            <li><a href='blog/tags/writing.html'>Writing</a></li>
-        
+            <li><a href='#' class='tag-filter' data-tag='projects'>Projects</a></li>
+            <li><a href='#' class='tag-filter' data-tag='topics'>Topics</a></li>
+            <li><a href='#' class='tag-filter' data-tag='writing'>Writing</a></li>
     </ul>
+    <div id='back-button-container' class='hidden'>
+        <a href='#' id='back-button'>>back</a>
+    </div>
 </div>
         <div id='posts' class='section'>
             
-            <div class='post-row '>
-                <p class='post-title'>
-                    <a href="blog/eqTable.html">
-                        A Big Table of Equations
-                    </a>
+            <!-- Hidden: A Big Table of Equations
+            <div class='blog-post' data-tags='topics'>
+                <div class='post-row '>
+                    <p class='post-title'>
+                        <a href="blog/eqTable.html">
+                            A Big Table of Equations
+                        </a>
+                    </p>
+                    <p class='post-date'>
+                        26 June 2025
+                    </p>
+                </div>
+                <p class='post-subtitle'>
+                    A reference of useful functions/tables for learning & solving differential equations.
                 </p>
-                <p class='post-date'>
-                    26 June 2025
-                </p>
+                <span class='hidden'>5</span>
             </div>
-            <p class='post-subtitle'>
-                A reference of useful functions/tables for learning & solving differential equations.
-            </p>
-            <span class='hidden'>5</span>
+            -->
 
-            <div class='post-row '>
-                <p class='post-title'>
-                    <a href="blog/vibecoding.html">
-                        Vibe Coding
-                    </a>
+            <div class='blog-post' data-tags='writing'>
+                <div class='post-row '>
+                    <p class='post-title'>
+                        <a href="blog/vibecoding.html">
+                            Vibe Coding
+                        </a>
+                    </p>
+                    <p class='post-date'>
+                        15 May 2025
+                    </p>
+                </div>
+                <p class='post-subtitle'>
+                    My thoughts on AI assistance and the future of programming.
                 </p>
-                <p class='post-date'>
-                    15 May 2025
-                </p>
+                <span class='hidden'>4</span>
             </div>
-            <p class='post-subtitle'>
-                My thoughts on AI assistance and the future of programming.
-            </p>
-            <span class='hidden'>4</span>
-    
 
-            <div class='post-row '>
-                <p class='post-title'>
-                    <a href="blog/paircorrelation.html">
-                        The Pair Correlation Function
-                    </a>
+            <div class='blog-post' data-tags='topics'>
+                <div class='post-row '>
+                    <p class='post-title'>
+                        <a href="blog/paircorrelation.html">
+                            The Pair Correlation Function
+                        </a>
+                    </p>
+                    <p class='post-date'>
+                        17 February 2025
+                    </p>
+                </div>
+                <p class='post-subtitle'>
+                    Derivation, overview, and guide to producing pair correlation functions from spatial data.
                 </p>
-                <p class='post-date'>
-                    17 February 2025
-                </p>
+                <span class='hidden'>4</span>
             </div>
-            <p class='post-subtitle'>
-                Derivation, overview, and guide to producing pair correlation functions from spatial data.
-            </p>
-            <span class='hidden'>4</span>     
 
-            <div class='post-row '>
-                <p class='post-title'>
-                    <a href="blog/nim.html">
-                        Beating Nim
-                    </a>
+            <div class='blog-post' data-tags='topics'>
+                <div class='post-row '>
+                    <p class='post-title'>
+                        <a href="blog/nim.html">
+                            Beating Nim
+                        </a>
+                    </p>
+                    <p class='post-date'>
+                        20 January 2025
+                    </p>
+                </div>
+                <p class='post-subtitle'>
+                    How to play Nim perfectly, an introduction to proofs in combinatorial games.
                 </p>
-                <p class='post-date'>
-                    20 January 2025
-                </p>
+                <span class='hidden'>3</span>
             </div>
-            <p class='post-subtitle'>
-                How to play Nim perfectly, an introduction to proofs in combinatorial games.
-            </p>
-            <span class='hidden'>3</span>     
 
-            <div class='post-row '>
-                <p class='post-title'>
-                    <a href="blog/greensfn.html">
-                        Green's Function for Method of Images
-                    </a>
+            <div class='blog-post' data-tags='topics'>
+                <div class='post-row '>
+                    <p class='post-title'>
+                        <a href="blog/greensfn.html">
+                            Green's Function for Method of Images
+                        </a>
+                    </p>
+                    <p class='post-date'>
+                        10 November 2024
+                    </p>
+                </div>
+                <p class='post-subtitle'>
+                    Green's function is the impulse response, or fundamental solution of an inhomogeneous linear differential equation, and can help solve a variety of problems within physics. I derive and cover some of cases within electrostatics.
                 </p>
-                <p class='post-date'>
-                    10 November 2024
-                </p>
+                <span class='hidden'>2</span>
             </div>
-            <p class='post-subtitle'>
-                Green's function is the impulse response, or fundamental solution of an inhomogeneous linear differential equation, and can help solve a variety of problems within physics. I derive and cover some of cases within electrostatics.
-            </p>
-            <span class='hidden'>2</span>     
 
+            <div class='blog-post' data-tags='projects'>
                 <div class='post-row '>
                     <p class='post-title'>
                         <a href="blog/ksuspace.html">
-                            
                             Kent State Space Mission
-                            
                         </a>
                     </p>
                     <p class='post-date'>
@@ -163,9 +174,72 @@
                 <p class='post-subtitle'>
                     A couple of undergraduate friends and I sent up a weather balloon to collect telemetry and footage of the total solar eclipse within the path of totality.
                 </p>
-                <span class='hidden'>1</span>     
+                <span class='hidden'>1</span>
+            </div>
 
         </div>
     </div>
+    
+    <script>
+        // Tag filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tagFilters = document.querySelectorAll('.tag-filter');
+            const blogPosts = document.querySelectorAll('.blog-post');
+            const backButton = document.getElementById('back-button');
+            const backButtonContainer = document.getElementById('back-button-container');
+            
+            function showAllPosts() {
+                // Remove active class from all filters
+                tagFilters.forEach(f => f.classList.remove('active'));
+                
+                // Show all posts
+                blogPosts.forEach(post => {
+                    post.style.display = 'block';
+                });
+                
+                // Hide back button
+                backButtonContainer.classList.add('hidden');
+            }
+            
+            tagFilters.forEach(filter => {
+                filter.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const selectedTag = this.getAttribute('data-tag');
+                    const isActive = this.classList.contains('active');
+                    
+                    // If clicking the same tag, show all posts (toggle behavior)
+                    if (isActive) {
+                        showAllPosts();
+                    } else {
+                        // Remove active class from all filters
+                        tagFilters.forEach(f => f.classList.remove('active'));
+                        
+                        // Add active class to clicked filter
+                        this.classList.add('active');
+                        
+                        // Show/hide posts based on selected tag
+                        blogPosts.forEach(post => {
+                            const postTags = post.getAttribute('data-tags');
+                            if (postTags && postTags.includes(selectedTag)) {
+                                post.style.display = 'block';
+                            } else {
+                                post.style.display = 'none';
+                            }
+                        });
+                        
+                        // Show back button
+                        backButtonContainer.classList.remove('hidden');
+                    }
+                });
+            });
+            
+            // Back button click handler
+            backButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                showAllPosts();
+            });
+        });
+    </script>
 </body>
 </html>

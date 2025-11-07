@@ -251,12 +251,12 @@ table td {
 }
 #blog .post-date,
 .tag-page .post-date {
-  text-transform: uppercase;
   color: rgba(0, 0, 0, 0.7);
   font-size: 12px;
   font-weight: bold;
   margin-top: 4px;
   margin-bottom: 4px;
+  font-family: Arial, sans-serif;
 }
 #blog .post-title,
 .tag-page .post-title {
@@ -277,8 +277,21 @@ table td {
 .tag-page .post-subtitle {
   font-size: 14px;
   margin-top: 0;
-  margin-bottom: 25px;
+  margin-bottom: 8px;
   line-height: 1.5em;
+}
+#blog .post-meta,
+.tag-page .post-meta {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+#blog .post-reactions,
+.tag-page .post-reactions {
+  display: inline-block;
+  margin-right: 15px;
+  font-family: Arial, sans-serif;
 }
 #blog .year,
 .tag-page .year {
@@ -466,4 +479,71 @@ canvas {
   font-size: 16px;
   width: auto;
   word-break: break-word;
+}
+
+/* Tag filter active state */
+.tag-filter.active {
+  color: rgba(0, 0, 0, 0.4) !important;
+  text-decoration: none;
+}
+
+.tag-filter {
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Back button styling */
+#back-button-container {
+  margin-top: 10px;
+}
+
+#back-button {
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Smooth transitions for post filtering */
+.blog-post {
+  transition: opacity 0.3s ease;
+}
+
+/* Search bar styling */
+#search-container {
+  margin-bottom: 30px;
+}
+
+#search-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-family: -apple-system, Helvetica, arial, sans-serif;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.02);
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.4);
+  background: white;
+}
+
+#search-input::placeholder {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+/* Comments section styling */
+.comments-section {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.comments-section h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
 }

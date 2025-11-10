@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WF2TZ0X6S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0WF2TZ0X6S');
+    </script>
+    <title>Spin Representation</title>
+
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content='Explaining the role of group theory as it relates to the property of spin in quantum mechanics.'>
+    <meta name='keywords' content='spin representation, quantum mechanics, group theory, SU(2), angular momentum, physics'>
+    <meta name='author' content='Chase K Osborne'>
+
+    <!-- Canonical URL -->
+    <link rel='canonical' href='https://chasekosborne.github.io/blog/spin-representation.html' />
+
+    <!-- Open Graph / Facebook -->
+    <meta property='og:type' content='article'>
+    <meta property='og:url' content='https://chasekosborne.github.io/blog/spin-representation.html'>
+    <meta property='og:title' content='Spin Representation'>
+    <meta property='og:description' content='Explaining the role of group theory as it relates to the property of spin in quantum mechanics.'>
+    <meta property='og:image' content='https://chasekosborne.github.io/image/spin-representation/cover.png'>
+    <meta property='og:site_name' content='Chase K Osborne'>
+    <meta property='article:published_time' content='2025-11-10'>
+    <meta property='article:author' content='Chase K Osborne'>
+    <meta property='article:section' content='Physics'>
+    <meta property='article:tag' content='Quantum Mechanics'>
+    <meta property='article:tag' content='Group Theory'>
+
+    <!-- Twitter Card -->
+    <meta name='twitter:card' content='summary_large_image'>
+    <meta name='twitter:url' content='https://chasekosborne.github.io/blog/spin-representation.html'>
+    <meta name='twitter:title' content='Spin Representation'>
+    <meta name='twitter:description' content='Explaining the role of group theory as it relates to the property of spin in quantum mechanics.'>
+    <meta name='twitter:image' content='https://chasekosborne.github.io/image/spin-representation/cover.png'>
+
+    <!-- JSON-LD Structured Data -->
+    <script type='application/ld+json'>
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Spin Representation",
+      "description": "Explaining the role of group theory as it relates to the property of spin in quantum mechanics.",
+      "image": "https://chasekosborne.github.io/image/spin-representation/cover.png",
+      "author": {
+        "@type": "Person",
+        "name": "Chase K Osborne",
+        "url": "https://chasekosborne.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Chase K Osborne",
+        "url": "https://chasekosborne.github.io"
+      },
+      "datePublished": "2025-11-10",
+      "dateModified": "2025-11-10",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://chasekosborne.github.io/blog/spin-representation.html"
+      }
+    }
+    </script>
+
+    <link href='../css/blog.css' rel='stylesheet'/>
+    <link href='../css/trac.css' rel='stylesheet'/>
+    <link href='../css/markdown.css' rel='stylesheet'/>
+
+    <link rel='shortcut icon' href='../image/favicon.png' />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js" integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js" integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='../index.html'>Home</a></li>
+        <li><a href='../blog.html'>Blog</a></li>
+    </ul>
+</div>
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>
+                Spin Representation
+            </h1>
+            <h4>
+                Explaining the role of group theory as it relates to the property of spin in quantum mechanics.
+            </h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>10 November 2025</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+
+        <h2 id="introduction">Introduction</h2>
+
+        <p>
+            For most undergraduates, Griffiths Quantum Mechanics is the first 
+        </p>
+
+        <h2 id="so3-vs-su2">SO(3) vs SU(2)</h2>
+        <p>
+            Rotational symmetries in physical space form the group SO(3), but quantum states transform under SU(2), its double cover.
+            The correspondence between these groups ensures a \(2:1\) mapping, capturing the fact that a \(360^\circ\) rotation can
+            introduce a sign change in spinor wavefunctions.
+        </p>
+
+        <h2 id="representations">Representations and Spin</h2>
+        <p>
+            Irreducible representations of SU(2) are labeled by half-integers \(j\). Each \(j\) yields a \((2j+1)\)-dimensional space
+            of spin states. The familiar spin-\(\frac{1}{2}\) particles reside in the fundamental representation, while spin-1 fields
+            correspond to the adjoint representation.
+        </p>
+
+        <h2 id="ladder-operators">Ladder Operators</h2>
+        <p>
+            Using the commutation relations \([J_i, J_j] = i\hbar \epsilon_{ijk} J_k\), one constructs ladder operators \(J_{\pm}\)
+            to traverse the eigenbasis of \(J_z\). These operators manifest the algebraic structure that group theory predicts.
+        </p>
+
+        <h2 id="physical-implications">Physical Implications</h2>
+        <p>
+            Spin-statistics, selection rules, and coupling schemes all follow from these representation-theoretic foundations.
+            Understanding how group theory constrains spin prepares us to analyze addition of angular momentum and phenomena such as
+            Stern–Gerlach splitting.
+        </p>
+
+        <h2 id="conclusion">Conclusion</h2>
+        <p>
+            Group theory does more than provide abstract structure—it directly informs the quantized nature of spin. Mastery of SU(2)
+            representations gives a powerful language for reasoning about quantum systems and their symmetries.
+        </p>
+    </div>
+
+    <div id='bibliography'>
+        <div class='wrap'>
+            <ol class="bibliography">
+                <li><span id="sakurai">Sakurai, J. J., &amp; Napolitano, J. (2017). <i>Modern Quantum Mechanics</i>. Pearson.</span></li>
+                <li><span id="fulton">Fulton, W., &amp; Harris, J. (2004). <i>Representation Theory</i>. Springer.</span></li>
+            </ol>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ]
+      });
+    });
+</script> 
+</body>
+</html>
+

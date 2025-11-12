@@ -98,7 +98,7 @@
                 Spin Representation
             </h1>
             <h4>
-                Explaining the role of group theory as it relates to the property of spin in quantum mechanics.
+                Explaining spin representation as it relates to quantum mechanics.
             </h4>
             <div class='bylines'>
                 <div class='byline'>
@@ -114,48 +114,215 @@
         <h2 id="introduction">Introduction</h2>
 
         <p>
-            For most undergraduates, Griffiths Quantum Mechanics is the first 
+            For me, Griffiths Quantum Mechanics was the textbook used to cover topics in my introductory Quantum Mechanics course. 
+            Spin and angular momentum is brielfy discussed, in the textbook, at the very end of section 4.4.3 the following statement
+            is made.
+            <blockquote> 
+            In a mathematical sense this is all applied group theory
+            —what we are talking about is the decomposition of the direct product of two irreducible representations of
+            the rotation group into a direct sum of irreducible representations (you can quote that, to impress your
+            friends).
+            </blockquote>
+        </p>
+        <!-- <p>
+            Because I do not have friends, here you are to read it.
+        </p> -->
+        <p>
+            A lot of elementary Quantum Mechanics is taught in a way such that most formalism is brushed under the rug.
+            Given that most of the foundational mathematics built around Quantum Mechanics is worth an entire degree in mathematics on its own.
+            Omission of some of the mathematics related is for good reason.
+        </p>
+        <p>
+            The whole purpose of this post is to (hopefully) clear some of the confusion about spin as it relates to Quantum Mechanics.
+            Built from the ground up.
+        </p>
+        <p>
+            <b>Note:</b> I am assuming some baseline knowledge of electromagnetism and classical mechanics.
+        </p>
+    
+
+        <h2 id="Spin">Spin</h2>
+        <h3>Classical Angular Momentum </h3>
+        <p>
+            To describe spin, we must first cover over angular momentum. In classical mechanics, this
+            is a metric on the rotational motion of an object, alongside its tendency to continue rotating. With respect to a mass about a
+            central axis of rotation.
+        </p>
+        \[ 
+        \tag{1} \vec{L} = \vec{r} \times{} \vec{p}
+        \]
+        <p>
+            Here, \(\vec{r}\) serves as the distance from the axis of rotation, and \( \vec{p}\) is the linear momentum of the object as
+            it moves around a central axis. Where the direction of the vectors determined from the cross product can be determined by the right-hand 
+            rule.
+        </p>
+        ** Include diagram
+        <h3>Classical Spin</h3>
+        <p>
+            Spin on the other hand, is a similar metric with the the central axis rotation now <i>about the objects center of mass.</i>
+        </p>
+        \[ 
+        \vec{S} = I\vec{w}
+        \]
+        <p>
+            Here our <i>moment of intertia</i> \( I \) is the tendency to keep rotating, and the <i>angular velocity</i> \( \vec{\omega{}} \)  
+            is the rotational motion. Now this is with the assumption that we are rotating the object about its axis of symmetry, but since
+            we are mainly dealing with objects with spherical symmetry, this is not a problem.
+        </p>
+        <p>
+            Generally speaking, we can look at this spin classically and make note that computing this quantity is functionally similar to
+            computing the angular mometnum of a lot of small mass components making up the object that is spinning, we call this a rigid body,
+            and all mass component \(dm\) have the same angular velocity \(\vec{\omega{}}\).
+        </p>
+        <p>
+            For instance the formula for the angular momentum of a mass of a finite volume about a central axis is:
+        </p>
+        \[
+        \tag {2} \vec{L} = \int{}\vec{r}\times{}(\vec{v}dm)
+        \]
+        <p>By the identity (and cyclic permutations of cross products) we have the following formulas</p>
+        \[
+        \vec{\omega{}} = \vec{r} \times{} \vec{v} \\
+        \vec{v} = \vec{\omega{}} \times{} \vec{r} 
+        \]
+        <p> Plugging this back into (2) we get:</p>
+        \[
+        \vec{L} = \int{}\vec{r}\times{}(\vec{\omega{}} \times{} \vec{r})dm
+        \]
+        <p>by the BAC-CAB identity we can expand the triple product,</p>
+        \[
+        \vec{L} = \int{} \left[ (\vec{r}\cdot{}\vec{r})\vec{\omega{}} - (\vec{r}\cdot{}\vec{\omega})\vec{r} \right]dm \\
+        \]
+        <p>given that \(\vec{\omega{}}\) and \(\vec{r}\) are orthogonal, and that </p>
+        \[
+        \vec{L} = \left[ \int{} r^{2}dm \right] \vec{\omega{}}
+        \]
+        <p>At this point we can define this integral to be our moment of inertia \(I\).</p>
+        <p>
+            We will come back to this notion of angular momentum and spin when we discuss the quantum mechanical analog to these
+            quantities. For now we will make note of these properties.
         </p>
 
-        <h2 id="so3-vs-su2">SO(3) vs SU(2)</h2>
-        <p>
-            Rotational symmetries in physical space form the group SO(3), but quantum states transform under SU(2), its double cover.
-            The correspondence between these groups ensures a \(2:1\) mapping, capturing the fact that a \(360^\circ\) rotation can
-            introduce a sign change in spinor wavefunctions.
+        <!-- <p>
+            We are only going to concern ourselves with rotation about spherically symmetric objects. Since that is all that is needed.
+            Rotations dealing with asymmetric objects (and rotations off their axis of symmetry) call for more complicated procedures. 
+            In this case, computing angular momentum is fairly straightforward, and with a quick google search you can find many formulas
+            to get this quantity. 
         </p>
+        <p>
+            In the case of spherical symmetry, we have two options to compute moment of inertia, for the case of a
+            point mass located at the center of rotation (\( I = m\)) where \(m\) is the mass of the point object. For a sphere with a solid
+            volume, this becomes.
+            \[
+            \int{I}
+            \]
 
-        <h2 id="representations">Representations and Spin</h2>
+        </p> -->
+        <h3>Magnetic Dipole Moment </h3>
         <p>
-            Irreducible representations of SU(2) are labeled by half-integers \(j\). Each \(j\) yields a \((2j+1)\)-dimensional space
-            of spin states. The familiar spin-\(\frac{1}{2}\) particles reside in the fundamental representation, while spin-1 fields
-            correspond to the adjoint representation.
+            So, how can we measure these rotations on a scale small enough to measure potential quantum mechanical effects? 
+            We will begin with the description of a loop of current flowing through wire in a uniform magnetic field \(\vec{B}\).
+            We begin with the Lorentz force law:
         </p>
+        \[
+        \tag{3} \vec{F} = q\vec{E}+q(\vec{v}\times{}\vec{B})
+        \]
+        <!-- \[
+        \tag{4} \vec{\nabla{}}\times{}\vec{E} = -\frac{d\vec{B}}{dt}
+        \] -->
+        <p>
+            For sake of simplicity, we are going to assume a steady current \( \vec{E}_{net}=\vec{0}\), and that we are only concerned with some current
+            loop \(I = nAv_{d}q \) where \(n\) is the number density \(q\) is the charge, \(A\) is the cross sectional area of the
+            wire, and \( v_{d}\) is the drift velocity of the charge carriers in the wire.
+        </p>
+        <p>If we consider a differentiably small section of the wire \(dl\) the number of charge carriers in the wire is</p>
+        \[
+        dN = nAdl
+        \]
+        <p>thus each charge carrier in this section of the wire experiences a force by equation (3),</p>
+        \[
+        d\vec{F} = dNq(\vec{v_d}\times{}\vec{B}) \\
+        d\vec{F} = nAdlq(\vec{v_d}\times{}\vec{B})
+        \]
+        <p>assuming that the velocity of the charge carriers to be in the same direction as the loop of the wire
+        \(\vec{v_{d}}=v_{d}\hat{l} \).</p>
+        \[
+        d\vec{F} = nAv_{d}q(d\vec{l}\times{}\vec{B}) \\
+        d\vec{F} = I(d\vec{l}\times{}\vec{B})
+        \]
+        <p>this generates a torque, which can be calculated using the definition</p>
+        \[
+        \vec{\tau{}} = \oint{}\vec{r}\times{}d\vec{F} \\
+        \vec{\tau{}} = \oint{}\vec{r}\times{}I(d\vec{l}\times{}\vec{B}) \\
+        \]
+        <p>we can rearrange the vector triple product by cyclic permutation (in the case of the triple product it is anticommutative)</p>
+        \[
+        \vec{\tau{}} = -I\left[ \vec{B} \times{} \oint{}\vec{r}\times{}d\vec{l} \right]
+         \]
+        <p>where the integral is equal to the cross sectional area of the wire \(\vec{A}\) </p>
+        \[
+        \vec{\tau{}} = -I\left[ \vec{B} \times{} \vec{A} \right]
+        \]
+        swapping components \(\vec{A}\) and \(\vec{B}\) we get the following formula,
+        \[
+        \vec{\tau{}} = I\vec{A} \times{} \vec{B}
+        \]
+        from this we define the <b>magnetic dipole moment</b>:
+        \[
+        \vec{\mu{}} = I\vec{A}
+        \]
+        <p>
+            lets first review what we have done. We have an amperian loop of current \(I\) that for all purposes can be in any orientation.
+            This loop by Faraday's law generates its own magnetic field pointing out of the loop. When this loop is subjected to an external
+            magnetic field, this loop will experience torque to reorient the loop such that its dipole moment is parallel with the external
+            magnetic field.
+        </p>
+        <div class="figure">
+            <img src="../image/spin/amperian_loop.gif" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <div class="caption">
+                <span class="caption-label">Figure 1.</span> The magnetic moment of an amperian loop aligning with an external magnetic field.
+                Magnetic field refrence depicted in red, the amperian loop is depicted in blue with current vectors in dark blue. The resulting
+                magnetic moment is depicted in green. <i>Note that the magnetic moment precesses around the external field before aligning with the field,
+                and continues to rotate around this field as a central axis.</i>
+            </div>
+        </div>
+        <p>
+            The magnetic diplole moment is crucial to understanding the concept of spin as it is directly related to the property of angular
+            momentum. 
+        </p>
+        <p>
+            If we assume an amperian loop and ignore the orientation for a moment. The magnetic moment becomes
+        </p>
+        \[ \mu{} = IA \]
+        \[ \mu{} = \left( \frac{qv}{2\pi{}r} \right)(\pi{}r^{2}) \]
+        \[ \mu{} = \frac{qvr}{2} \]
+        <p>Given the definition of the angular momentum \(L = mvr\) from equation (1), we obtain the identity</p>
+        \[ 
+        \mu{} = \frac{q}{2m}L 
+        \]
+        <p>
+            This is a common identity for determining the angular momentum of charged particles even today. Though with the exception
+            of a constant \(g\)
+        </p>
+        \[ 
+            \tag{4} \vec{\mu{}} = g\frac{q}{2m}\vec{L} 
+        \]
+        <p>
+            which is known as the g-factor. For the amperian loops used in this example, this factor is set to \( g=1\).
+            This has to do with the coupling of a particle’s spin to the magnetic field it generates. This effect arises from
+            relativistic quantum mechanics, and a full derivation of the g-factor lies beyond the scope of this discussion
+            (though it may be worth revisiting in the future).
+        </p>
+        <h3>The Stern-Gurlach Experiment </h3>
 
-        <h2 id="ladder-operators">Ladder Operators</h2>
-        <p>
-            Using the commutation relations \([J_i, J_j] = i\hbar \epsilon_{ijk} J_k\), one constructs ladder operators \(J_{\pm}\)
-            to traverse the eigenbasis of \(J_z\). These operators manifest the algebraic structure that group theory predicts.
-        </p>
 
-        <h2 id="physical-implications">Physical Implications</h2>
-        <p>
-            Spin-statistics, selection rules, and coupling schemes all follow from these representation-theoretic foundations.
-            Understanding how group theory constrains spin prepares us to analyze addition of angular momentum and phenomena such as
-            Stern–Gerlach splitting.
-        </p>
 
-        <h2 id="conclusion">Conclusion</h2>
-        <p>
-            Group theory does more than provide abstract structure—it directly informs the quantized nature of spin. Mastery of SU(2)
-            representations gives a powerful language for reasoning about quantum systems and their symmetries.
-        </p>
     </div>
 
     <div id='bibliography'>
         <div class='wrap'>
             <ol class="bibliography">
-                <li><span id="sakurai">Sakurai, J. J., &amp; Napolitano, J. (2017). <i>Modern Quantum Mechanics</i>. Pearson.</span></li>
-                <li><span id="fulton">Fulton, W., &amp; Harris, J. (2004). <i>Representation Theory</i>. Springer.</span></li>
+                <li><span id="griffiths">Griffiths, D. J., &amp; Schroeter, D. F. (2018). <i>Introduction to Quantum Mechanics</i> (3rd ed.). Cambridge University Press.</span></li>
             </ol>
         </div>
     </div>

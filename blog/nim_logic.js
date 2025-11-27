@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let style = document.createElement("style");
     style.textContent = `
         #nim-game {
-            font-family: Arial, sans-serif;
+            font-family: Georgia, "Times New Roman", Times, serif;
             max-width: 500px;
             margin: 0 auto;
             text-align: center;

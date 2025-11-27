@@ -4,7 +4,7 @@
 
  body {
 	color: rgba(0, 0, 0, 0.8);
-	font-family: -apple-system, Helvetica, arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 15px;
 	margin: 7px;
 	padding: 0;
@@ -18,6 +18,8 @@ a:hover {
 }
 h1 {
 	font-size: 24px;
+	font-family: "New Century Schoolbook", "TeX Gyre Schola", serif;
+	font-weight: normal;
 }
 #landing {
 	max-width: 700px;
@@ -29,7 +31,7 @@ h1 {
 	margin: 0 0 20px 0;
 }
 #landing ul#links li {
-	font-family: -apple-system, helvetica, arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	margin-right: 25px;
 	padding-bottom: 5px;
 }
@@ -65,6 +67,10 @@ h1 {
 #papers .paper-venue,
 #papers .paper-links {
 	margin: 0;
+}
+#papers .paper-title {
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight: normal;
 }
 #papers .pub-links {
 	list-style-type: none;

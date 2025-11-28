@@ -152,8 +152,8 @@ MathJax.Hub.Config({
             </div>
         </div>
         <p>
-            In this example, player 2 wins. However, by design of the game, there is a strategy for the first player that, if played right, will guaruntee a win for the first player always.
-            What I am looking to do is go through this strategy and prove mathematically why this wil garuntee a win.
+            In this example, player 2 wins. However, by design of the game, there is a strategy for the first player that, if played right, will guarantee a win for the first player always.
+            What I am looking to do is go through this strategy and prove mathematically why this will guarantee a win.
         </p>
         <h2 id="Nim">The Strategy</h2>
         <p>
@@ -174,11 +174,7 @@ MathJax.Hub.Config({
             Player 1 to win the game every time. No matter what.
         </p>
         <p>
-            This is pretty interesting on its own. But outside of being a party trick. <i>How</i> exactly can one make sure that the Nim sum is 0 at the end of their turn? And why
-            does this even work in the first place?
-        </p>
-        <p>
-            This is pretty interesting on its own. But outside of being a party trick. <i>How</i> exactly can one make sure that the Nim sum is 0 at the end of their turn? And why
+            This is pretty interesting on its own. But outside of being a party trick, <i>how</i> exactly can one make sure that the Nim sum is 0 at the end of their turn? And why
             does this even work in the first place?
         </p>
         <p>
@@ -203,7 +199,7 @@ MathJax.Hub.Config({
                 <span class="caption-label">Figure. 4</span> Algorithm of breaking down remainders into groups of powers of 2. Checking residuals recursively until an uneven number of groups is found.
         </div>
         <p>
-            Doing this recursive check after each term wil garuntee that the nim sum is zero at the end of Player 1's turn. And this is the strategy that will allow for Player 1 to win every time. A short explanation of
+            Doing this recursive check after each term will guarantee that the Nim sum is zero at the end of Player 1's turn. And this is the strategy that will allow for Player 1 to win every time. A short explanation of
             this comes about from the definition of the XOR operator. Since it works bitwise, and there are 3 numbers representing the number of items in binary, we only need to concern ourselves with 8 possible operations:
         </p>
             \[
@@ -237,35 +233,103 @@ MathJax.Hub.Config({
         </div>
         <h2 id="Proof">The Proof</h2>
         <p>
-            Firstly, to prove this, we will define a winning position (P-position) and a losing position (N-position):
+            To prove the winning strategy rigorously, we characterize game positions using the Sprague-Grundy theorem for impartial games.
+            We define two types of positions:
         </p>
         <ul>
-            <li>P-positions (Previous player wins): The Nim sum is 0.</li>
-            <li>N-positions (Next player wins): The Nim sum is nonzero.</li>
+            <li><strong>P-positions</strong> (Previous player wins): Positions where the player who just moved has the advantage. The player to move will lose with optimal play.</li>
+            <li><strong>N-positions</strong> (Next player wins): Positions where the player about to move has the advantage. The player to move will win with optimal play.</li>
         </ul>
         <p>
-            <strong>Theorem:</strong> <i>A position is a P-position if and only if the Nim sum is 0.</i>
+            <strong>Definition:</strong> For a game state with piles of sizes \(a_1, a_2, \ldots, a_n\), the <i>Nim sum</i> is defined as:
+            \[
+            S = a_1 \oplus a_2 \oplus \cdots \oplus a_n
+            \]
+            where \(\oplus\) denotes the bitwise XOR operation.
         </p>
         <p>
-            <strong>Proof:</strong>
+            <strong>Theorem:</strong> <i>A position in Nim is a P-position if and only if its Nim sum equals zero.</i>
         </p>
         <p>
-            We proceed by induction:
+            <strong>Proof:</strong> We establish this by showing three properties that uniquely characterize P-positions and N-positions:
         </p>
-        <ol>
-            <li><u>Base Case</u>: If all piles are empty, the Nim sum is 0, and the player to move loses.</li>
-            <li><u>Inductive Step:</u> If a position has a nonzero Nim sum, there exists at least one move to a position with a zero Nim sum.
-                Since XOR works bitwise, there must be some pile where removing items results in a zero Nim sum.
-            </li>
-        </ol>
         <p>
-            Thus, any move from a P-position leads to an N-position, and any move from an N-position can be forced into a P-position.
-            This ensures that the first player wins if the initial position is an N-position.
+            <strong>Property 1:</strong> <i>The terminal position is a P-position.</i>
         </p>
-        <p style="text-align: right;">QED</p>
         <p>
-            The key takeaway is that the game is completely determined by the initial Nim sum. Assuming both players play optimally, the first
-            player can always win if the initial Nim sum is nonzero.
+            The terminal position has all piles empty: \(a_1 = a_2 = \cdots = a_n = 0\). The Nim sum is:
+            \[
+            S = 0 \oplus 0 \oplus \cdots \oplus 0 = 0
+            \]
+            The player to move cannot make any move and loses. Thus, the terminal position is a P-position with Nim sum zero.
+        </p>
+        <p>
+            <strong>Property 2:</strong> <i>From any position with nonzero Nim sum (N-position), there exists at least one move to a position with zero Nim sum (P-position).</i>
+        </p>
+        <p>
+            Let \(S = a_1 \oplus a_2 \oplus \cdots \oplus a_n \neq 0\). Let \(d\) be the position of the most significant bit (leftmost 1) in \(S\).
+        </p>
+        <p>
+            Since \(S \neq 0\), there must be an odd number of piles with a 1 in bit position \(d\). Therefore, at least one pile \(a_k\) has a 1 in bit position \(d\).
+        </p>
+        <p>
+            Consider the value \(a_k' = a_k \oplus S\). We claim that \(a_k' < a_k\):
+        </p>
+        <ul>
+            <li>Both \(a_k\) and \(S\) have a 1 in bit position \(d\).</li>
+            <li>Therefore, \(a_k \oplus S\) has a 0 in bit position \(d\).</li>
+            <li>All bits more significant than \(d\) in \(S\) are 0 (by definition of \(d\)).</li>
+            <li>Thus, \(a_k' = a_k \oplus S < a_k\) since the most significant differing bit is position \(d\), where \(a_k\) has 1 and \(a_k'\) has 0.</li>
+        </ul>
+        <p>
+            Since \(a_k' < a_k\), reducing pile \(a_k\) to \(a_k'\) is a valid move. The new Nim sum after this move is:
+            \[
+            S' = a_1 \oplus \cdots \oplus a_k' \oplus \cdots \oplus a_n = a_1 \oplus \cdots \oplus (a_k \oplus S) \oplus \cdots \oplus a_n
+            \]
+            By associativity and commutativity of XOR:
+            \[
+            S' = (a_1 \oplus \cdots \oplus a_k \oplus \cdots \oplus a_n) \oplus S = S \oplus S = 0
+            \]
+            Thus, from any N-position, we can move to a P-position.
+        </p>
+        <p>
+            <strong>Property 3:</strong> <i>From any position with zero Nim sum (P-position), every possible move leads to a position with nonzero Nim sum (N-position).</i>
+        </p>
+        <p>
+            Let \(S = a_1 \oplus a_2 \oplus \cdots \oplus a_n = 0\). Suppose we reduce pile \(a_k\) to some value \(a_k'\) where \(a_k' < a_k\) (i.e., \(a_k' \neq a_k\)).
+        </p>
+        <p>
+            The new Nim sum is:
+            \[
+            S' = a_1 \oplus \cdots \oplus a_k' \oplus \cdots \oplus a_n
+            \]
+            We can rewrite this using the fact that \(a_k = a_k \oplus 0 = a_k \oplus S\) (since \(S = 0\)):
+            \[
+            S' = S \oplus a_k \oplus a_k' = 0 \oplus a_k \oplus a_k' = a_k \oplus a_k'
+            \]
+            Since \(a_k' \neq a_k\), we have \(a_k \oplus a_k' \neq 0\), so \(S' \neq 0\).
+        </p>
+        <p>
+            Thus, every move from a P-position leads to an N-position.
+        </p>
+        <p>
+            <strong>Conclusion:</strong> Properties 1-3 establish that positions with Nim sum zero are exactly the P-positions:
+        </p>
+        <ul>
+            <li>The game always terminates (piles decrease).</li>
+            <li>The terminal state has Nim sum 0 (P-position).</li>
+            <li>From Nim sum \(\neq 0\), one can always reach Nim sum \(= 0\).</li>
+            <li>From Nim sum \(= 0\), one must reach Nim sum \(\neq 0\).</li>
+        </ul>
+        <p>
+            Therefore, if the initial Nim sum is nonzero, the first player can always win by moving to a position with Nim sum zero, forcing the opponent into an N-to-P disadvantage on every turn.
+        </p>
+        <p style="text-align: right;">∎</p>
+        <p>
+            <strong>Corollary:</strong> <i>If the initial Nim sum is zero, the second player has a winning strategy.</i>
+        </p>
+        <p>
+            This follows directly from the theorem: if the game starts in a P-position (Nim sum = 0), the first player must move to an N-position, giving the second player the winning advantage.
         </p>
         
         <h2 id="PlayNim">Play Nim</h2>

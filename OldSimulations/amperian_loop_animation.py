@@ -1,416 +1,410 @@
 """
-Amperian Current Loop in Uniform Magnetic Field - Animation
+3D Animation of an Amperian Loop Aligning with an External Magnetic Field
 
-Physics Model:
---------------
-A circular current loop with magnetic moment μ (normal to loop plane) experiences
-a torque τ = μ × B in a uniform magnetic field B. The potential energy is U = -μ·B = -μB cosθ.
+This script demonstrates how an Amperian loop (a current-carrying wire loop)
+rotates to align itself with an external magnetic field. The alignment occurs
+because the magnetic field exerts a torque on the loop, causing it to rotate
+until the loop's normal vector is parallel to the magnetic field direction,
+minimizing the magnetic potential energy.
 
-Overdamped rotational dynamics (no inertia):
-    dθ/dt = -γ sinθ
-
-where γ is the relaxation rate and θ is the angle between μ and B.
-
-Convention:
------------
-- B points in +y direction (upward on screen)
-- θ is the polar angle: angle between μ and B (0° to 180°)
-- φ is the azimuthal angle: rotation around the B axis (0° to 360°)
-- θ = 0° means μ aligned with B (stable equilibrium) - loop appears horizontal (edge-on)
-- θ = 90° means μ perpendicular to B - loop appears as full circle (face-on)
-- θ = 180° means μ anti-aligned with B (unstable equilibrium) - loop appears horizontal again
-- The current loop plane is ALWAYS perpendicular to μ
-
-The loop relaxes from initial angle θ₀ toward alignment with B (θ → 0) while 
-precessing around B with angular velocity ω_φ.
+Physics: The torque on a magnetic dipole (loop) is τ = μ × B, where μ is the
+magnetic moment (proportional to the loop's area and current) and B is the
+external magnetic field. The loop rotates to align μ with B.
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patches import Ellipse
-from matplotlib.animation import FuncAnimation, PillowWriter
-from matplotlib import patches
-import os
+from matplotlib.animation import FuncAnimation, FFMpegWriter, PillowWriter
+from mpl_toolkits.mplot3d import Axes3D
 
-# ==================== PARAMETERS (easy to modify) ====================
-gamma = 1.2              # Relaxation rate (1/time units)
-theta0_deg = 120         # Initial polar angle in degrees
-phi0_deg = 0             # Initial azimuthal angle in degrees
-omega_phi = 1.5          # Angular velocity for precession around B (rad/time)
 
-mu_mag = 1.0             # Magnitude of magnetic moment |μ|
-B_mag = 1.0              # Magnitude of magnetic field |B|
-steps = 220              # Number of animation frames (after initial pause)
-dt = 0.04                # Time step for integration
-
-initial_pause_frames = 45  # Number of frames to hold at initial state (1.5 sec at 30fps)
-
-loop_width = 2.0         # Loop diameter (plotting units)
-loop_height = 1.2        # Loop apparent height when tilted (plotting units)
-
-output_filename = "amperian_loop.gif"  # Output animation file
-fps = 30                 # Frames per second for animation
-# ======================================================================
-
-def integrate_dynamics(theta0, phi0, gamma, omega_phi, dt, steps, pause_frames=0):
+def create_loop(radius, n_points=100):
     """
-    Integrate coupled dynamics:
-        dθ/dt = -γ sinθ         (relaxation toward alignment)
-        dφ/dt = ω_φ             (precession around B axis)
+    Create a 3D circular loop in the xy-plane.
     
-    Args:
-        theta0: Initial polar angle (radians)
-        phi0: Initial azimuthal angle (radians)
-        gamma: Relaxation rate
-        omega_phi: Precession angular velocity
-        dt: Time step
-        steps: Number of integration steps
-        pause_frames: Number of frames to hold at initial state before dynamics start
-    
+    Parameters:
+    -----------
+    radius : float
+        Radius of the loop
+    n_points : int
+        Number of points to discretize the circle
+        
     Returns:
-        times: array of time values
-        thetas: array of θ values (in radians)
-        phis: array of φ values (in radians)
+    --------
+    points : ndarray
+        Array of shape (n_points, 3) containing (x, y, z) coordinates
     """
-    # Add initial pause frames (hold at θ₀, φ₀)
-    thetas = [theta0] * pause_frames
-    phis = [phi0] * pause_frames
-    times = [0.0] * pause_frames
-    
-    # Now integrate the dynamics
-    theta = theta0
-    phi = phi0
-    thetas.append(theta)
-    phis.append(phi)
-    times.append(0.0)
-    
-    for i in range(steps - 1):
-        dtheta_dt = -gamma * np.sin(theta)
-        dphi_dt = omega_phi
-        
-        theta = theta + dtheta_dt * dt
-        phi = phi + dphi_dt * dt
-        
-        thetas.append(theta)
-        phis.append(phi)
-        times.append(times[-1] + dt)
-    
-    return np.array(times), np.array(thetas), np.array(phis)
+    theta = np.linspace(0, 2 * np.pi, n_points)
+    x = radius * np.cos(theta)
+    y = radius * np.sin(theta)
+    z = np.zeros_like(theta)
+    return np.column_stack([x, y, z])
 
-def draw_current_loop(ax, theta, phi, loop_width, loop_height):
+
+def rotate_loop(points, angle, axis):
     """
-    Draw a circular current loop that is perpendicular (orthogonal) to the magnetic moment μ.
+    Rotate a set of 3D points about a given axis by a specified angle.
     
-    The loop is a circle of radius R in 3D space, lying in the plane perpendicular to μ.
-    We parametrize the circle, then project it onto the viewing plane (x-y screen).
-    
-    μ in 3D: μ = (sin(θ)cos(φ), cos(θ), sin(θ)sin(φ))
-    Viewing from +z direction (looking down the z-axis toward origin)
+    Parameters:
+    -----------
+    points : ndarray
+        Array of shape (n, 3) containing points to rotate
+    angle : float
+        Rotation angle in radians
+    axis : ndarray
+        Axis of rotation (will be normalized)
+        
+    Returns:
+    --------
+    rotated_points : ndarray
+        Rotated points
     """
-    radius = loop_width / 2
+    axis = np.array(axis) / np.linalg.norm(axis)
     
-    # Step 1: Define μ (the magnetic moment) - normal to the loop plane
-    mu = np.array([
-        np.sin(theta) * np.cos(phi),  # μ_x
-        np.cos(theta),                 # μ_y
-        np.sin(theta) * np.sin(phi)    # μ_z
+    # Rodrigues' rotation formula
+    cos_a = np.cos(angle)
+    sin_a = np.sin(angle)
+    
+    # Rotation matrix components
+    K = np.array([
+        [0, -axis[2], axis[1]],
+        [axis[2], 0, -axis[0]],
+        [-axis[1], axis[0], 0]
     ])
     
-    # Step 2: Find two orthogonal unit vectors (e1, e2) that span the loop plane
-    # These vectors must be perpendicular to μ and to each other
+    R = (np.eye(3) * cos_a + 
+         sin_a * K + 
+         (1 - cos_a) * np.outer(axis, axis))
     
-    # Choose e1: perpendicular to μ. We can pick any vector not parallel to μ,
-    # then use Gram-Schmidt to make it perpendicular
-    # Start with a candidate vector (try z-axis first, unless μ is parallel to z)
-    if np.abs(mu[2]) < 0.9:  # μ is not too close to z-axis
-        candidate = np.array([0, 0, 1])
-    else:  # μ is close to z-axis, use x-axis instead
-        candidate = np.array([1, 0, 0])
-    
-    # Make e1 perpendicular to μ using: e1 = candidate - (candidate·μ)μ
-    e1 = candidate - np.dot(candidate, mu) * mu
-    e1 = e1 / np.linalg.norm(e1)  # Normalize
-    
-    # e2 = μ × e1 (perpendicular to both μ and e1)
-    e2 = np.cross(mu, e1)
-    e2 = e2 / np.linalg.norm(e2)  # Normalize (should already be unit, but be safe)
-    
-    # Step 3: Parametrize the circle in 3D space
-    # P(t) = radius * (cos(t) * e1 + sin(t) * e2) for t ∈ [0, 2π]
-    n_points = 100
-    t = np.linspace(0, 2*np.pi, n_points)
-    
-    # 3D coordinates of points on the circle
-    circle_3d = radius * (np.outer(np.cos(t), e1) + np.outer(np.sin(t), e2))
-    
-    # Step 4: Project onto the x-y plane (viewing screen)
-    # We're viewing from +z, so projection is just taking x and y coordinates
-    circle_x = circle_3d[:, 0]  # x-coordinates on screen
-    circle_y = circle_3d[:, 1]  # y-coordinates on screen
-    
-    # Step 5: Draw the loop
-    ax.plot(circle_x, circle_y, 'b-', linewidth=2.5, zorder=5)
-    
-    # Step 6: Add arrows to indicate current direction at multiple points
-    # Use the right-hand rule: fingers curl with current, thumb points along μ
-    # Place arrows at multiple positions to show rotation clearly
-    arrow_positions = [0, np.pi/2, np.pi, 3*np.pi/2]  # 4 arrows around the loop
-    
-    for arrow_t in arrow_positions:
-        arrow_pos_3d = radius * (np.cos(arrow_t) * e1 + np.sin(arrow_t) * e2)
-        arrow_x = arrow_pos_3d[0]
-        arrow_y = arrow_pos_3d[1]
-        
-        # Tangent direction: dP/dt = radius * (-sin(t) * e1 + cos(t) * e2)
-        # This gives the counterclockwise direction when viewed from μ
-        arrow_tangent_3d = (-np.sin(arrow_t) * e1 + np.cos(arrow_t) * e2)
-        arrow_dx = arrow_tangent_3d[0] * 0.2
-        arrow_dy = arrow_tangent_3d[1] * 0.2
-        
-        # Only draw arrow if it's on the visible part of the loop
-        if np.abs(arrow_y) > 0.15 or np.max(np.abs(circle_y)) > 0.3:
-            ax.arrow(arrow_x, arrow_y, arrow_dx, arrow_dy,
-                    head_width=0.12, head_length=0.08,
-                    fc='darkblue', ec='darkblue', linewidth=1.2, zorder=6)
+    return points @ R.T
 
-def draw_current_loop_xz(ax, theta, phi, loop_width, loop_height):
+
+def draw_field_vectors(ax, field_direction=np.array([0, 0, 1]), 
+                       grid_size=5, vector_length=0.3):
     """
-    Draw a circular current loop projected onto the x-z plane (top-down view from +y).
-    The loop is perpendicular (orthogonal) to the magnetic moment μ.
-    This view looks down the B field direction.
+    Draw parallel magnetic field vectors in 3D space.
+    
+    Parameters:
+    -----------
+    ax : Axes3D
+        The 3D axes to draw on
+    field_direction : ndarray
+        Direction of the magnetic field (will be normalized)
+    grid_size : int
+        Number of vectors along each dimension (creates grid_size^2 vectors)
+    vector_length : float
+        Length of the arrow vectors
     """
-    radius = loop_width / 2
+    field_direction = field_direction / np.linalg.norm(field_direction)
     
-    # Step 1: Define μ (the magnetic moment) - normal to the loop plane
-    mu = np.array([
-        np.sin(theta) * np.cos(phi),  # μ_x
-        np.cos(theta),                 # μ_y
-        np.sin(theta) * np.sin(phi)    # μ_z
-    ])
+    # Create a grid of starting points
+    x_range = np.linspace(-2, 2, grid_size)
+    y_range = np.linspace(-2, 2, grid_size)
+    z_range = np.linspace(-1, 1, grid_size)
     
-    # Step 2: Find two orthogonal unit vectors (e1, e2) that span the loop plane
-    if np.abs(mu[2]) < 0.9:
-        candidate = np.array([0, 0, 1])
+    # Draw vectors in a plane perpendicular to the field direction
+    # For a field in +z direction, draw vectors in xy-plane
+    if np.abs(field_direction[2]) > 0.9:  # Field is mostly in z-direction
+        X, Y = np.meshgrid(x_range, y_range)
+        Z = np.zeros_like(X)
+        for i in range(grid_size):
+            for j in range(grid_size):
+                start = np.array([X[i, j], Y[i, j], Z[i, j]])
+                end = start + vector_length * field_direction
+                ax.quiver(start[0], start[1], start[2],
+                         end[0] - start[0], end[1] - start[1], end[2] - start[2],
+                         color='blue', arrow_length_ratio=0.3, linewidth=1.5)
     else:
-        candidate = np.array([1, 0, 0])
-    
-    e1 = candidate - np.dot(candidate, mu) * mu
-    e1 = e1 / np.linalg.norm(e1)
-    
-    e2 = np.cross(mu, e1)
-    e2 = e2 / np.linalg.norm(e2)
-    
-    # Step 3: Parametrize the circle in 3D space
-    n_points = 100
-    t = np.linspace(0, 2*np.pi, n_points)
-    circle_3d = radius * (np.outer(np.cos(t), e1) + np.outer(np.sin(t), e2))
-    
-    # Step 4: Project onto the x-z plane (viewing from +y, looking down B)
-    # Take x (axis 0) and z (axis 2) coordinates
-    circle_x = circle_3d[:, 0]  # x-coordinates (horizontal on this view)
-    circle_z = circle_3d[:, 2]  # z-coordinates (vertical on this view)
-    
-    # Step 5: Draw the loop
-    ax.plot(circle_x, circle_z, 'b-', linewidth=2.5, zorder=5)
-    
-    # Step 6: Add arrows to indicate current direction at multiple points
-    # Use the right-hand rule: fingers curl with current, thumb points along μ
-    # Place arrows at multiple positions to show rotation clearly
-    arrow_positions = [0, np.pi/2, np.pi, 3*np.pi/2]  # 4 arrows around the loop
-    
-    for arrow_t in arrow_positions:
-        arrow_pos_3d = radius * (np.cos(arrow_t) * e1 + np.sin(arrow_t) * e2)
-        arrow_x = arrow_pos_3d[0]
-        arrow_z = arrow_pos_3d[2]
-        
-        # Tangent direction: dP/dt = radius * (-sin(t) * e1 + cos(t) * e2)
-        # This gives the counterclockwise direction when viewed from μ
-        arrow_tangent_3d = (-np.sin(arrow_t) * e1 + np.cos(arrow_t) * e2)
-        arrow_dx = -arrow_tangent_3d[0] * 0.2
-        arrow_dz = -arrow_tangent_3d[2] * 0.2
-        
-        # Draw all arrows that are visible
-        if np.max(np.abs(circle_x)) > 0.2 or np.max(np.abs(circle_z)) > 0.2:
-            ax.arrow(arrow_x, arrow_z, arrow_dx, arrow_dz,
-                    head_width=0.12, head_length=0.08,
-                    fc='darkblue', ec='darkblue', linewidth=1.2, zorder=6)
+        # Generic case: draw vectors in a plane
+        for z_val in z_range:
+            X, Y = np.meshgrid(x_range, y_range)
+            for i in range(grid_size):
+                for j in range(grid_size):
+                    start = np.array([X[i, j], Y[i, j], z_val])
+                    end = start + vector_length * field_direction
+                    ax.quiver(start[0], start[1], start[2],
+                             end[0] - start[0], end[1] - start[1], end[2] - start[2],
+                             color='blue', arrow_length_ratio=0.3, linewidth=1.5)
 
-def setup_plot():
-    """Set up the figure with two subplots: x-y view (side) and x-z view (top-down)."""
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 8))
-    
-    # Left plot: x-y plane (view from +z) - side view
-    ax1.set_xlim(-2, 2)
-    ax1.set_ylim(-2, 2)
-    ax1.set_aspect('equal')
-    ax1.grid(True, alpha=0.3, linestyle='--')
-    ax1.set_xlabel('x', fontsize=12)
-    ax1.set_ylabel('y', fontsize=12)
-    ax1.axhline(y=0, color='k', linewidth=0.5)
-    ax1.axvline(x=0, color='k', linewidth=0.5)
-    ax1.set_title('Side View (x-y plane, from +z)', fontsize=12, pad=10)
-    
-    # Right plot: x-z plane (view from +y) - top-down looking along B
-    ax2.set_xlim(-2, 2)
-    ax2.set_ylim(-2, 2)
-    ax2.set_aspect('equal')
-    ax2.grid(True, alpha=0.3, linestyle='--')
-    ax2.set_xlabel('x', fontsize=12)
-    ax2.set_ylabel('z', fontsize=12)
-    ax2.axhline(y=0, color='k', linewidth=0.5)
-    ax2.axvline(x=0, color='k', linewidth=0.5)
-    ax2.set_title('Top-Down View (x-z plane, from +y)', fontsize=12, pad=10)
-    
-    return fig, ax1, ax2
 
-def animate_frame(frame, times, thetas, phis, ax1, ax2, texts):
-    """Update function for animation - draws x-y (side) and x-z (top-down) views."""
-    theta = thetas[frame]
-    phi = phis[frame]
-    time = times[frame]
+def calculate_angle_between_vectors(v1, v2):
+    """
+    Calculate the angle between two vectors in radians.
     
-    # Calculate μ components
-    mu_x = mu_mag * np.sin(theta) * np.cos(phi)
-    mu_y = mu_mag * np.cos(theta)
-    mu_z = mu_mag * np.sin(theta) * np.sin(phi)
+    Parameters:
+    -----------
+    v1, v2 : ndarray
+        Two vectors
+        
+    Returns:
+    --------
+    angle : float
+        Angle in radians
+    """
+    v1_norm = v1 / np.linalg.norm(v1)
+    v2_norm = v2 / np.linalg.norm(v2)
+    dot_product = np.clip(np.dot(v1_norm, v2_norm), -1.0, 1.0)
+    return np.arccos(dot_product)
+
+
+def update(frame, original_loop_points, initial_tilt_angle, initial_tilt_axis,
+           field_direction, ax1, ax2, loop_line1, loop_line2, normal_arrow1, normal_arrow2,
+           angle_text1, angle_text2, total_frames):
+    """
+    Update function for the animation.
     
-    # ==== LEFT PLOT: x-y view (from +z) ====
-    ax1.clear()
-    ax1.set_xlim(-2, 2)
-    ax1.set_ylim(-2, 2)
-    ax1.set_aspect('equal')
-    ax1.grid(True, alpha=0.3, linestyle='--')
-    ax1.set_xlabel('x', fontsize=12)
-    ax1.set_ylabel('y', fontsize=12)
-    ax1.axhline(y=0, color='k', linewidth=0.5)
-    ax1.axvline(x=0, color='k', linewidth=0.5)
-    ax1.set_title('View from +z (x-y plane)', fontsize=12, pad=10)
+    Parameters:
+    -----------
+    frame : int
+        Current frame number
+    original_loop_points : ndarray
+        Original loop points in xy-plane (will be rotated)
+    initial_tilt_angle : float
+        Initial tilt angle in radians
+    initial_tilt_axis : ndarray
+        Axis for initial tilt rotation
+    field_direction : ndarray
+        Direction of the external magnetic field
+    ax1, ax2 : Axes3D
+        The two subplot axes
+    loop_line1, loop_line2 : Line3DCollection
+        Line objects representing the loop in each subplot
+    normal_arrow1, normal_arrow2 : list
+        Lists to store arrow objects (will be cleared and redrawn)
+    angle_text1, angle_text2 : Text
+        Text objects for displaying the angle
+    total_frames : int
+        Total number of frames in the animation
+    """
+    # Calculate rotation progress (0 to 1)
+    progress = frame / total_frames
     
-    # Draw B field
-    ax1.arrow(1.5, -1.5, 0, 0.6, head_width=0.15, head_length=0.1,
-             fc='red', ec='red', linewidth=2.5, zorder=10)
-    ax1.text(1.5, -0.7, r'$\mathbf{B}$', fontsize=16, ha='center', color='red', weight='bold')
+    # Use smooth easing function (ease-in-out)
+    eased_progress = 0.5 * (1 - np.cos(np.pi * progress))
     
-    # Draw loop
-    draw_current_loop(ax1, theta, phi, loop_width, loop_height)
+    # Calculate initial normal after tilting
+    initial_normal = np.array([0, np.sin(initial_tilt_angle), np.cos(initial_tilt_angle)])
     
-    # Draw μ
-    ax1.arrow(0, 0, mu_x * 0.7, mu_y * 0.7, 
-             head_width=0.15, head_length=0.15,
-             fc='green', ec='green', linewidth=3, zorder=11)
-    ax1.text(mu_x * 0.7 + 0.25 * mu_x / mu_mag, 
-            mu_y * 0.7 + 0.25 * mu_y / mu_mag,
-            r'$\boldsymbol{\mu}$', fontsize=16, ha='center', color='green', weight='bold')
+    # Calculate current angle (from initial tilt to aligned)
+    initial_angle = calculate_angle_between_vectors(initial_normal, field_direction)
+    current_angle = initial_angle * (1 - eased_progress)
     
-    # ==== RIGHT PLOT: x-z view (from +y) - TOP-DOWN looking along B ====
-    ax2.clear()
-    ax2.set_xlim(-2, 2)
-    ax2.set_ylim(-2, 2)
-    ax2.set_aspect('equal')
-    ax2.grid(True, alpha=0.3, linestyle='--')
-    ax2.set_xlabel('x', fontsize=12)
-    ax2.set_ylabel('z', fontsize=12)
-    ax2.axhline(y=0, color='k', linewidth=0.5)
-    ax2.axvline(x=0, color='k', linewidth=0.5)
-    ax2.set_title('Top-Down View (x-z plane, from +y)', fontsize=12, pad=10)
-    
-    # Add indicator that +y (B field) points out of screen (toward viewer)
-    # Draw a circle with a dot in the center (standard notation for "out of page")
-    circle = plt.Circle((1.5, -1.5), 0.2, fill=False, edgecolor='red', linewidth=2.5, zorder=10)
-    ax2.add_patch(circle)
-    ax2.plot(1.5, -1.5, 'o', color='red', markersize=10, zorder=11)
-    ax2.text(1.5, -1.8, r'$\mathbf{B}$ (out)', fontsize=12, ha='center', color='red', weight='bold')
-    
-    # Draw loop
-    draw_current_loop_xz(ax2, theta, phi, loop_width, loop_height)
-    
-    # Draw μ (x-z projection - this is the projection onto the x-z plane)
-    ax2.arrow(0, 0, mu_x * 0.7, mu_z * 0.7, 
-             head_width=0.15, head_length=0.15,
-             fc='green', ec='green', linewidth=3, zorder=11)
-    # Position label for μ
-    mu_xz_mag = np.sqrt(mu_x**2 + mu_z**2)
-    if mu_xz_mag > 0.01:
-        ax2.text(mu_x * 0.7 + 0.25 * mu_x / mu_xz_mag, 
-                mu_z * 0.7 + 0.25 * mu_z / mu_xz_mag,
-                r'$\boldsymbol{\mu}$', fontsize=16, ha='center', color='green', weight='bold')
+    # Calculate rotation axis for alignment (perpendicular to both initial normal and field)
+    rotation_axis = np.cross(initial_normal, field_direction)
+    if np.linalg.norm(rotation_axis) < 1e-6:
+        # Vectors are already parallel/antiparallel
+        rotation_axis = np.array([1, 0, 0])
     else:
-        # μ is nearly aligned with B (pointing out of screen), show as a dot
-        ax2.plot(0, 0, 'o', color='green', markersize=10, zorder=12)
-        ax2.text(0.3, 0.3, r'$\boldsymbol{\mu}$', fontsize=16, ha='center', color='green', weight='bold')
+        rotation_axis = rotation_axis / np.linalg.norm(rotation_axis)
     
-    # Display text information (on left plot)
-    theta_deg = np.degrees(theta)
-    phi_deg = np.degrees(phi) % 360
-    U = -mu_mag * B_mag * np.cos(theta)
+    # Apply rotations: first initial tilt, then alignment rotation
+    # Start with original loop in xy-plane
+    rotated_points = original_loop_points.copy()
+    # Apply initial tilt
+    rotated_points = rotate_loop(rotated_points, initial_tilt_angle, initial_tilt_axis)
+    # Apply alignment rotation
+    alignment_angle = initial_angle * eased_progress
+    rotated_points = rotate_loop(rotated_points, alignment_angle, rotation_axis)
     
-    info_text = f'θ(t) = {theta_deg:.1f}°\nφ(t) = {phi_deg:.1f}°\nU(t) = {U:.2f}'
-    ax1.text(-1.8, 1.7, info_text, fontsize=14, 
-            bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.8),
-            verticalalignment='top', family='monospace')
+    # Calculate current normal vector
+    # Normal is perpendicular to the loop plane, pointing along the rotation
+    center = np.mean(rotated_points, axis=0)
+    # Use two points on the loop to define the plane
+    v1 = rotated_points[0] - center
+    v2 = rotated_points[len(rotated_points)//4] - center
+    current_normal = np.cross(v1, v2)
+    current_normal = current_normal / np.linalg.norm(current_normal)
     
-    ax1.text(-1.8, -1.7, f't = {time:.2f}', fontsize=12, 
-            bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.7),
-            family='monospace')
+    # Update loop lines
+    loop_line1.set_data(rotated_points[:, 0], rotated_points[:, 1])
+    loop_line1.set_3d_properties(rotated_points[:, 2])
     
-    # Add main title
-    ax1.figure.suptitle('Amperian Current Loop in Magnetic Field', 
-                        fontsize=16, weight='bold', y=0.98)
+    loop_line2.set_data(rotated_points[:, 0], rotated_points[:, 1])
+    loop_line2.set_3d_properties(rotated_points[:, 2])
+    
+    # Clear and redraw normal vectors
+    for arrow in normal_arrow1:
+        arrow.remove()
+    normal_arrow1.clear()
+    
+    for arrow in normal_arrow2:
+        arrow.remove()
+    normal_arrow2.clear()
+    
+    # Draw normal vector from center of loop
+    normal_length = 0.8
+    center = np.mean(rotated_points, axis=0)
+    normal_end = center + normal_length * current_normal
+    
+    arrow1 = ax1.quiver(center[0], center[1], center[2],
+                       normal_end[0] - center[0],
+                       normal_end[1] - center[1],
+                       normal_end[2] - center[2],
+                       color='green', arrow_length_ratio=0.2, linewidth=2.5)
+    normal_arrow1.append(arrow1)
+    
+    arrow2 = ax2.quiver(center[0], center[1], center[2],
+                       normal_end[0] - center[0],
+                       normal_end[1] - center[1],
+                       normal_end[2] - center[2],
+                       color='green', arrow_length_ratio=0.2, linewidth=2.5)
+    normal_arrow2.append(arrow2)
+    
+    # Update angle display
+    angle_deg = np.degrees(current_angle)
+    angle_text1.set_text(f'Tilt Angle: {angle_deg:.1f}°')
+    angle_text2.set_text(f'Tilt Angle: {angle_deg:.1f}°')
+    
+    # Rotate the right subplot camera (azimuth changes)
+    ax2.view_init(elev=30, azim=45 + frame * 360 / total_frames)
+    
+    return loop_line1, loop_line2, normal_arrow1, normal_arrow2, angle_text1, angle_text2
+
 
 def main():
-    """Main function to create and save the animation."""
-    print("Starting animation generation...")
-    print(f"Parameters:")
-    print(f"  gamma = {gamma}")
-    print(f"  theta_0 = {theta0_deg} degrees")
-    print(f"  phi_0 = {phi0_deg} degrees")
-    print(f"  omega_phi = {omega_phi} rad/time")
-    print(f"  |mu| = {mu_mag}")
-    print(f"  |B| = {B_mag}")
-    print(f"  frames = {steps}")
-    print(f"  dt = {dt}")
-    print(f"  initial_pause_frames = {initial_pause_frames}")
+    """Main function to create and run the animation."""
+    # Parameters
+    loop_radius = 1.0
+    n_points = 100
+    field_direction = np.array([0, 0, 1])  # Magnetic field in +z direction
+    initial_tilt_angle = np.pi / 3  # Start at 60 degrees from field
     
-    # Convert initial angles to radians
-    theta0 = np.radians(theta0_deg)
-    phi0 = np.radians(phi0_deg)
+    # Create original loop in xy-plane (normal pointing in +z)
+    original_loop_points = create_loop(loop_radius, n_points)
     
-    # Integrate the differential equations with initial pause
-    times, thetas, phis = integrate_dynamics(theta0, phi0, gamma, omega_phi, dt, steps, 
-                                             pause_frames=initial_pause_frames)
+    # Calculate initial normal after tilting (rotate about x-axis)
+    initial_normal = np.array([0, np.sin(initial_tilt_angle), np.cos(initial_tilt_angle)])
+    initial_rotation_axis = np.array([1, 0, 0])
     
-    total_frames = len(thetas)
+    # Create initial tilted loop for display
+    loop_points = rotate_loop(original_loop_points.copy(), initial_tilt_angle, initial_rotation_axis)
     
-    print(f"\nIntegration complete.")
-    print(f"  Initial pause: {initial_pause_frames} frames ({initial_pause_frames/fps:.1f} seconds)")
-    print(f"  Initial theta = {np.degrees(thetas[0]):.1f} degrees")
-    print(f"  Initial phi = {np.degrees(phis[0]):.1f} degrees")
-    print(f"  Final theta = {np.degrees(thetas[-1]):.1f} degrees")
-    print(f"  Final phi = {np.degrees(phis[-1]) % 360:.1f} degrees")
-    print(f"  Total simulation time = {times[-1]:.2f}")
-    print(f"  Total frames = {total_frames}")
+    # Create figure with two subplots
+    fig = plt.figure(figsize=(16, 8))
+    ax1 = fig.add_subplot(121, projection='3d')
+    ax2 = fig.add_subplot(122, projection='3d')
     
-    # Set up the plot
-    fig, ax1, ax2 = setup_plot()
+    # Set fixed perspective for left subplot
+    ax1.view_init(elev=30, azim=45)
     
-    # Create empty text objects (will be updated in animate_frame)
-    texts = {'theta': None, 'phi': None, 'energy': None}
+    # Set initial perspective for right subplot (will rotate during animation)
+    ax2.view_init(elev=30, azim=45)
+    
+    # Set axis limits
+    for ax in [ax1, ax2]:
+        ax.set_xlim([-1.5, 1.5])
+        ax.set_ylim([-1.5, 1.5])
+        ax.set_zlim([-1.5, 1.5])
+        ax.set_xlabel('x', fontsize=12)
+        ax.set_ylabel('y', fontsize=12)
+        ax.set_zlabel('z', fontsize=12)
+        ax.set_box_aspect([1, 1, 1])
+    
+    # Draw magnetic field vectors
+    draw_field_vectors(ax1, field_direction, grid_size=4, vector_length=0.4)
+    draw_field_vectors(ax2, field_direction, grid_size=4, vector_length=0.4)
+    
+    # Add field direction label (single arrow at top)
+    field_arrow_length = 0.5
+    ax1.quiver(0, 0, 1.2, 0, 0, field_arrow_length,
+              color='blue', arrow_length_ratio=0.3, linewidth=2)
+    ax1.text(0.2, 0.2, 1.5, "External Magnetic Field $\\vec{B}$", 
+            fontsize=11, color='blue')
+    
+    ax2.quiver(0, 0, 1.2, 0, 0, field_arrow_length,
+              color='blue', arrow_length_ratio=0.3, linewidth=2)
+    ax2.text(0.2, 0.2, 1.5, "External Magnetic Field $\\vec{B}$", 
+            fontsize=11, color='blue')
+    
+    # Initialize loop lines
+    loop_line1, = ax1.plot(loop_points[:, 0], loop_points[:, 1], 
+                           loop_points[:, 2], 'r-', linewidth=2.5, label='Loop')
+    loop_line2, = ax2.plot(loop_points[:, 0], loop_points[:, 1], 
+                           loop_points[:, 2], 'r-', linewidth=2.5, label='Loop')
+    
+    # Initialize normal vector arrows (will be updated in animation)
+    normal_arrow1 = []
+    normal_arrow2 = []
+    
+    # Calculate initial normal after tilting
+    initial_normal_calc = np.array([0, np.sin(initial_tilt_angle), np.cos(initial_tilt_angle)])
+    
+    # Add initial normal vector
+    center = np.mean(loop_points, axis=0)
+    normal_length = 0.8
+    normal_end = center + normal_length * initial_normal_calc
+    
+    arrow1 = ax1.quiver(center[0], center[1], center[2],
+                       normal_end[0] - center[0],
+                       normal_end[1] - center[1],
+                       normal_end[2] - center[2],
+                       color='green', arrow_length_ratio=0.2, linewidth=2.5)
+    normal_arrow1.append(arrow1)
+    
+    arrow2 = ax2.quiver(center[0], center[1], center[2],
+                       normal_end[0] - center[0],
+                       normal_end[1] - center[1],
+                       normal_end[2] - center[2],
+                       color='green', arrow_length_ratio=0.2, linewidth=2.5)
+    normal_arrow2.append(arrow2)
+    
+    # Add normal vector label
+    ax1.text(normal_end[0] + 0.1, normal_end[1] + 0.1, normal_end[2] + 0.1,
+            "Loop Normal $\\hat{n}$", fontsize=11, color='green')
+    ax2.text(normal_end[0] + 0.1, normal_end[1] + 0.1, normal_end[2] + 0.1,
+            "Loop Normal $\\hat{n}$", fontsize=11, color='green')
+    
+    # Add angle text
+    initial_angle = calculate_angle_between_vectors(initial_normal_calc, field_direction)
+    angle_text1 = ax1.text2D(0.02, 0.98, f'Tilt Angle: {np.degrees(initial_angle):.1f}°',
+                            transform=ax1.transAxes, fontsize=11,
+                            verticalalignment='top', bbox=dict(boxstyle='round', 
+                            facecolor='wheat', alpha=0.8))
+    angle_text2 = ax2.text2D(0.02, 0.98, f'Tilt Angle: {np.degrees(initial_angle):.1f}°',
+                            transform=ax2.transAxes, fontsize=11,
+                            verticalalignment='top', bbox=dict(boxstyle='round', 
+                            facecolor='wheat', alpha=0.8))
+    
+    # Add subplot titles
+    ax1.set_title('Fixed Perspective (elev=30°, azim=45°)', fontsize=12, pad=20)
+    ax2.set_title('Rotating Perspective', fontsize=12, pad=20)
+    
+    # Animation parameters
+    total_frames = 200
+    interval = 50  # milliseconds between frames
     
     # Create animation
-    print(f"\nCreating animation with {total_frames} frames...")
-    anim = FuncAnimation(fig, animate_frame, frames=total_frames,
-                        fargs=(times, thetas, phis, ax1, ax2, texts),
-                        interval=1000/fps, blit=False, repeat=True)
+    anim = FuncAnimation(fig, update, frames=total_frames, interval=interval,
+                        fargs=(original_loop_points, initial_tilt_angle, initial_rotation_axis,
+                              field_direction, ax1, ax2, loop_line1, loop_line2,
+                              normal_arrow1, normal_arrow2,
+                              angle_text1, angle_text2, total_frames),
+                        blit=False, repeat=True)
     
     # Save animation
-    print(f"Saving animation to '{output_filename}'...")
-    writer = PillowWriter(fps=fps)
-    anim.save(output_filename, writer=writer, dpi=100)
+    print("Saving animation...")
+    try:
+        writer = FFMpegWriter(fps=20, metadata=dict(artist='Amperian Loop Animation'),
+                             bitrate=1800)
+        anim.save('amperian_loop_animation.mp4', writer=writer)
+        print("Animation saved as 'amperian_loop_animation.mp4'")
+    except Exception as e:
+        print(f"FFmpeg not available ({e}), trying PillowWriter (GIF)...")
+        try:
+            writer = PillowWriter(fps=20)
+            anim.save('amperian_loop_animation.gif', writer=writer)
+            print("Animation saved as 'amperian_loop_animation.gif'")
+        except Exception as e2:
+            print(f"Could not save animation: {e2}")
+            print("Displaying animation in window instead...")
+            plt.show()
+            return
     
-    print(f"\n[SUCCESS] Animation saved successfully to '{output_filename}'")
-    print(f"  File size: {os.path.getsize(output_filename) / 1024:.1f} KB")
-    print("\nTo view the animation, open the .gif file in any image viewer or web browser.")
+    # Also display the animation
+    plt.tight_layout()
+    plt.show()
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     main()
 

@@ -72,6 +72,7 @@
     <link href='../css/blog.css' rel='stylesheet'/>
     <link href='../css/trac.css' rel='stylesheet'/>
     <link href='../css/markdown.css' rel='stylesheet'/>
+    <link href='../css/blog-sidebar.css' rel='stylesheet'/>
 
     <link rel='shortcut icon' href='../image/favicon/favicon.png' />
 
@@ -103,13 +104,17 @@
             <div class='bylines'>
                 <div class='byline'>
                     <h3>Published</h3>
-                    <p>10 November 2025</p>
+                    <p>28 November 2025</p>
                 </div>
             </div>
             <div class='clear'></div>
         </div>
     </div>
     <div class='wrap article'>
+
+        <h3>Author's Note</h3>
+        Due to being the middle of the semester, I have not yet finished this full post, I plan to finish this in the near future.
+        This is a big topic, and I want to do it justice.
 
         <h2 id="introduction">Introduction</h2>
 
@@ -133,15 +138,16 @@
             Omission of some of the mathematics related is for good reason.
         </p>
         <p>
-            The whole purpose of this post is to (hopefully) clear some of the confusion about spin as it relates to Quantum Mechanics.
-            Built from the ground up.
+            If none of what you've just read makes any sense at all, then this might be the perfect introduction to understand spin in Quamtum Mechanics.
+            The whole purpose of this post is to (hopefully) clear some of the confusion about spin as it relates to Quantum Mechanics,  and give you a 
+            mathematical intuition for some of the tools used along the way. All built from the ground up.
         </p>
         <p>
             <b>Note:</b> I am assuming some baseline knowledge of electromagnetism and classical mechanics.
         </p>
     
 
-        <h2 id="Spin">Spin</h2>
+        <h2 id="Spin">Spin as a Classical Theory</h2>
         <h3>Classical Angular Momentum </h3>
         <p>
             To describe spin, we must first cover over angular momentum. In classical mechanics, this
@@ -153,7 +159,7 @@
         \]
         <p>
             Here, \(\vec{r}\) serves as the distance from the axis of rotation, and \( \vec{p}\) is the linear momentum of the object as
-            it moves around a central axis. Where the direction of the vectors determined from the cross product can be determined by the right-hand 
+            it moves around a central axis. Where the direction of the vectors determined from the cross product which is determined by the right-hand 
             rule.
         </p>
         ** Include diagram
@@ -170,8 +176,8 @@
             we are mainly dealing with objects with spherical symmetry, this is not a problem.
         </p>
         <p>
-            Generally speaking, we can look at this spin classically and make note that computing this quantity is functionally similar to
-            computing the angular mometnum of a lot of small mass components making up the object that is spinning, we call this a rigid body,
+            Generally speaking, we can look at this spin classically and make note that computing this quantity is functionally the same
+            as angular mometnum of a lot of small mass components making up the object that is spinning, we call this a rigid body,
             and all mass component \(dm\) have the same angular velocity \(\vec{\omega{}}\).
         </p>
         <p>
@@ -193,11 +199,11 @@
         \[
         \vec{L} = \int{} \left[ (\vec{r}\cdot{}\vec{r})\vec{\omega{}} - (\vec{r}\cdot{}\vec{\omega})\vec{r} \right]dm \\
         \]
-        <p>given that \(\vec{\omega{}}\) and \(\vec{r}\) are orthogonal, and that </p>
+        <p>given that \(\vec{\omega{}}\) and \(\vec{r}\) are orthogonal, the second integral is 0 and</p>
         \[
         \vec{L} = \left[ \int{} r^{2}dm \right] \vec{\omega{}}
         \]
-        <p>At this point we can define this integral to be our moment of inertia \(I\).</p>
+        <p>at this point we can define this integral to be our moment of inertia \(I\).</p>
         <p>
             We will come back to this notion of angular momentum and spin when we discuss the quantum mechanical analog to these
             quantities. For now we will make note of these properties.
@@ -278,12 +284,15 @@
             magnetic field.
         </p>
         <div class="figure">
-            <img src="../image/spin/amperian_loop.gif" alt="" style="width: 100%; display: block; margin: 0 auto;" />
+            <video controls style="width: 100%; display: block; margin: 0 auto;">
+                <source src="../OldSimulations/amperian_loop_comparison.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
             <div class="caption">
-                <span class="caption-label">Figure 1.</span> The magnetic moment of an amperian loop aligning with an external magnetic field.
-                Magnetic field refrence depicted in red, the amperian loop is depicted in blue with current vectors in dark blue. The resulting
-                magnetic moment is depicted in green. <i>Note that the magnetic moment precesses around the external field before aligning with the field,
-                and continues to rotate around this field as a central axis.</i>
+                <span class="caption-label">Figure 1.</span> Comparison of amperian loop behavior in an external magnetic field. 
+                <b>Left:</b> Precession + Alignment - The loop's magnetic moment precesses around the external field direction (z-axis) 
+                while gradually aligning with it. <b>Right:</b> Alignment Only - The loop aligns directly with the field without precession. 
+                The magnetic field is depicted in blue, the amperian loop in red, and the loop's normal vector (magnetic moment direction) in green.
             </div>
         </div>
         <p>
@@ -309,20 +318,95 @@
         \]
         <p>
             which is known as the g-factor. For the amperian loops used in this example, this factor is set to \( g=1\).
-            This has to do with the coupling of a particle’s spin to the magnetic field it generates. This effect arises from
-            relativistic quantum mechanics, and a full derivation of the g-factor lies beyond the scope of this discussion
-            (though it may be worth revisiting in the future).
+            When we soon discuss this same idea in quantum mechanics, and well find that for many structures, 
+            this factor relates the magnetic moment and angular momenym of an atom, nucleus, or single particle.
         </p>
-        <h3>The Stern-Gurlach Experiment </h3>
+        <h2 id="Spin">Spin as a Quantum Theory</h2>
+        <h3>The Zeeman Effect </h3>
+        <p>
+            The Zeeman effect is a result from an experiment first successfully conducted all the way back in 1896.
+            The Zeeman effect comes from an experiment in which asbestos is soaked in a table salt solution and set
+            on an open flame. As this sodium in the salt solution is heated, it emits photons of specific wavelengths,
+            that when passed through a diffraction grating create distinct lines.
+        </p>
+        <p>            
+            These lines had been known as the <i>spectral lines</i> for the sodium atom. As each atom had their own
+            individual spectral lines, which had already been determined decades before.
+        </p>
+        <div class="figure">
+            <img src="../image/spin-representation/SodiumEmissionSpectra_f.svg">
+            <div class="caption">
+                <span class="caption-label">Figure 2.</span> Spectral lines for the sodium atom, transparency of the
+                spectral lines is relative to their intensity. <i>Data retrieved from 
+                <a href = "https://physics.nist.gov/PhysRefData/Handbook/Tables/sodiumtable2_a.htm">NIST</a>.</i>
+            </div>
+        </div>
+        <p>
+            However, what was interesting about this partiuclar experiment is the inclusion of two strong magnets on either side
+            of the sample, when a strong enough magnetic field was applied, these lines would spread apart, and eventually split
+            into their own distinct lines.
+        </p>
+        <div class="figure">
+            <img src="../image/spin-representation/AnomalousZeemanSplitting.svg">
+            <div class="caption">
+                <span class="caption-label">Figure 3.</span> The Anomalous Zeeman Effect for the bright yellow spectral lines of sodium.
+                These lines are commonly referred to as the D2 and D1 spectral lines. What made this splitting 'anomalous' was the irregular
+                splitting of these lines. In more simple examples, these lines will predictably split into 3. <u><i>Side Note:</i></u> This 
+                splitting was not initially observed for sodium in 1896, it simply increased the line width due to experimental limitation. 
+                The official splitting of lines would eventually be measured by Zeeman in 1897 with blue cadmium spectral lines.
+            </div>
+        </div>
 
+        <p>
+            These discoveries made during this time would often take about 30 years to even begin to describe in a way that correctly predicted
+            these results. It wouldn't be until the Bohr model of the atom that a working theory was constructed to describe this behavior.
+        </p>
+        <p>
+            While the historical background of the mathematics involved is interesting, I will skip these developments for the sake of brevity
+            and skip directly to our current understanding of Quantum Mechanics, and use this experiment to motivate <i>why</i> exactly
+            we might think to consider spin for objects like the electron. And <i>what</i> exactly this spin would look like.
+        </p>
+        <h3>The Hydrogen Atom </h3>
+        <p>
+            We will first discuss the Time Independent Schrödinger equation (TISE)
+        </p>
+        \[ -\frac{\hbar{}^{2}}{2m}\nabla{}^{2}\psi{} + V\psi{} = E \psi{} \]
+        <p>
+            the laplacian in spherical coordinates is defined as
+        </p>
+        \[ \nabla{}^{2}= \frac{1}{r^2}\frac{\partial{}}{\partial{}r}\left( r^{2}\frac{\partial{}\psi{}}{\partial{}r} \right) +  
+            \frac{1}{r^2sin\theta{}}\frac{\partial{}}{\partial{}\theta} \left( sin\theta{}\frac{\partial{}\psi{}}{\partial{\theta{}}} \right) +
+            \frac{1}{r^2sin\theta{}} \left( \frac{\partial{}\psi{}}{\partial{\phi{}}} \right) \]
+        <p>
+            When we plug in this definition into the TISE
+        </p>
+        \[ -\frac{\hbar{}^{2}}{2m}\left[ \nabla{}^{2}= \frac{1}{r^2}\frac{\partial{}}{\partial{}r}\left( r^{2}\frac{\partial{}\psi{}}{\partial{}r} \right) +  
+        \frac{1}{r^2sin\theta{}}\frac{\partial{}}{\partial{}\theta} \left( sin\theta{}\frac{\partial{}\psi{}}{\partial{\theta{}}} \right) +
+        \frac{1}{r^2sin\theta{}} \left( \frac{\partial{}\psi{}}{\partial{\phi{}}} \right) \right] \psi{} + V\psi{} = E \psi{} \]
+        <p>
+            we may use separation of variables to obtain two differential equations, via the relation
+        </p>
+        \[ \psi{}(r, \theta{}, \phi{}) = R_{n}(r)Y_{lm}(\theta{}, \phi{}) \]
+        <p>
+            I am not going to go into detail on how to exactly derive the differential equation for \( Y_{lm}(\theta{}, \phi{})\),
+            you can read section 4.1.1 - 4.1.2 of <i>Griffiths' & Schroeter's Introduction to Quantum Mechanics</i> if you are interested in the 
+            full derivation. For our purposes we will show the resulting angular equation for solutions for the wave function of an object in 
+            3-Dimensions, given that is relevant to our topic.
+        </p>
 
+        <p>
 
+        </p>
     </div>
 
     <div id='bibliography'>
         <div class='wrap'>
             <ol class="bibliography">
                 <li><span id="griffiths">Griffiths, D. J., &amp; Schroeter, D. F. (2018). <i>Introduction to Quantum Mechanics</i> (3rd ed.). Cambridge University Press.</span></li>
+                <li><span id="kox">    Kox, A. J. (1997). 
+                    <i><a href="https://www.akox.nl/wp-content/uploads/EPJPaper.pdf">The discovery of the electron: II. The Zeeman effect</a></i>. Eur. J. Phys., 18, 139–144.
+                </span></li>
+
             </ol>
         </div>
     </div>
@@ -336,7 +420,8 @@
         ]
       });
     });
-</script> 
+</script>
+<script src='../js/blog-sidebar.js'></script>
 </body>
 </html>
 

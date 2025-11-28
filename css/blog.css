@@ -15,6 +15,7 @@ body {
 }
 body .content {
   margin-bottom: 120px;
+  position: relative;
 }
 a {
   color: rgba(0, 0, 0, 0.8);
@@ -211,6 +212,13 @@ table td {
 .article .figure .caption-label {
   font-weight: bold;
 }
+.article .figure img,
+.article .figure svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 .article .footnote {
   line-height: 0;
 }
@@ -270,7 +278,7 @@ table td {
 }
 #blog .post-title a,
 .tag-page .post-title a {
-  font-size: 18px;
+  font-size: 16px;
   text-decoration: none;
 }
 #blog .post-title a:hover,

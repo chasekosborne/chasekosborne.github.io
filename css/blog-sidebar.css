@@ -1,0 +1,225 @@
+/**
+ * Blog Sidebar Navigation Styles
+ * 
+ * Styles for the auto-generated blog post sidebar navigation.
+ * Provides a clean, hierarchical navigation structure with collapsible sections.
+ */
+
+/* Sidebar Container */
+.blog-sidebar-container {
+    display: none; /* Hidden by default, shown by JS if headers found */
+    position: absolute;
+    width: 220px;
+    max-width: 220px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    left: 0; /* Will be set by JavaScript to position in left margin */
+    top: 0; /* Will be set by JavaScript to align with Introduction */
+}
+
+/* Show sidebar when active class is added */
+.blog-sidebar-container.active {
+    display: block;
+}
+
+/* Main Sidebar */
+.blog-sidebar {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 13px;
+    line-height: 1.5em;
+    color: rgba(0, 0, 0, 0.7);
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Sidebar Header */
+.blog-sidebar-header {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Lists */
+.blog-sidebar-nav,
+.blog-sidebar-nav-nested {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog-sidebar-nav {
+    margin-top: 0;
+}
+
+.blog-sidebar-nav-nested {
+    margin-left: 16px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding-left: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 12px;
+}
+
+/* Sidebar Items */
+.blog-sidebar-item {
+    margin: 0;
+    padding: 0;
+    line-height: 1.6em;
+}
+
+/* Sidebar Links */
+.blog-sidebar-link {
+    display: block;
+    color: rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    padding: 4px 8px;
+    margin: 2px 0;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.blog-sidebar-link:hover {
+    color: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Active Link */
+.blog-sidebar-link.active {
+    color: rgba(0, 0, 0, 0.9);
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.blog-sidebar-link.active::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 0 2px 2px 0;
+}
+
+/* Toggle indicator for items with children */
+.blog-sidebar-toggle {
+    position: relative;
+    padding-left: 20px;
+}
+
+.blog-sidebar-toggle::after {
+    content: '▾';
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.blog-sidebar-item.collapsed .blog-sidebar-toggle::after {
+    transform: translateY(-50%) rotate(-90deg);
+}
+
+/* Collapsed nested lists */
+.blog-sidebar-item.collapsed .blog-sidebar-nav-nested {
+    display: none;
+}
+
+/* Sticky positioning - applied to container when scrolled */
+.blog-sidebar-container.sticky {
+    position: fixed !important;
+    top: 20px !important;
+    z-index: 100;
+    /* left will be set by JavaScript to maintain same position in left margin */
+    width: 220px;
+    max-width: 220px;
+}
+
+.blog-sidebar-sticky {
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Keep visual styling the same as normal sidebar - transparent, no borders/shadows */
+    background: transparent;
+    padding: 0;
+    width: 100%;
+}
+
+/* Scrollbar styling for sticky sidebar - keep minimal to match normal sidebar */
+.blog-sidebar-sticky::-webkit-scrollbar {
+    width: 6px;
+}
+
+.blog-sidebar-sticky::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.blog-sidebar-sticky::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.blog-sidebar-sticky::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1224px) {
+    /* Hide sidebar when page width is smaller than 1225px */
+    /* JavaScript will handle positioning for larger screens */
+    .blog-sidebar-container.active {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .blog-sidebar-container {
+        display: none !important;
+    }
+}
+
+/* Level-specific styling */
+.blog-sidebar-item[data-level="1"] .blog-sidebar-link {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 8px;
+    margin-bottom: 4px;
+}
+
+.blog-sidebar-item[data-level="2"] .blog-sidebar-link {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.blog-sidebar-item[data-level="3"] .blog-sidebar-link {
+    font-size: 12px;
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Smooth transitions */
+.blog-sidebar-nav-nested {
+    transition: opacity 0.2s ease;
+}
+
+.blog-sidebar-item.collapsed .blog-sidebar-nav-nested {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+

@@ -17,15 +17,22 @@ Right plot: Alignment Only (No Precession)
 This comparison helps visualize the difference between precessing and non-precessing
 magnetic dipole alignment.
 
-Note: This script requires ffmpeg for MP4 output. Install with:
-  - Windows: Download from https://ffmpeg.org/download.html
-  - macOS: brew install ffmpeg
-  - Linux: sudo apt-get install ffmpeg (or equivalent)
+Note: This script exports animations in multiple formats:
+  - MP4: Requires ffmpeg. Install with:
+    * Windows: Download from https://ffmpeg.org/download.html
+    * macOS: brew install ffmpeg
+    * Linux: sudo apt-get install ffmpeg (or equivalent)
+  - GIF: Requires Pillow (PIL). Install with: pip install pillow
+  - HTML: JavaScript-based animation that runs in web browsers (built-in to matplotlib)
+  
+  For animated SVG: Matplotlib doesn't natively support animated SVG for 3D plots.
+  For best web integration, the HTML export is recommended, or consider creating
+  a custom JavaScript/Three.js version for full interactivity.
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation, FFMpegWriter
+from matplotlib.animation import FuncAnimation, FFMpegWriter, PillowWriter, HTMLWriter
 from mpl_toolkits.mplot3d import Axes3D
 
 
@@ -331,17 +338,55 @@ def main():
     
     # Save animation as MP4
     print("Saving animation as MP4...")
+    mp4_saved = False
     try:
         writer = FFMpegWriter(fps=50, metadata=dict(artist='Amperian Loop Comparison'),
                              bitrate=1800)
         anim.save('amperian_loop_comparison.mp4', writer=writer)
         print("Animation saved as 'amperian_loop_comparison.mp4'")
+        mp4_saved = True
     except Exception as e:
         print(f"ERROR: Could not save animation as MP4: {e}")
         print("\nffmpeg may not be installed. To install ffmpeg:")
         print("  - Windows: Download from https://ffmpeg.org/download.html")
         print("  - macOS: brew install ffmpeg")
         print("  - Linux: sudo apt-get install ffmpeg (or equivalent)")
+    
+    # Save animation as GIF
+    print("\nSaving animation as GIF...")
+    try:
+        writer_gif = PillowWriter(fps=50)
+        anim.save('amperian_loop_comparison.gif', writer=writer_gif)
+        print("Animation saved as 'amperian_loop_comparison.gif'")
+    except Exception as e:
+        print(f"ERROR: Could not save animation as GIF: {e}")
+        print("\nPillow (PIL) may not be installed. To install:")
+        print("  pip install pillow")
+    
+    # Save animation as HTML (JavaScript-based, runs in browser)
+    print("\nSaving animation as HTML (web-compatible)...")
+    try:
+        writer_html = HTMLWriter(fps=50)
+        anim.save('amperian_loop_comparison.html', writer=writer_html)
+        print("Animation saved as 'amperian_loop_comparison.html'")
+        print("  Note: This HTML file can be opened in a web browser and embedded in websites.")
+        print("  However, 3D plots may have limited interactivity in HTML export.")
+    except Exception as e:
+        print(f"ERROR: Could not save animation as HTML: {e}")
+    
+    # Note about animated SVG
+    print("\n" + "="*60)
+    print("Note about Animated SVG:")
+    print("="*60)
+    print("Matplotlib doesn't natively support animated SVG export for 3D plots.")
+    print("For best web compatibility, consider:")
+    print("  1. Using the HTML export above (JavaScript-based)")
+    print("  2. Creating a custom JavaScript/Three.js version for full interactivity")
+    print("  3. Using the GIF export for simple embedding")
+    print("="*60 + "\n")
+    
+    # If both exports failed, display animation instead
+    if not mp4_saved:
         print("\nDisplaying animation in window instead...")
         plt.show()
         return

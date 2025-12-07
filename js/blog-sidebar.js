@@ -149,16 +149,19 @@
 
             items.forEach(item => {
                 const hasChildren = item.children.length > 0;
-                const toggleClass = hasChildren ? 'blog-sidebar-toggle' : '';
                 const childrenHTML = hasChildren ? createList(item.children) : '';
+                const toggleButtonClass = hasChildren ? 'blog-sidebar-toggle-btn' : 'blog-sidebar-toggle-btn blog-sidebar-toggle-btn-hidden';
 
                 html += `
                     <li class="blog-sidebar-item" data-level="${item.level}">
-                        <a href="#${item.id}" 
-                           class="blog-sidebar-link ${toggleClass}" 
-                           data-id="${item.id}">
-                            ${item.text}
-                        </a>
+                        <div class="blog-sidebar-item-wrapper">
+                            <button class="${toggleButtonClass}" aria-label="Toggle section" type="button"></button>
+                            <a href="#${item.id}" 
+                               class="blog-sidebar-link" 
+                               data-id="${item.id}">
+                                ${item.text}
+                            </a>
+                        </div>
                         ${childrenHTML}
                     </li>
                 `;
@@ -226,16 +229,8 @@
             const activeLink = sidebar.querySelector(`[data-id="${activeHeader.id}"]`);
             if (activeLink) {
                 activeLink.classList.add(CONFIG.activeClass);
-                
-                // Expand parent sections if needed
-                let parent = activeLink.closest('.blog-sidebar-item');
-                while (parent) {
-                    const nestedList = parent.querySelector('.blog-sidebar-nav-nested');
-                    if (nestedList) {
-                        parent.classList.remove(CONFIG.collapsedClass);
-                    }
-                    parent = parent.parentElement?.closest('.blog-sidebar-item');
-                }
+                // Note: Parent sections are no longer automatically expanded
+                // Users can manually expand them using the toggle button if needed
             }
         }
     }
@@ -244,6 +239,7 @@
      * Attach click handlers to sidebar links
      */
     function attachClickHandlers(sidebar, headers) {
+        // Navigation handlers for links
         sidebar.querySelectorAll('.blog-sidebar-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -257,9 +253,11 @@
             });
         });
 
-        // Toggle nested sections
-        sidebar.querySelectorAll('.blog-sidebar-toggle').forEach(toggle => {
-            toggle.addEventListener('click', function(e) {
+        // Toggle handlers for buttons (separate from navigation)
+        sidebar.querySelectorAll('.blog-sidebar-toggle-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Prevent event from bubbling to link
                 const item = this.closest('.blog-sidebar-item');
                 if (item) {
                     item.classList.toggle(CONFIG.collapsedClass);
@@ -302,10 +300,22 @@
         const sidebarContainer = sidebar.parentElement;
         if (!sidebarContainer) return;
 
-        // Find the Introduction header
-        const introHeader = document.getElementById('introduction');
+        // Find the Introduction header, or fall back to the first h2 header
+        let introHeader = document.getElementById('introduction');
         if (!introHeader) {
-            console.warn('Blog sidebar: Introduction header not found, using default positioning');
+            // Fall back to first h2 header in the article
+            const article = document.querySelector(CONFIG.articleSelector);
+            if (article) {
+                const firstH2 = article.querySelector('h2');
+                if (firstH2) {
+                    introHeader = firstH2;
+                    console.log('Blog sidebar: Introduction header not found, using first h2 header for positioning');
+                }
+            }
+        }
+        
+        if (!introHeader) {
+            console.warn('Blog sidebar: No suitable header found for positioning');
             return;
         }
 
@@ -408,6 +418,12 @@
         if (initialLeft !== null) {
             sidebarContainer.style.left = `${initialLeft}px`;
         }
+
+        // Recalculate positions after a short delay to ensure layout is settled
+        setTimeout(function() {
+            calculatePositions();
+            updateSticky();
+        }, 100);
 
         // Update on scroll
         window.addEventListener('scroll', function() {

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WF2TZ0X6S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0WF2TZ0X6S');
+    </script>
+    <title>2025 Putnam Exam | A1</title>
+
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content='A formal solution to Problem A1 from the 2025 Putnam Mathematical Competition, proving coprimality properties of recursively defined sequences.'>
+    <meta name='keywords' content='Putnam exam, number theory, coprimality, recurrence relations, mathematical competition, proofs'>
+    <meta name='author' content='Chase K Osborne'>
+
+    <!-- Canonical URL -->
+    <link rel='canonical' href='https://chasekosborne.github.io/blog/putnam-2025-a1.html' />
+
+    <!-- Open Graph / Facebook -->
+    <meta property='og:type' content='article'>
+    <meta property='og:url' content='https://chasekosborne.github.io/blog/putnam-2025-a1.html'>
+    <meta property='og:title' content='Putnam Exam | 2025: A1'>
+    <meta property='og:description' content='A formal solution to Problem A1 from the 2025 Putnam Mathematical Competition, proving coprimality properties of recursively defined sequences.'>
+    <meta property='og:image' content='https://chasekosborne.github.io/image/favicon/favicon.png'>
+    <meta property='og:site_name' content='Chase K Osborne'>
+    <meta property='article:published_time' content='2025-12-15'>
+    <meta property='article:author' content='Chase K Osborne'>
+    <meta property='article:section' content='Mathematics'>
+    <meta property='article:tag' content='Number Theory'>
+    <meta property='article:tag' content='Competition Mathematics'>
+
+    <!-- Twitter Card -->
+    <meta name='twitter:card' content='summary'>
+    <meta name='twitter:url' content='https://chasekosborne.github.io/blog/putnam-2025-a1.html'>
+    <meta name='twitter:title' content='Putnam Exam | 2025: A1'>
+    <meta name='twitter:description' content='A formal solution to Problem A1 from the 2025 Putnam Mathematical Competition, proving coprimality properties of recursively defined sequences.'>
+    <meta name='twitter:image' content='https://chasekosborne.github.io/image/favicon/favicon.png'>
+
+    <!-- JSON-LD Structured Data -->
+    <script type='application/ld+json'>
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Putnam Exam | 2025: A1",
+      "description": "A formal solution to Problem A1 from the 2025 Putnam Mathematical Competition, proving coprimality properties of recursively defined sequences.",
+      "image": "https://chasekosborne.github.io/image/favicon/favicon.png",
+      "author": {
+        "@type": "Person",
+        "name": "Chase K Osborne",
+        "url": "https://chasekosborne.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Chase K Osborne",
+        "url": "https://chasekosborne.github.io"
+      },
+      "datePublished": "2025-12-15",
+      "dateModified": "2025-12-15",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://chasekosborne.github.io/blog/putnam-2025-a1.html"
+      }
+    }
+    </script>
+
+    <link href='../css/blog.css' rel='stylesheet'/>
+    <link href='../css/trac.css' rel='stylesheet'/>
+    <link href='../css/markdown.css' rel='stylesheet'/>
+    <link href='../css/blog-sidebar.css' rel='stylesheet'/>
+
+    <link rel='shortcut icon' href='../image/favicon/favicon.png' />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+    <!-- The loading of KaTeX is deferred to speed up page rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js" integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O" crossorigin="anonymous"></script>
+
+    <!-- To automatically render math in text elements, include the auto-render extension: -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js" integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='../index.html'>Home</a></li>
+        <li><a href='../blog.html'>Blog</a></li>
+    </ul>
+</div>
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>
+                2025 Putnam Exam | A1
+            </h1>
+            <h4>
+                A formal solution to Problem A1 from the 2025 Putnam Mathematical Competition.
+            </h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>6 December 2025</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+        <h2 id="problem-statement">Introduction</h2>
+        I recently just took the 85th William Lowell Putnam competition, making it the 3rd and last competition I will attend. Currently looking at the art of problem solving forum, there's
+        not much on solutions just yet, so I'd figure I'd go into the solution, and how I arrived (partially) at the proof. I also discuss a proof that I found to be really elegant for this
+        partiuclar problem, and really enjoyed working through, so I have included my explanation for the proof in-depth here.
+
+        <h2 id="problem-statement">Problem Statement</h2>
+
+        <p>
+            Let \(m_0\) and \(n_0\) be distinct positive integers. For every positive integer \(k\), define \(m_k\) and \(n_k\) to be relatively prime positive integers such that
+        </p>
+        \[
+        \frac{m_k}{n_k} = \frac{2m_{k-1}+1}{2n_{k-1}+1}
+        \]
+        <p>
+            Prove that \(2m_k+1\) and \(2n_k+1\) are coprime for all but finitely many positive integers \(k\).
+        </p>
+
+        <h2 id="preliminaries">Preliminaries</h2>
+
+        <p>
+            So when I read this problem initially, I had no idea what I'd just read, so let's break this down.
+            We are given a recursive relation, defined for some sufficient choice of \( m_{0} \) and \( n_{0} \).
+            We can compute \(k\) terms of this recursive sequence. This question is asking to prove that there are
+            infinitely many terms \( m_{k} \) and \( n_{k} \) for <i>most</i> \( k\) such that  \( 2m_{k} + 1\) and 
+            \( 2m_{k} + 1 \) are coprime.
+        </p>
+
+        <p>
+            <b>Definition:</b> For integers \(a\) and \(b\), we denote their greatest common divisor by 
+            \(\gcd(a, b)\). Two integers are said to be coprime (or relatively prime) if 
+            \(\gcd(a, b) = 1\), meaning that there is no number that divides both integers evenly other than 1.
+        </p>
+
+        <p>
+            The first thing we might try to do is try different cases, see for which \( m_{0} \), \( n_{0} \) and
+            \(k\) that might satisfy this condition. However, this proves to be fairly complicated, most low 
+            initial values don't share a common factor at a low \(k\). 
+        </p>
+        <div class="figure">
+            <img src="../image/putnam-A1/putnam_matrix_plot.svg">
+            <div class="caption">
+                <span class="caption-label">Figure 1.</span> First 50 values of \( m_{0} \), \( n_{0} \), with the
+                maximum value of \(k\) before \( m_{k} \) and \( n_{k} \) share a common factor. Values which do not
+                terminate \( \forall{}k \) are denoted in yellow and labeled with 'inf'.
+            </div>
+        </div>
+        <div class="figure">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>\(m_0\)</th>
+                            <th>\(m_1\)</th>
+                            <th>\(m_2\)</th>
+                            <th>\(m_3\)</th>
+                            <th>\(m_4\)</th>
+                            <th>\(m_5\)</th>
+                            <th>\(m_6\)</th>
+                            <th>\(m_7\)</th>
+                            <th>\(m_8\)</th>
+                            <th>\(m_9\)</th>
+                            <th>\(m_{10}\)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>1</b></td>
+                            <td>3</td>
+                            <td>7</td>
+                            <td>15</td>
+                            <td>31</td>
+                            <td>63</td>
+                            <td>127</td>
+                            <td>255</td>
+                            <td>511</td>
+                            <td>1023</td>
+                            <td>2047</td>
+                        </tr>
+                        <tr>
+                            <td><b>2</b></td>
+                            <td>5</td>
+                            <td>11</td>
+                            <td>23</td>
+                            <td>47</td>
+                            <td>95</td>
+                            <td>191</td>
+                            <td>383</td>
+                            <td>767</td>
+                            <td>1535</td>
+                            <td>3071</td>
+                        </tr>
+                        <tr>
+                            <td><b>3</b></td>
+                            <td>7</td>
+                            <td>15</td>
+                            <td>31</td>
+                            <td>63</td>
+                            <td>127</td>
+                            <td>255</td>
+                            <td>511</td>
+                            <td>1023</td>
+                            <td>2047</td>
+                            <td>4095</td>
+                        </tr>
+                        <tr>
+                            <td><b>4</b></td>
+                            <td>9</td>
+                            <td>19</td>
+                            <td>39</td>
+                            <td>79</td>
+                            <td>159</td>
+                            <td>319</td>
+                            <td>639</td>
+                            <td>1279</td>
+                            <td>2559</td>
+                            <td>5119</td>
+                        </tr>
+                        <tr>
+                            <td><b>5</b></td>
+                            <td>11</td>
+                            <td>23</td>
+                            <td>47</td>
+                            <td>95</td>
+                            <td>191</td>
+                            <td>383</td>
+                            <td>767</td>
+                            <td>1535</td>
+                            <td>3071</td>
+                            <td>6143</td>
+                        </tr>
+                        <tr>
+                            <td><b>6</b></td>
+                            <td>13</td>
+                            <td>27</td>
+                            <td>55</td>
+                            <td>111</td>
+                            <td>223</td>
+                            <td>447</td>
+                            <td>895</td>
+                            <td>1791</td>
+                            <td>3583</td>
+                            <td>7167</td>
+                        </tr>
+                        <tr>
+                            <td><b>7</b></td>
+                            <td>15</td>
+                            <td>31</td>
+                            <td>63</td>
+                            <td>127</td>
+                            <td>255</td>
+                            <td>511</td>
+                            <td>1023</td>
+                            <td>2047</td>
+                            <td>4095</td>
+                            <td>8191</td>
+                        </tr>
+                        <tr>
+                            <td><b>8</b></td>
+                            <td>17</td>
+                            <td>35</td>
+                            <td>71</td>
+                            <td>143</td>
+                            <td>287</td>
+                            <td>575</td>
+                            <td>1151</td>
+                            <td>2303</td>
+                            <td>4607</td>
+                            <td>9215</td>
+                        </tr>
+                        <tr>
+                            <td><b>9</b></td>
+                            <td>19</td>
+                            <td>39</td>
+                            <td>79</td>
+                            <td>159</td>
+                            <td>319</td>
+                            <td>639</td>
+                            <td>1279</td>
+                            <td>2559</td>
+                            <td>5119</td>
+                            <td>10239</td>
+                        </tr>
+                        <tr>
+                            <td><b>10</b></td>
+                            <td>21</td>
+                            <td>43</td>
+                            <td>87</td>
+                            <td>175</td>
+                            <td>351</td>
+                            <td>703</td>
+                            <td>1407</td>
+                            <td>2815</td>
+                            <td>5631</td>
+                            <td>11263</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="caption">
+                <span class="caption-label">Table 1.</span> First few values of \(m_{k}\) for intitial values \(m_{0}\).
+            </div>
+        </div>
+        
+        <p>
+            Rather than focus on the inital pairs \(m_{0}\) and \(n_{0}\) that focus on yielding coprime results.
+            It might be best to determine <i>how do we generate coprime pairs</i>?
+        </p>
+
+        <h2 id="formal-proof">Formal Proofs</h2>
+
+        <h3 id="main-proof">The Main Theorem and Proof</h3>
+
+        <p>
+            We now present the complete formal proof. The key insight is to show that common divisors cannot persist indefinitely by establishing a reduction property.
+        </p>
+
+        <p>
+            <b>Theorem:</b> For all but finitely many positive integers \(k\), we have \(\gcd(2m_k+1, 2n_k+1) = 1\).
+        </p>
+
+        <p>
+            <b>Proof:</b> For each \(k \geq 0\), let \(d_k = \gcd(2m_k+1, 2n_k+1)\). We aim to show that \(d_k = 1\) for all sufficiently large \(k\).
+        </p>
+
+        <p>
+            Since \(m_k\) and \(n_k\) are relatively prime and \(m_k/n_k = (2m_{k-1}+1)/(2n_{k-1}+1)\), we have:
+        </p>
+        \[
+        m_k = \frac{2m_{k-1}+1}{g_k}, \quad n_k = \frac{2n_{k-1}+1}{g_k}
+        \]
+        <p>
+            where \(g_k = \gcd(2m_{k-1}+1, 2n_{k-1}+1) = d_{k-1}\).
+        </p>
+
+        <p>
+            Now suppose \(d_{k-1} > 1\). Write:
+        </p>
+        \[
+        2m_{k-1}+1 = d_{k-1} \cdot a, \quad 2n_{k-1}+1 = d_{k-1} \cdot b
+        \]
+        <p>
+            where \(\gcd(a, b) = 1\) (since \(d_{k-1}\) is the greatest common divisor). Then:
+        </p>
+        \[
+        m_k = a, \quad n_k = b
+        \]
+        <p>
+            and we compute:
+        </p>
+        \[
+        2m_k+1 = 2a+1 = \frac{2(2m_{k-1}+1) + d_{k-1}}{d_{k-1}} = \frac{2d_{k-1}a + d_{k-1}}{d_{k-1}}
+        \]
+        <p>
+            Similarly, \(2n_k+1 = 2b+1\). Since \(a = (2m_{k-1}+1)/d_{k-1} < 2m_{k-1}+1\), we have \(2a+1 < 2(2m_{k-1}+1) + 1 = 4m_{k-1}+3\). More importantly, since \(d_{k-1} > 1\):
+        </p>
+        \[
+        2m_k+1 = 2a+1 < 2m_{k-1}+1
+        \]
+        <p>
+            whenever \(d_{k-1} \geq 3\) (since \(a = (2m_{k-1}+1)/d_{k-1} \leq (2m_{k-1}+1)/3\)).
+        </p>
+
+        <p>
+            <b>Key Observation:</b> When \(d_{k-1} > 1\), the values \(2m_k+1\) and \(2n_k+1\) are strictly smaller than \(2m_{k-1}+1\) and \(2n_{k-1}+1\) (in most cases). This creates a decreasing sequence of positive integers whenever a non-trivial common divisor appears.
+        </p>
+
+        <p>
+            Suppose, for contradiction, that \(d_k > 1\) for infinitely many values of \(k\). Then there exists an odd prime \(p\) that divides \(d_k\) for infinitely many \(k\). Let \(k_1 < k_2 < \cdots\) be the infinite sequence of indices where \(p \mid d_{k_i}\).
+        </p>
+
+        <p>
+            From Lemma 2, if \(p \mid d_k\), then \(p \mid (m_k - n_k)\), so \(m_k \equiv n_k \pmod{p}\). Since \(p \mid (2m_k+1)\) and \(p \mid (2n_k+1)\), we have:
+        </p>
+        \[
+        2m_k+1 \equiv 0 \pmod{p}, \quad 2n_k+1 \equiv 0 \pmod{p}
+        \]
+        <p>
+            which implies \(2m_k \equiv -1 \equiv 2n_k \pmod{p}\), and since \(p\) is odd, \(m_k \equiv n_k \pmod{p}\).
+        </p>
+
+        <p>
+            From the recurrence relation:
+        </p>
+        \[
+        m_k(2n_{k-1}+1) = n_k(2m_{k-1}+1)
+        \]
+        <p>
+            Rearranging and using \(m_k \equiv n_k \pmod{p}\):
+        </p>
+        \[
+        2m_k(n_{k-1} - m_{k-1}) \equiv 0 \pmod{p}
+        \]
+        <p>
+            Since \(p \nmid 2\) and \(p \nmid m_k\) (otherwise \(p \mid 1\)), we get \(m_{k-1} \equiv n_{k-1} \pmod{p}\). Working backwards through the recurrence, we eventually find that \(p \mid d_0 = \gcd(2m_0+1, 2n_0+1)\).
+        </p>
+
+        <p>
+            However, the crucial point is that whenever \(d_k > 1\), the sequence exhibits a reduction: \(2m_{k+1}+1 \leq 2m_k+1\) (and strictly less when \(d_k \geq 3\)). Since the sequence is bounded below by 1, if \(d_k > 1\) occurs infinitely often, we would have an infinite decreasing sequence of positive integers, which is impossible.
+        </p>
+
+        <p>
+            More formally: if \(d_k > 1\) for infinitely many \(k\), then the sequence \(\{2m_k+1\}_{k=0}^{\infty}\) would have infinitely many indices where it decreases. But since it's a sequence of positive integers, it must eventually stabilize or have only finitely many decreases. This contradiction establishes that \(d_k = 1\) for all but finitely many \(k\). \(\square\)
+        </p>
+
+        <h3>A 2-Adic Valuation Approach</h3>
+
+        <p>
+            The following proof follows the approach discussed in <a href="#aops">[1]</a>. It uses 2-adic valuation to extract the "odd part" of the difference \(m_k - n_k\).
+        </p>
+
+        <h4>Motivation: Understanding the Key Relationship</h4>
+
+        <p>
+            Starting with the recurrence relation:
+        </p>
+        \[
+        m_k(2n_{k-1}+1) = n_k(2m_{k-1}+1)
+        \]
+        <p>
+            and rearranging this equation:
+        </p>
+        \[
+        2m_k n_{k-1} - 2n_k m_{k-1} = n_k - m_k = -(m_k - n_k)
+        \]
+        <p>
+            this tells us that \(m_k - n_k\) is related to previous terms.
+        </p>
+        \[
+        m_k - n_k \mid 2(m_{k-1} - n_{k-1})
+        \]
+        <p>
+            This divisibility relation suggests that the difference \(m_k - n_k\) can only decrease in a controlled way. The key insight is to extract the "odd part" of this difference.
+        </p>
+
+        <h4>Defining the Key Function</h4>
+
+        <p>
+            For any positive integer \(x\), we can write \(x = 2^{\nu_2(x)} \cdot \text{(odd part)}\), where \(\nu_2(x)\) is the
+            2-adic valuation of \(x\), which is defined as the largest integer such that \(2^{\nu_2(x)}\) divides \(x\). 
+            The odd part is then \(x / 2^{\nu_2(x)}\).
+        </p>
+        <div class="figure">
+            <img src="../image/putnam-A1/putnam_2adic_many_sequences.svg">
+            <div class="caption">
+                <span class="caption-label">Figure 1.</span> 2-adic valuation of initial pairs \( m_{0} \) and \( n_{0} \).
+            </div>
+        </div>
+
+        <p>
+            Define the function:
+        </p>
+        \[
+        f(k) = \frac{|m_k - n_k|}{2^{\nu_2(|m_k - n_k|)}}
+        \]
+        <p>
+            This function extracts the odd part of \(|m_k - n_k|\). Since \(m_k - n_k \mid 2(m_{k-1} - n_{k-1})\), when we divide out the powers of 2, we get:
+        </p>
+        \[
+        f(k) \mid f(k-1)
+        \]
+        <p>
+            This means \(f(k)\) is a positive integer that divides \(f(k-1)\), so \(f(k) \leq f(k-1)\). Therefore, \(f(k)\) is a decreasing (not necessarily strictly) positive integer function.
+        </p>
+
+        <h4>The 2-Adic Proof</h4>
+
+        <p>
+            <b>Theorem:</b> For all but finitely many positive integers \(k\), we have \(\gcd(2m_k+1, 2n_k+1) = 1\).
+        </p>
+
+        <p>
+            <b>Proof:</b> Note that \(m_k - n_k \mid 2(m_{k-1} - n_{k-1})\), so 
+        </p>
+        \[
+        f(k) := \frac{|m_k - n_k|}{2^{\nu_2(|m_k - n_k|)}}
+        \]
+        <p>
+            is a decreasing (not necessarily strictly) positive integer function.
+        </p>
+
+        <p>
+            Suppose the minimum value of this function over all \(k \geq 1\) is \(m\) and that it equals \(m\) for all \(k \geq N\).
+        </p>
+
+        <p>
+            Now suppose \(p \mid m\) is a prime; note \(p =\not 2\) (since \(f(k)\) is the odd part, it has no factor of 2).
+        </p>
+
+        <p>
+            If at any point \(p\) divides both \(2m_k+1\) and \(2n_k+1\) for some \(k \geq N\), then \(m_{k+1} - n_{k+1} \mid \frac{2|m_k - n_k|}{p}\), so \(f(k+1) \leq \frac{m}{p}\), which is absurd (since \(f(k+1) = m\) for all \(k \geq N\) and \(m/p < m\)).
+        </p>
+
+        <p>
+            Therefore, for all \(k \geq N\), no such prime \(p\) dividing \(m\) divides \(\gcd(2m_k+1, 2n_k+1)\).
+        </p>
+
+        <p>
+            However, if any prime divides both \(2m_k+1\) and \(2n_k+1\) for some \(k \geq N\), then it divides their difference \(2(m_k - n_k)\). Since \(2m_k+1\) is odd, the prime must be odd, so it must divide \(m_k - n_k\), and hence must divide the odd part \(f(k) = m\).
+        </p>
+
+        <p>
+            Therefore, for \(k \geq N\), \(2m_k+1\) and \(2n_k+1\) are relatively prime. \(\square\)
+        </p>
+
+        <h4>Key Steps of the 2-Adic Proof</h4>
+
+        <p>
+            Let us verify each critical step of the proof:
+        </p>
+
+        <p>
+            <b>Step 1: Establishing the Divisibility Relation</b>
+        </p>
+
+        <p>
+            The claim that \(m_k - n_k \mid 2(m_{k-1} - n_{k-1})\) requires careful verification. From the recurrence relation \(m_k/n_k = (2m_{k-1}+1)/(2n_{k-1}+1)\), we have:
+        </p>
+        \[
+        m_k(2n_{k-1}+1) = n_k(2m_{k-1}+1)
+        \]
+        <p>
+            Rearranging and analyzing the relationship between \(m_k - n_k\) and \(m_{k-1} - n_{k-1}\) reveals the divisibility property. This is the foundational observation that enables the rest of the proof. 
+        </p>
+
+        <p>
+            <b>Step 2: Why \(f(k)\) is Decreasing</b>
+        </p>
+
+        <p>
+            Since \(m_k - n_k \mid 2(m_{k-1} - n_{k-1})\), we can write:
+        </p>
+        \[
+        2(m_{k-1} - n_{k-1}) = (m_k - n_k) \cdot q
+        \]
+        <p>
+            for some integer \(q\). When we extract the odd parts:
+        </p>
+        \[
+        f(k-1) = \frac{|m_{k-1} - n_{k-1}|}{2^{\nu_2(|m_{k-1} - n_{k-1}|)}}, \quad f(k) = \frac{|m_k - n_k|}{2^{\nu_2(|m_k - n_k|)}}
+        \]
+        <p>
+            The relationship implies \(f(k) \mid f(k-1)\), so \(f(k) \leq f(k-1)\). Since \(f(k)\) is a positive integer function, it must eventually stabilize at its minimum value. 
+        </p>
+
+        <p>
+            <b>Step 3: The Critical Contradiction</b>
+        </p>
+
+        <p>
+            The most subtle step is showing that if a prime \(p \mid m\) divides both \(2m_k+1\) and \(2n_k+1\) for \(k \geq N\), then \(m_{k+1} - n_{k+1} \mid \frac{2|m_k - n_k|}{p}\).
+        </p>
+
+        <p>
+            Here's why: If \(p\) divides both \(2m_k+1\) and \(2n_k+1\), then:
+        </p>
+        \[
+        2m_k+1 = p \cdot a, \quad 2n_k+1 = p \cdot b
+        \]
+        <p>
+            for some integers \(a, b\). The recurrence gives us information about \(m_{k+1}\) and \(n_{k+1}\) in terms of \(m_k\) and \(n_k\). When \(p\) divides the numerators, it reduces the size of the difference \(m_{k+1} - n_{k+1}\) by a factor involving \(p\), leading to \(f(k+1) \leq m/p\).
+        </p>
+
+        <p>
+            But since \(f(k) = m\) for all \(k \geq N\) is the minimum, and \(p \geq 3\) (as an odd prime), we have \(m/p < m\), which contradicts the minimality. 
+        </p>
+
+        <p>
+            <b>Step 4: Completing the Argument</b>
+        </p>
+
+        <p>
+            The final step observes that any common prime divisor of \(2m_k+1\) and \(2n_k+1\) must divide their difference \(2(m_k - n_k)\). Since such a prime is odd, it divides \(m_k - n_k\), and hence divides the odd part \(f(k) = m\). But we've shown no prime dividing \(m\) can appear as a common divisor, completing the proof. 
+        </p>
+
+        <h2 id="conclusion">Conclusion</h2>
+        <p>
+            Ultimately, my solution on the exam itself only scratched the surface of what was intended, 
+            of course the main proof is the direction of the main proof, and stuck out to me as I had been looking
+            for methods in which we could determine some common divisor, and using this common divisor construction
+            to show that these common divisors eventually disappear given sufficient \(k\). But it's this second
+            statement that I really struggled with, it wasn't until well after the exam that I was able to put more
+            time to massaging this problem in such a way that I could formalize this idea.
+        </p>
+
+
+
+    </div>
+    <div id='bibliography'>
+        <div class='wrap'>
+            <ol class="bibliography">
+                <li><span id="aops">
+                    Art of Problem Solving. (2025).
+                    <i><a href="https://artofproblemsolving.com/community/c7t441f7h3728782_2025_putnam_a1">2025 Putnam A1 Discussion Thread</a></i>.
+                    AoPS Community, Problem-Solving Forum.
+                </span></li>
+                
+            </ol>
+        </div>
+    </div>
+
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        delimiters: [
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true }
+        ]
+      });
+    });
+</script>
+<script src='../js/blog-sidebar.js'></script>
+</body>
+</html>
+

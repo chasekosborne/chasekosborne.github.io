@@ -10,12 +10,12 @@
 
       gtag('config', 'G-0WF2TZ0X6S');
     </script>
-    <title>Spin Representation</title>
+    <title>What is Spin?</title>
 
     <meta charset='UTF-8'>
     <meta content='width=device-width, initial-scale=1' name='viewport'/>
 
-    <meta name='description' content='Explaining the role of group theory as it relates to the property of spin in quantum mechanics.'>
+    <meta name='description' content='Motivating the property of spin as it relates to quantum mechanics'>
     <meta name='keywords' content='spin representation, quantum mechanics, group theory, SU(2), angular momentum, physics'>
     <meta name='author' content='Chase K Osborne'>
 
@@ -25,8 +25,8 @@
     <!-- Open Graph / Facebook -->
     <meta property='og:type' content='article'>
     <meta property='og:url' content='https://chasekosborne.github.io/blog/spin-representation.html'>
-    <meta property='og:title' content='Spin Representation'>
-    <meta property='og:description' content='Explaining the role of group theory as it relates to the property of spin in quantum mechanics.'>
+    <meta property='og:title' content='What is Spin?'>
+    <meta property='og:description' content='Motivating the property of spin as it relates to quantum mechanics'>
     <meta property='og:image' content='https://chasekosborne.github.io/image/spin-representation/cover.png'>
     <meta property='og:site_name' content='Chase K Osborne'>
     <meta property='article:published_time' content='2025-11-10'>
@@ -38,8 +38,8 @@
     <!-- Twitter Card -->
     <meta name='twitter:card' content='summary_large_image'>
     <meta name='twitter:url' content='https://chasekosborne.github.io/blog/spin-representation.html'>
-    <meta name='twitter:title' content='Spin Representation'>
-    <meta name='twitter:description' content='Explaining the role of group theory as it relates to the property of spin in quantum mechanics.'>
+    <meta name='twitter:title' content='What is Spin?'>
+    <meta name='twitter:description' content='Motivating the property of spin as it relates to quantum mechanics.'>
     <meta name='twitter:image' content='https://chasekosborne.github.io/image/spin-representation/cover.png'>
 
     <!-- JSON-LD Structured Data -->
@@ -47,8 +47,8 @@
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": "Spin Representation",
-      "description": "Explaining the role of group theory as it relates to the property of spin in quantum mechanics.",
+      "headline": "What is Spin?",
+      "description": "Motivating the property of spin as it relates to quantum mechanics",
       "image": "https://chasekosborne.github.io/image/spin-representation/cover.png",
       "author": {
         "@type": "Person",
@@ -96,10 +96,10 @@
     <div class='front-matter'>
         <div class='wrap'>
             <h1>
-                Spin Representation
+                What is Spin?
             </h1>
             <h4>
-                Explaining spin representation as it relates to quantum mechanics.
+                Motivating the property of spin as it relates to quantum mechanics
             </h4>
             <div class='bylines'>
                 <div class='byline'>
@@ -111,10 +111,6 @@
         </div>
     </div>
     <div class='wrap article'>
-
-        <h3>Author's Note</h3>
-        Due to being the middle of the semester, I have not yet finished this full post, I plan to finish this in the near future.
-        This is a big topic, and I want to do it justice.
 
         <h2 id="introduction">Introduction</h2>
 
@@ -136,6 +132,10 @@
             If none of what you've just read makes any sense at all, then this might be the perfect introduction to understand spin in Quamtum Mechanics.
             The whole purpose of this post is to (hopefully) clear some of the confusion about spin as it relates to Quantum Mechanics,  and give you a 
             mathematical intuition for some of the tools used along the way. All built from the ground up.
+        </p>
+        <p>
+            This blog post will be broken up into two separate posts. The first of which will motivate the idea of spin and some basic quantum mechanical tools.
+            The following post will discuss how we handle the addition of spin and the mathematical formalism used to describe it.
         </p>
         <p>
             <b>Note:</b> I am assuming some baseline knowledge of electromagnetism and classical mechanics.
@@ -827,7 +827,7 @@
             or for transitions between states with \( l = 0 \) and \( l = 1 \).
         </p>
         <p>
-            Lets take for instance the Cadmium atom spectra.
+            Lets take for instance the Cadmium atom spectra:
         </p>
         <div class="figure">
             <img src="../image/spin-representation/CadmiumEmissionSpectra_f.svg">            
@@ -842,6 +842,22 @@
             </i>
             </div>
         </div>
+        <p>
+            the red line at 643.8 nm exhibits precisely the three-component splitting predicted 
+            by the normal Zeeman effect. Each of the three lines corresponds to a different value of \( \Delta{}m \): one 
+            unchanged in frequency, one shifted to higher energy, and one to lower. The spacing between them matches 
+            \( \mu_{B}B \), confirming that tzhe atom's response to the magnetic field is governed by its orbital angular 
+            momentum alone. Cadmium's singlet states with paired electron spins that cancel make it an ideal case for 
+            an orbital only picture.
+        </p>
+
+        <p>
+            However, as we saw with <b>Figure 4</b> the anomalous Zeeman irregular splitting seen in sodium and many other 
+            atoms cannot not be explained by orbital angular momentum alone. That puzzle led to the introduction of spin 
+            a new quantum mechanical degree of freedom that particles carry, independent of their motion through space. The full 
+            treatment of spin, its addition to orbital angular momentum, and the group theoretic structure hinted at in that Griffiths 
+            quote will be the subject of a follow up post.
+        </p>
     </div>
 
     <div id='bibliography'>

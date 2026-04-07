@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Packing with this side length first found by Frits G�bel in early 1979.
+    Proved optimal by Walter Stromquist in 2003.
+    This version minimizes the number of rotated squares. It can be reproduced by adding an "L" to s(5).
+-->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+    <!ENTITY s "3.70710678118654752440084436210"> <!-- 3 + Sqrt[2]/2 -->
+]>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 &s; &s;" style="fill:#B2B2B2; stroke:black; stroke-width:0.0012" id="svg">
+    <defs>
+        <rect width="&s;" height="&s;" id="outer"/>
+    </defs>
+    <use xlink:href="#outer" style="fill:white; stroke:none"/>
+    <g id="two">
+        <rect style="stroke:none" width="1" height="2"/>
+        <path style=  "fill:none" d="M1,0 V2 H0
+                                     M1,1 H0"/>
+    </g>
+    <use xlink:href="#two" transform="translate(&s; &s;) scale(1 -1) rotate(90)"/>
+    <g transform="translate(&s;) scale(-1 1)">
+        <rect style="stroke:none" width="2" height="2"/>
+        <path style=  "fill:none" d="M2,0 V2 H0
+                                     M1,0 V2
+                                     M0,1 H2"/>
+    </g>
+    <g transform="translate(0 &s;) scale(1 -1)">
+        <rect style="stroke:none" width="1" height="1"/>
+        <path style=  "fill:none" d="M1,0 V1 H0"/>
+    </g>
+    <rect width="1" height="1" transform="translate(1 2) rotate(45) translate(0 -.5)"/>
+    <use xlink:href="#outer" style="fill:none"/>
+</svg>

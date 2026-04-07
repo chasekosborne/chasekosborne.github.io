@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0WF2TZ0X6S"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0WF2TZ0X6S');
+    </script>
+    <title>extSearch</title>
+
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <meta name='description' content='A compilation of heuristic solutions to hard algorithmic problems'>
+    <meta name='keywords' content='computer science, algorithms, heuristics, extSearch'>
+    <meta name='author' content='Chase K Osborne'>
+
+    <link rel='canonical' href='https://chasekosborne.github.io/blog/extSearch.html' />
+
+    <meta property='og:type' content='article'>
+    <meta property='og:url' content='https://chasekosborne.github.io/blog/extSearch.html'>
+    <meta property='og:title' content='extSearch'>
+    <meta property='og:description' content='A compilation of heuristic solutions to hard algorithmic problems'>
+    <meta property='og:image' content='https://chasekosborne.github.io/image/favicon/favicon.png'>
+    <meta property='og:site_name' content='Chase K Osborne'>
+    <meta property='article:published_time' content='2026-04-07'>
+    <meta property='article:author' content='Chase K Osborne'>
+    <meta property='article:section' content='Projects'>
+
+    <meta name='twitter:card' content='summary'>
+    <meta name='twitter:url' content='https://chasekosborne.github.io/blog/extSearch.html'>
+    <meta name='twitter:title' content='extSearch'>
+    <meta name='twitter:description' content='A compilation of heuristic solutions to hard algorithmic problems'>
+    <meta name='twitter:image' content='https://chasekosborne.github.io/image/favicon/favicon.png'>
+
+    <script type='application/ld+json'>
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "extSearch",
+      "description": "A compilation of heuristic solutions to hard algorithmic problems",
+      "author": {
+        "@type": "Person",
+        "name": "Chase K Osborne",
+        "url": "https://chasekosborne.github.io"
+      },
+      "publisher": {
+        "@type": "Person",
+        "name": "Chase K Osborne",
+        "url": "https://chasekosborne.github.io"
+      },
+      "datePublished": "2026-04-07",
+      "dateModified": "2026-04-07",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://chasekosborne.github.io/blog/extSearch.html"
+      }
+    }
+    </script>
+
+    <link href='../css/blog.css' rel='stylesheet'/>
+    <link href='../css/trac.css' rel='stylesheet'/>
+    <link href='../css/markdown.css' rel='stylesheet'/>
+    <link rel='shortcut icon' href='../image/favicon/favicon.png' />
+
+    <style>
+        /* Side-by-side packings: flex-grow ∝ s(n) so outer squares match documented scale */
+        .packing-compare {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            max-width: 640px;
+            margin: 1.25rem auto 0;
+        }
+        .packing-compare figure {
+            margin: 0;
+            min-width: 140px;
+        }
+        .packing-compare .packing-n10 {
+            flex: 3.7071067811865475 1 0;
+        }
+        .packing-compare .packing-n17 {
+            flex: 4.675530093604551 1 0;
+        }
+        .packing-compare img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .packing-compare figcaption {
+            margin-top: 0.5rem;
+            font-size: 0.9em;
+            color: #444;
+            line-height: 1.35;
+        }
+        .packing-scale-note {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 0.75rem;
+        }
+    </style>
+
+    <script type='text/x-mathjax-config'>
+MathJax.Hub.Config({
+  jax: ['input/TeX', 'output/HTML-CSS'],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+    extensions: ['color.js']
+  },
+  messageStyle: 'none',
+  'HTML-CSS': { preferredFont: 'TeX', availableFonts: ['STIX','TeX'] }
+});
+</script>
+
+  <script type='text/javascript'
+          src='https://cdn.jsdelivr.net/npm/mathjax@3.0.0/es5/tex-mml-chtml.js'>
+  </script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-31890516-2"></script>
+<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'UA-31890516-2');
+</script>
+</head>
+<body>
+<div class='content'>
+    <div class='nav'>
+    <ul class='wrap'>
+        <li><a href='../index.html'>Home</a></li>
+        <li><a href='../blog.html'>Blog</a></li>
+    </ul>
+</div>
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>extSearch</h1>
+            <h4>
+                A compilation of heuristic solutions to hard algorithmic problems
+            </h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>7 April 2026</p>
+                </div>
+                <div class='byline'>
+                    <h3>Source</h3>
+                    <p><a href='https://github.com/chasekosborne/extSearch' target='_blank' rel='noopener noreferrer'>github.com/chasekosborne/extSearch</a></p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+    <div class='wrap article'>
+        <a href="https://extsearch.org" target='_blank'>extsearch.org</a>
+
+        <h2>Overview</h2>
+        <p>
+            It's been nearly 2 years to the date since I've last done a larger-scale project, and while
+            I have had a few plans to do so once I have graduated, I've been allowed the opportunity to work
+            on a project that I have been fairly invested in creating.
+        </p>
+        <p>
+            The first flagship problem is packing n unit squares into the smallest possible enclosing square.
+            Given a number of unit squares, the goal is to minimize the container side length, usually written as
+            <code>s(n)</code>.
+        </p>
+
+        <h2>Square Packing, Visually</h2>
+        <p>
+            The problem looks simple at first, but becomes highly geometric very quickly. For small values of <code>n</code>,
+            axis-aligned layouts are often optimal. For many larger values, rotated squares are required.
+        </p>
+        <p>
+            Below, two catalog SVG packings are shown side by side. Each diagram uses the same mathematical units:
+            unit squares have side length 1, and the outer frame has side <code>s</code>. The figures are laid out so
+            the <em>on-screen width</em> of each outer square is proportional to its <code>s(n)</code> (flex growth uses
+            the same numeric <code>s</code> as in the SVG). That way you can compare how much larger a best-known
+            container for <code>n = 17</code> is than the proved-optimal <code>n = 10</code> case.
+        </p>
+        <div class="packing-compare" role="group" aria-label="Square packings scaled by container side length s(n)">
+            <figure class="packing-n10">
+                <img src="../image/extSearch/square-10b.svg" width="371" height="371" alt="Packing of 10 unit squares in a square container of side about 3.707" loading="lazy" decoding="async"/>
+                <figcaption>
+                    <strong>n = 10</strong><br/>
+                    \(s = 3 + \tfrac{1}{2}\sqrt{2} \approx 3.707\) (proved optimal). Minimal rotated squares; related to adding an &ldquo;L&rdquo; to \(s(5)\).
+                </figcaption>
+            </figure>
+            <figure class="packing-n17">
+                <img src="../image/extSearch/square-17.svg" width="468" height="468" alt="Packing of 17 unit squares in a square container of side about 4.676" loading="lazy" decoding="async"/>
+                <figcaption>
+                    <strong>n = 17</strong><br/>
+                    \(s \approx 4.676\) (best known at time of diagram; defined by a degree-18 polynomial root). Found by John Bidwell (1998).
+                </figcaption>
+            </figure>
+        </div>
+        <p class="packing-scale-note">
+            Source files: <code>square-10b.svg</code>, <code>square-17.svg</code> (same coordinate convention as
+            <a href="https://kingbird.myphotos.cc/packing/squares_in_squares.html">Squares in Squares</a>).
+        </p>
+        <p>
+            Even a single tilted square creates nonlinear geometric constraints, and each additional square introduces
+            many more possible placements and interactions.
+        </p>
+
+        <h2>Reference Catalog: Best Known Packings</h2>
+        <p>
+            The most complete public catalog I use is David Ellsworth's
+            <a href="https://kingbird.myphotos.cc/packing/squares_in_squares.html">Squares in Squares</a>.
+            It records best-known packings across many values of <code>n</code>, often with:
+        </p>
+        <ul>
+            <li>the current best-known side length <code>s(n)</code>,</li>
+            <li>whether the value is proved optimal or still a computational record,</li>
+            <li>the discoverer, date, and improvement history,</li>
+            <li>SVG configurations that make geometric structure inspectable.</li>
+        </ul>
+        <p>
+            The labels are important: some entries are fully proved, while others are currently best-known
+            constructions awaiting proof of optimality.
+        </p>
+
+        <h3>Live Link</h3>
+        <p>
+            Open the full database here:
+            <a href="https://kingbird.myphotos.cc/packing/squares_in_squares.html">https://kingbird.myphotos.cc/packing/squares_in_squares.html</a>
+        </p>
+        <iframe
+            src="https://kingbird.myphotos.cc/packing/squares_in_squares.html"
+            title="Squares in Squares reference site"
+            style="width:100%;height:420px;border:1px solid #ddd;border-radius:6px;">
+        </iframe>
+        <p>
+            If your browser blocks embedding for this page, use the direct link above.
+        </p>
+
+        <h2>How "Optimal" Is Documented</h2>
+        <p>
+            In this area, there are two tiers of results:
+        </p>
+        <ul>
+            <li><strong>Proved optimal:</strong> there is a mathematical argument that no smaller container can exist.</li>
+            <li><strong>Best known:</strong> a construction is currently the strongest found, but not yet ruled unbeatable.</li>
+        </ul>
+        <p>
+            A lot of progress happens in the second tier first: search finds a better packing, then proof work tries
+            to close the gap and certify optimality.
+        </p>
+
+        <h2>Why This Is Hard (NP-Hard Intuition)</h2>
+        <p>
+            Related rectangle/square packing decision variants are NP-hard, and this optimization form inherits the same
+            combinatorial explosion. The challenge is not just "where to place squares," but "which of many interacting
+            geometric constraints can all be satisfied at once" while minimizing <code>s(n)</code>.
+        </p>
+        <p>
+            In practice, exact search scales poorly because:
+        </p>
+        <ul>
+            <li>the number of combinatorial layouts grows rapidly with <code>n</code>,</li>
+            <li>allowing rotations adds continuous (angle/position) dimensions,</li>
+            <li>feasibility checks involve nonlinear overlap and boundary constraints.</li>
+        </ul>
+
+        <h2>Why extSearch Uses Heuristics</h2>
+        <p>
+            Heuristics are the practical way to make progress now. Instead of requiring full exact proofs up front,
+            we can generate high-quality candidate packings fast, compare methods, and iterate on strategies.
+        </p>
+        <p>
+            My goal is to make extSearch useful for three parallel tracks:
+        </p>
+        <ul>
+            <li><strong>Interest:</strong> make the problem approachable and visually engaging for more people.</li>
+            <li><strong>Data:</strong> collect user runs, near-miss layouts, and successful move sequences at scale.</li>
+            <li><strong>Proof pipeline:</strong> use that corpus to guide conjectures, symbolic analysis, and AI-assisted proof attempts.</li>
+        </ul>
+
+        <h2>From Heuristics to Proofs</h2>
+        <p>
+            Every strong heuristic solution is a hypothesis about structure. Repeated patterns from users and algorithms
+            can expose invariants, bottleneck constraints, and candidate lower bounds. Those are exactly the ingredients
+            needed to move from "best-known" to "proved optimal."
+        </p>
+        <p>
+            Long term, I want extSearch to function as both a solver and a research dataset: humans explore, heuristics
+            propose, and AI systems mine the resulting geometry for proof ideas.
+        </p>
+
+        <h2>Conclusion</h2>
+        <p>
+            Square packing sits at a great intersection of visual intuition, hard complexity, and open mathematical
+            questions. extSearch is my attempt to turn that into a collaborative platform.
+        </p>
+        <p>
+            I expect to step away from day-to-day work on extSearch after the semester ends. The project lives on
+            <a href='https://github.com/chasekosborne/extSearch' target='_blank' rel='noopener noreferrer'>GitHub</a>
+            as open source software with documentation for anyone who wants to run it, extend it, or take
+            the ideas in a different direction. If that sounds like you, you are welcome to pick it up.
+        </p>
+    </div>
+    <div id='bibliography'>
+        <div class='wrap'>
+            <ol class="bibliography"></ol>
+        </div>
+    </div>
+</div>
+</body>
+</html>

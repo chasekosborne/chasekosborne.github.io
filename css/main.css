@@ -117,7 +117,7 @@ h1 {
 }
 
 #links .dropdown:hover ~ #contact {
-    transform: translateY(40px); /* Adjust this value as needed */
+    transform: translateY(60px); /* Room for Github, LinkedIn, YouTube */
 }
 
 #links .dropdown {

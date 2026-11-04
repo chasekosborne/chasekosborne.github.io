@@ -32,6 +32,10 @@ body {
 	padding: 0 1px;
 	border-radius: 2px;
 }
+@media screen and (max-width: 600px) {
+	#blog-search #search-input { width: 100%; }
+	#blog-search .tag-group { margin-left: 0; }
+}
 #posts .cl-empty {
 	color: var(--text-muted);
 	font-style: italic;

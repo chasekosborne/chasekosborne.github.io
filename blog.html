@@ -86,13 +86,12 @@
             <li id='crumb-tag' class='hidden'></li>
         </ul>
         <div class='cl-header-right'>
-            <a href='research.html'>research</a> &middot; <a href='mailto:chasekosborne@gmail.com'>email</a>
+            <a href='research.html'>research</a> &middot; <a href='mailto:cosbor22@kent.edu'>email</a>
         </div>
     </div>
 
     <form id='blog-search' class='cl-tabs' action='blog.html' method='get'>
-        <input class='cl-input' type='text' id='search-input' name='q' placeholder='search blog'>
-        <button class='cl-button' type='submit'>search</button>
+        <input class='cl-input' type='search' id='search-input' name='q' placeholder='search blog' autocomplete='off'>
         <span class='tag-group'>
             <a href='blog.html' class='tag-filter' data-tag=''>all</a><span class='sep'>|</span>
             <a href='blog.html?tag=projects' class='tag-filter' data-tag='projects'>projects</a><span class='sep'>|</span>
@@ -200,13 +199,39 @@
         var state = { tag: params.get('tag') || '', q: params.get('q') || '' };
         input.value = state.q;
 
+        posts.forEach(function (post) {
+            post.searchFields = Array.prototype.map.call(
+                post.querySelectorAll('.cl-date, .cl-title, .cl-meta, .cl-desc'),
+                function (el) { return { el: el, text: el.textContent }; }
+            );
+        });
+
+        // Rebuilds a field's text with each case-insensitive match wrapped in <mark>.
+        function highlight(field, q) {
+            var el = field.el, text = field.text;
+            el.textContent = '';
+            if (!q) { el.textContent = text; return; }
+            var lower = text.toLowerCase(), pos = 0, i;
+            while ((i = lower.indexOf(q, pos)) !== -1) {
+                if (i > pos) el.appendChild(document.createTextNode(text.slice(pos, i)));
+                var mark = document.createElement('mark');
+                mark.textContent = text.slice(i, i + q.length);
+                el.appendChild(mark);
+                pos = i + q.length;
+            }
+            if (pos < text.length) el.appendChild(document.createTextNode(text.slice(pos)));
+        }
+
         function render() {
             var q = state.q.trim().toLowerCase();
             var shown = 0;
             posts.forEach(function (post) {
                 var tagOk = !state.tag || (post.dataset.tags || '').split(/\s+/).indexOf(state.tag) !== -1;
-                var textOk = !q || post.textContent.toLowerCase().indexOf(q) !== -1;
+                var textOk = !q || post.searchFields.some(function (f) {
+                    return f.text.toLowerCase().indexOf(q) !== -1;
+                });
                 var visible = tagOk && textOk;
+                post.searchFields.forEach(function (f) { highlight(f, visible ? q : ''); });
                 post.classList.toggle('hidden', !visible);
                 if (visible) shown++;
             });

@@ -17,13 +17,61 @@
 #landing a:visited { color: #551a8b; }
 #landing a:hover   { text-decoration: none; }
 
+/* links on the left, about box on the right; about box on top on phones */
+#landing-body {
+	display: flex;
+	align-items: flex-start;
+	gap: 40px;
+}
 #landing ul#links {
+	order: 1;
+	flex: 1;
 	list-style-type: none;
 	padding-left: 0;
 	margin: 0 0 20px 0;
 }
+/* infobox: photo + caption, gray section header, text */
+#about {
+	order: 2;
+	flex: 0 0 280px;
+	margin: 0;
+	padding: 6px;
+	font-size: 13px;
+	line-height: 1.45;
+	color: #202122;
+}
+#about p { margin: 0; }
+#about img {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0 0 2px;
+}
+#about img[hidden] { display: none; }
+#about .about-caption {
+	text-align: center;
+	font-size: 12.5px;
+	line-height: 1.35;
+	padding: 0 4px;
+	margin-bottom: 6px;
+}
+#about .about-header {
+	background: var(--box-header);
+	font-weight: bold;
+	text-align: center;
+	padding: 2px 4px;
+	margin-bottom: 4px;
+}
+#about .about-text { padding: 0 4px 2px; }
+
+@media screen and (max-width: 600px) {
+	#landing-body { flex-direction: column; gap: 16px; }
+	#about { order: 0; flex: none; width: 100%; box-sizing: border-box; }
+	#about img { max-width: 360px; margin: 0 auto 2px; }
+}
 #landing ul#links > li { padding-bottom: 1px; line-height: 1.35; }
 #landing ul#links > li#contact { padding-top: 4px; }
+#copy-email { font-family: var(--font-serif); font-size: 17px; }
 
 #copy-status {
 	margin-left: 8px;

@@ -26,6 +26,12 @@ body {
 	font-size: var(--size-small);
 }
 .tag-filter { cursor: pointer; transition: all 0.2s ease; }
+#posts mark {
+	background: #fff3a0;
+	color: inherit;
+	padding: 0 1px;
+	border-radius: 2px;
+}
 #posts .cl-empty {
 	color: var(--text-muted);
 	font-style: italic;

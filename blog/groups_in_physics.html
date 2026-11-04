@@ -71,7 +71,7 @@ MathJax.Hub.Config({
             <li>Nim</li>
         </ul>
         <div class='cl-header-right'>
-            <a href='../research.html'>research</a> &middot; <a href='mailto:chasekosborne@gmail.com'>email</a>
+            <a href='../research.html'>research</a> &middot; <a href='mailto:cosbor22@kent.edu'>email</a>
         </div>
     </div>
 </div>
@@ -165,6 +165,7 @@ MathJax.Hub.Config({
             <img src="../image/nim/diagram4.svg" alt="" style="width: 60%; display: block; margin: 0 auto;" />
             <div class="caption">
                 <span class="caption-label">Figure. 3</span> Example game of Nim with starting configuration from Figure 1. Notice that we need to make sure that we have an even number of groups of 8.
+            </div>
         </div>
         <p>
             In the case of Figure 3 above, we will need to remove an item from the first row, given this rule alone we will need to remove at least five items so that we do not have an odd number of groups of eight,
@@ -176,6 +177,7 @@ MathJax.Hub.Config({
             <img src="../image/nim/diagram5.svg" alt="" style="width: 80%; display: block; margin: 0 auto;" />
             <div class="caption">
                 <span class="caption-label">Figure. 4</span> Algorithm of breaking down remainders into groups of powers of 2. Checking residuals recursively until an uneven number of groups is found.
+            </div>
         </div>
         <p>
             Doing this recursive check after each term wil garuntee that the nim sum is zero at the end of Player 1's turn. And this is the strategy that will allow for Player 1 to win every time. A short explanation of
@@ -209,7 +211,6 @@ MathJax.Hub.Config({
             Note how the result of the operation is only zero when there are an even number of ones involved in the operation. This is exactly why we need to make sure that we have an even number of groups of each power of 2 in each row.
             As it maintains the condition that the XOR operator will output zero for each sum for all items and their binary representation. We will see that this condition will hold for games of all possible rows and item numbers.
         </p>
-        </div>
         <h2 id="Proof">The Proof</h2>
         <p>
             Firstly, to prove this, we will define a winning position (P-position) and a losing position (N-position):
@@ -265,8 +266,10 @@ MathJax.Hub.Config({
                 <ol class="bibliography">
                 <li><span id="ppjon">Charles L. Bouton. (1901). <a href="https://www.jstor.org/stable/1967631?seq=1" target="_blank">Nim, A Game with a Complete Mathematical Theory</a>. <i>Annals of Mathematics</i>, 3(1/4), 35-39. https://doi.org/10.2307/1967631
                 </span></li>
+                </ol>
             </div>
         </div>
+</div>
 <script src='../js/blog-sidebar.js'></script>
 </body>
 </html>

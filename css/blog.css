@@ -93,9 +93,6 @@ body > .content .wrap {
 }
 .cl-page.post-topbar .cl-header { margin-bottom: 24px; }
 
-/* rail */
-body > .content .wp-menu { border-bottom-color: var(--rule); }
-
 /* tabs: blue links, selected tab black with an underline bar */
 body > .content > .wp-tabs {
 	gap: 18px;
@@ -441,15 +438,7 @@ body > .content > .wp-catlinks b { font-weight: normal; }
 		align-items: stretch;
 		padding: 12px 10px 0;
 	}
-	body > .content > .wp-rail {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: baseline;
-		gap: 4px 14px;
-		margin-bottom: 12px;
-	}
-	.wp-rail .wp-logo { margin: 0; }
-	.wp-rail .wp-menu { display: flex; gap: 12px; border: 0; padding: 0; }
+	body > .content > .wp-rail { display: none; }
 	.wp-tabs li.spacer ~ li { display: none; }
 }
 @media screen and (max-width: 700px) {

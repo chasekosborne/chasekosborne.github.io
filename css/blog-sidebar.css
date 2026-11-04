@@ -267,7 +267,7 @@
     left: auto !important;
     width: auto;
     max-width: none;
-    margin-top: 16px;
+    margin-top: 0;
     max-height: calc(100vh - 32px);
     overflow-y: auto;
 }

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Style Guide | Chase K. Osborne</title>
+	<meta charset='UTF-8'>
+	<meta content='width=device-width, initial-scale=1' name='viewport'/>
+	<meta name='robots' content='noindex'>
+	<link rel='stylesheet' type='text/css' href='css/retro.css'/>
+	<link rel='shortcut icon' href='image/favicon/favicon.png' />
+	<style>
+		.sg-section { margin: 0 0 40px; }
+		.sg-section > h2 {
+			font-size: 24px;
+			border-bottom: 1px solid var(--rule-strong);
+			padding-bottom: 8px;
+			margin: 0 0 14px;
+		}
+		.sg-section > h3 { font-size: 17px; margin: 24px 0 8px; }
+		.sg-example {
+			border: 1px dashed var(--rule-strong);
+			padding: 14px;
+			margin: 0 0 4px;
+			overflow: hidden;
+		}
+		.sg-code {
+			margin: 0 0 20px;
+			font-size: 11px;
+			max-height: 220px;
+			overflow: auto;
+			white-space: pre;
+		}
+		.sg-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+		.sg-swatch { border: 1px solid var(--rule); font-size: 11px; }
+		.sg-swatch .chip { height: 34px; border-bottom: 1px solid var(--rule); }
+		.sg-swatch .label { padding: 2px 6px; font-family: monospace; }
+		.sg-type td { padding: 4px 14px 4px 0; vertical-align: baseline; border: 0; }
+		.sg-type td:first-child { font-family: monospace; font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+	</style>
+</head>
+<body>
+<div class='cl-page'>
+	<div class='cl-header'>
+		<a class='cl-logo' href='index.html'>Chase K. Osborne</a>
+		<ul class='cl-breadcrumbs'>
+			<li><a href='index.html'>home</a></li>
+			<li>style guide</li>
+		</ul>
+		<div class='cl-header-right'><a href='blog/post-template.html'>blank post template</a></div>
+	</div>
+
+	<div class='cl-notice'>
+		<b>How to use this page:</b> every component lives in <code>css/retro.css</code>. Link that file
+		(or <code>main.css</code> / <code>blog.css</code>, which import it), then copy the markup shown
+		under each example. <code>.cl-*</code> classes are classifieds-style layouts (link boxes, listings),
+		<code>.wp-*</code> classes are encyclopedia-style layouts (infoboxes, notices, references).
+		Every color and font is a variable at the top of <code>retro.css</code>.
+	</div>
+
+	<div class='wp-toc'>
+		<p class='wp-toc-title'>Contents</p>
+		<ol>
+			<li><a href='#colors'>Colors</a></li>
+			<li><a href='#type'>Typography</a></li>
+			<li><a href='#craigslist'>Classifieds layouts</a>
+				<ol>
+					<li><a href='#cl-header'>Header &amp; breadcrumbs</a></li>
+					<li><a href='#cl-box'>Boxes &amp; link lists</a></li>
+					<li><a href='#cl-rows'>Tabs &amp; listing rows</a></li>
+					<li><a href='#cl-posting'>Posting</a></li>
+					<li><a href='#cl-forms'>Buttons, inputs, notices</a></li>
+					<li><a href='#cl-footer'>Footer</a></li>
+				</ol>
+			</li>
+			<li><a href='#wikipedia'>Encyclopedia layouts</a>
+				<ol>
+					<li><a href='#wp-article'>Article page</a></li>
+					<li><a href='#wp-infobox'>Infobox</a></li>
+					<li><a href='#wp-thumb'>Figures</a></li>
+					<li><a href='#wp-table'>Tables</a></li>
+					<li><a href='#wp-ambox'>Notices</a></li>
+					<li><a href='#wp-navbox'>Related links &amp; categories</a></li>
+				</ol>
+			</li>
+		</ol>
+	</div>
+
+	<!-- ============================================================ -->
+	<div class='sg-section' id='colors'>
+		<h2>1. Colors</h2>
+		<div class='sg-swatches' data-tokens='--text --text-muted --text-faint --link --link-hover --rule --rule-strong --rule-heavy --fill --fill-hover --bg'></div>
+	</div>
+
+	<!-- ============================================================ -->
+	<div class='sg-section' id='type'>
+		<h2>2. Typography</h2>
+		<table class='sg-type'>
+			<tr><td>--font-sans</td><td style='font-family: var(--font-sans)'>Helvetica / Arial. Body text, lists, and navigation.</td></tr>
+			<tr><td>--font-serif</td><td style='font-family: var(--font-serif); font-size: 1.4em'>New Century Schoolbook. Every heading and box title.</td></tr>
+			<tr><td>--font-mono</td><td style='font-family: var(--font-mono)'>courier. Email addresses and small details.</td></tr>
+		</table>
+		<h3>sizes</h3>
+		<table class='sg-type'>
+			<tr><td>--size-base (15px)</td><td style='font-size: var(--size-base)'>Article body text</td></tr>
+			<tr><td>--size-body (14px)</td><td style='font-size: var(--size-body)'>Lists, descriptions, buttons</td></tr>
+			<tr><td>--size-small (12px)</td><td style='font-size: var(--size-small)'>Navigation, dates, meta, footers</td></tr>
+			<tr><td>--size-tiny (11px)</td><td style='font-size: var(--size-tiny)'>Calendar cells, pills, labels</td></tr>
+		</table>
+		<h3>links</h3>
+		<div class='sg-example'>
+			<a href='#type'>normal link</a> &nbsp; <a class='wp-redlink' href='#type'>link to an unwritten post</a>
+		</div>
+	</div>
+	</div>
+
+	<!-- ============================================================ -->
+	<div class='sg-section' id='craigslist'>
+		<h2>3. Classifieds layouts</h2>
+
+		<h3 id='cl-header'>Header &amp; breadcrumbs</h3>
+		<div class='sg-example'>
+<div class='cl-header'>
+	<a class='cl-logo' href='index.html'>Chase K. Osborne</a>
+	<ul class='cl-breadcrumbs'>
+		<li><a href='index.html'>home</a></li>
+		<li><a href='blog.html'>blog</a></li>
+		<li>topics</li>
+	</ul>
+	<div class='cl-header-right'><a href='mailto:chasekosborne@gmail.com'>email</a></div>
+</div>
+		</div>
+
+		<h3>Masthead</h3>
+		<div class='sg-example'>
+<h1 class='cl-masthead'>Chase K. Osborne</h1>
+<p class='cl-masthead-sub'>mathematics &middot; computational physics</p>
+		</div>
+
+		<h3 id='cl-box'>Boxes &amp; link lists</h3>
+		<div class='sg-example'>
+<div class='cl-main-cols'>
+	<div class='cl-box'>
+		<h4 class='cl-box-title'><a href='blog.html'>blog</a></h4>
+		<div class='cl-box-body'>
+			<ul class='cl-list'>
+				<li><a href='#cl-box'>what is spin?</a></li>
+				<li><a href='#cl-box'>beating nim</a> <span class='cl-count'>(3)</span></li>
+			</ul>
+		</div>
+	</div>
+	<div class='cl-box'>
+		<h4 class='cl-box-title'>two columns</h4>
+		<div class='cl-box-body'>
+			<ul class='cl-list two-col'>
+				<li><a href='#cl-box'>alpha</a></li><li><a href='#cl-box'>beta</a></li>
+				<li><a href='#cl-box'>gamma</a></li><li><a href='#cl-box'>delta</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class='cl-box'>
+		<h4 class='cl-box-title'>calendar</h4>
+		<div class='cl-box-body'>
+			<table class='cl-calendar'>
+				<tr><th>S</th><th>M</th><th>T</th><th>W</th><th>T</th><th>F</th><th>S</th></tr>
+				<tr><td class='other'>30</td><td>1</td><td>2</td><td class='today'>3</td><td>4</td><td>5</td><td>6</td></tr>
+			</table>
+		</div>
+	</div>
+</div>
+		</div>
+
+		<h3 id='cl-rows'>Tabs &amp; listing rows</h3>
+		<div class='sg-example'>
+<div class='cl-tabs'>
+	<a href='#cl-rows' class='active'>all</a><span class='sep'>|</span>
+	<a href='#cl-rows'>projects</a><span class='sep'>|</span>
+	<a href='#cl-rows'>topics</a>
+</div>
+<ul class='cl-rows'>
+	<li class='cl-row'>
+		<span class='cl-date'>Nov 28, 2025</span>
+		<a class='cl-title' href='#cl-rows'>What is Spin?</a>
+		<span class='cl-meta'>(topics)</span> <span class='cl-pill'>pic</span>
+		<p class='cl-desc'>Motivating the property of spin as it relates to quantum mechanics.</p>
+	</li>
+	<li class='cl-row'>
+		<span class='cl-date'>Apr 8, 2024</span>
+		<a class='cl-title' href='#cl-rows'>Kent State Space Mission</a>
+		<span class='cl-meta'>(projects)</span> <span class='cl-pill'>new</span> <span class='cl-pill'>video</span>
+	</li>
+</ul>
+		</div>
+
+		<h3 id='cl-posting'>Posting</h3>
+		<div class='sg-example'>
+<div class='cl-attrs'>
+	<p><b>field:</b> computational physics</p>
+	<p><b>status:</b> unpublished</p>
+</div>
+<h1 class='cl-posting-title'>Research &amp; reports <span class='cl-meta'>(physics)</span></h1>
+<p>Body text of the posting goes here, in plain paragraphs.</p>
+<p class='cl-postinginfo'>posted: 2025-11-28 &nbsp; <a href='#cl-posting'>reply</a></p>
+		</div>
+
+		<h3 id='cl-forms'>Buttons, inputs, notices</h3>
+		<div class='sg-example'>
+<input class='cl-input' type='text' placeholder='search blog'>
+<button class='cl-button'>search</button>
+<button class='minimal-button'>Start</button>
+<div class='cl-notice' style='margin-top:10px'>
+	An aside, for short notes and disclaimers.
+</div>
+		</div>
+
+		<h3 id='cl-footer'>Footer</h3>
+		<div class='sg-example'>
+<div class='cl-footer' style='margin-top:0'>
+	&copy; 2026 Chase K. Osborne
+	<ul>
+		<li><a href='index.html'>home</a></li>
+		<li><a href='blog.html'>blog</a></li>
+		<li><a href='research.html'>research</a></li>
+	</ul>
+</div>
+		</div>
+	</div>
+
+	<!-- ============================================================ -->
+	<div class='sg-section' id='wikipedia'>
+		<h2>4. Encyclopedia layouts</h2>
+		<p class='small muted'>
+			Blog posts already get the article layout from <code>css/blog.css</code>; the boxes below can be dropped into any post.
+			For a standalone page, wrap content in <code>.wp-page</code>.
+		</p>
+
+		<h3 id='wp-article'>Article page (tabs, title, hatnote, headings)</h3>
+		<div class='sg-example'>
+<ul class='wp-tabs'>
+	<li class='selected'><a href='#wp-article'>Article</a></li>
+	<li class='spacer'></li>
+	<li class='selected'><a href='#wp-article'>Read</a></li>
+	<li><a href='#wp-article'>View history</a></li>
+</ul>
+<div class='wp-page'>
+	<h1 class='wp-title'>Spin (physics)</h1>
+	<p class='wp-hatnote'>This article is about the quantum property. For the rotation group, see <a href='#wp-article'>SO(3)</a>.</p>
+	<p><b>Spin</b> is an intrinsic form of angular momentum carried by elementary particles.<sup class='wp-cite'><a href='#wp-article'>[1]</a></sup></p>
+	<h2 class='wp-h2'>History<span class='wp-edit'>[<a href='#wp-article'>edit</a>]</span></h2>
+	<h3 class='wp-h3'>Stern&ndash;Gerlach experiment</h3>
+	<p>Section text.</p>
+	<blockquote class='wp-quote'>In a mathematical sense this is all applied group theory.</blockquote>
+	<h2 class='wp-h2'>References</h2>
+	<ol class='wp-references'>
+		<li>Griffiths, D. J. <i>Introduction to Quantum Mechanics</i>.</li>
+	</ol>
+</div>
+		</div>
+
+		<h3 id='wp-infobox'>Infobox</h3>
+		<div class='sg-example'>
+<table class='wp-infobox'>
+	<caption>Chase K. Osborne</caption>
+	<tr><td colspan='2' style='text-align:center'><img src='image/favicon/favicon.png' alt='' width='80'></td></tr>
+	<tr><th colspan='2' class='wp-infobox-header'>Scientific career</th></tr>
+	<tr><th>Fields</th><td>Computational physics, Mathematics</td></tr>
+	<tr><th>Institutions</th><td>Kent State University<br>Brookhaven National Laboratory</td></tr>
+	<tr><th>Website</th><td><a href='index.html'>chasekosborne.github.io</a></td></tr>
+</table>
+<p>The infobox floats right; text wraps around it on the left, like the lead section of a biography.</p>
+		</div>
+
+		<h3 id='wp-thumb'>Figures</h3>
+		<div class='sg-example'>
+<div class='wp-thumb right'>
+	<img src='image/favicon/favicon.png' alt='' width='200'>
+	<div class='wp-thumb-caption'>A right-floated thumbnail with a caption.</div>
+</div>
+<p>Use <code>.wp-thumb</code> alone for a full-width figure between rules, or add <code>right</code> / <code>left</code> for a small floated box.</p>
+		</div>
+
+		<h3 id='wp-table'>Tables</h3>
+		<div class='sg-example'>
+<table class='wp-table'>
+	<caption>Spin of common particles</caption>
+	<tr><th>Particle</th><th>Spin</th><th>Statistics</th></tr>
+	<tr><td>Electron</td><td>1/2</td><td>Fermion</td></tr>
+	<tr><td>Photon</td><td>1</td><td>Boson</td></tr>
+	<tr><td>Higgs</td><td>0</td><td>Boson</td></tr>
+</table>
+		</div>
+
+		<h3 id='wp-ambox'>Notices</h3>
+		<div class='sg-example'>
+<div class='wp-ambox'><span class='wp-ambox-icon'>&#9432;</span><div>This post is <b>part one</b> of a two-part series.</div></div>
+<div class='wp-ambox content'><span class='wp-ambox-icon'>&#9888;</span><div>This section <b>needs additional citations</b> for verification.</div></div>
+<div class='wp-ambox style'><span class='wp-ambox-icon'>&#9998;</span><div>This article <b>is a draft</b> and may change.</div></div>
+<div class='wp-ambox delete'><span class='wp-ambox-icon'>&#10006;</span><div>This result <b>has been retracted</b>.</div></div>
+		</div>
+
+		<h3 id='wp-navbox'>Related links &amp; categories</h3>
+		<div class='sg-example'>
+<table class='wp-navbox'>
+	<tr><th colspan='2' class='wp-navbox-title'>Blog posts</th></tr>
+	<tr><th class='wp-navbox-group'>Topics</th><td class='wp-navbox-list'><a href='blog/spin-representation.html'>What is Spin?</a><a href='blog/nim.html'>Beating Nim</a><a href='blog/greensfn.html'>Green's Functions</a></td></tr>
+	<tr><th class='wp-navbox-group'>Projects</th><td class='wp-navbox-list'><a href='blog/ksuspace.html'>Kent State Space Mission</a></td></tr>
+	<tr><th class='wp-navbox-group'>Writing</th><td class='wp-navbox-list'><a href='blog/my-thoughts-on-the-use-of-ai.html'>Thoughts on AI</a></td></tr>
+</table>
+<div class='wp-catlinks'><b>Categories:</b> <a href='blog.html?tag=topics'>Topics</a><a href='#wp-navbox'>Quantum mechanics</a><a href='#wp-navbox'>Group theory</a></div>
+		</div>
+	</div>
+
+	<div class='cl-footer'>
+		style guide
+		<ul>
+			<li><a href='index.html'>home</a></li>
+			<li><a href='blog.html'>blog</a></li>
+			<li><a href='blog/post-template.html'>post template</a></li>
+		</ul>
+	</div>
+</div>
+
+<script>
+	(function () {
+		var root = getComputedStyle(document.documentElement);
+		document.querySelectorAll('.sg-swatches').forEach(function (grid) {
+			grid.dataset.tokens.split(' ').forEach(function (token) {
+				var value = root.getPropertyValue(token).trim();
+				grid.insertAdjacentHTML('beforeend',
+					'<div class="sg-swatch"><div class="chip" style="background:var(' + token + ')"></div>' +
+					'<div class="label">' + token + '<br>' + value + '</div></div>');
+			});
+		});
+
+		document.querySelectorAll('.sg-example').forEach(function (ex) {
+			var lines = ex.innerHTML.replace(/^\n+|\s+$/g, '').split('\n');
+			var pre = document.createElement('pre');
+			pre.className = 'sg-code';
+			pre.textContent = lines.join('\n');
+			ex.after(pre);
+		});
+	})();
+</script>
+</body>
+</html>

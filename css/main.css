@@ -1,167 +1,92 @@
-/* chasekosborne.com
- * 2024-11-13
- */
+@import url('retro.css');
 
- body {
-	color: rgba(0, 0, 0, 0.8);
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 15px;
-	margin: 7px;
-	padding: 0;
-}
-a {
-	color: rgba(0, 0, 0, 0.8);
-}
-a:hover {
-	color: rgba(0, 0, 0, 0.8);
-	text-decoration: none;
-}
-h1 {
-	font-size: 24px;
-	font-family: "New Century Schoolbook", "TeX Gyre Schola", serif;
-	font-weight: normal;
-}
+/* ===================================================================
+ * Home (index.html)
+ * =================================================================== */
+
 #landing {
 	max-width: 700px;
 	margin: 119px auto;
+	padding: 0 7px;
 }
+#landing .wp-title {
+	font-size: 24px;
+	margin-bottom: 24px;
+}
+#landing a         { color: #0000cc; }
+#landing a:visited { color: #551a8b; }
+#landing a:hover   { text-decoration: none; }
+
 #landing ul#links {
 	list-style-type: none;
 	padding-left: 0;
 	margin: 0 0 20px 0;
 }
-#landing ul#links li {
-	font-family: Helvetica, Arial, sans-serif;
-	margin-right: 25px;
-	padding-bottom: 5px;
+#landing ul#links > li { padding-bottom: 1px; line-height: 1.35; }
+#landing ul#links > li#contact { padding-top: 4px; }
+
+#copy-status {
+	margin-left: 8px;
+	font-size: var(--size-small);
+	color: var(--text-muted);
+	opacity: 0;
+	transition: opacity 0.3s ease;
 }
-#landing ul#links li a:hover {
-	text-decoration: none;
+#copy-status.visible { opacity: 1; }
+
+/* Links dropdown: options slide open and push the email down */
+#links .dropdown .arrow {
+	margin-left: 5px;
+	color: var(--text-muted);
 }
-#landing ul#links li#contact {
-	font-family: courier;
+#links .dropdown .arrow::after { content: '\25BE'; }
+#links .dropdown-content {
+	list-style: none;
 	margin: 0;
-	padding-top: 5px;
+	padding: 0 0 0 1em;
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	transition: max-height 0.5s ease, opacity 0.8s ease;
 }
-#landing .section ul {
-	padding-left: 15px;
+#links .dropdown-content li { padding: 1px 0 0; line-height: 1.35; }
+#links .dropdown.open .dropdown-content { max-height: 120px; opacity: 1; }
+#links .dropdown.open .arrow::after { content: '\25B4'; }
+@media (hover: hover) {
+	#links .dropdown:hover .dropdown-content { max-height: 120px; opacity: 1; }
+	#links .dropdown:hover .arrow::after { content: '\25B4'; }
 }
-.nav,
-#papers {
-	max-width: 700px;
-	margin: 0 auto 100px auto;
-}
-#papers {
-	margin-top: 83px;
-	line-height: 1.5em;
-}
-#papers h1 {
-	margin-top: 0;
-	margin-bottom: 40px;
-}
-#papers .paper-row {
-	margin-bottom: 30px;
-}
+
+/* ===================================================================
+ * Research (research.html)
+ * =================================================================== */
+
+#papers { line-height: 1.5em; }
+#papers .paper-row { margin-bottom: 24px; }
+#papers .paper-row:last-child { margin-bottom: 0; }
 #papers .paper-title,
 #papers .paper-authors,
-#papers .paper-venue,
-#papers .paper-links {
-	margin: 0;
-}
-#papers .paper-title {
-	font-family: Helvetica, Arial, sans-serif;
-	font-weight: normal;
-}
+#papers .paper-venue { margin: 0; }
+#papers .paper-title { font-weight: normal; }
+
 #papers .pub-links {
 	list-style-type: none;
 	padding-left: 0;
-	margin-top: 0;
+	margin: 2px 0 0;
 }
 #papers .pub-links li {
 	display: inline;
 	padding-right: 10px;
 }
-.nav {
-	margin-top: 15px;
-	margin-bottom: 15px;
-	line-height: 24px;  /* Matches blog nav line-height. */
-}
-.nav a {
-	color: rgba(0, 0, 0, 0.6);
-	text-decoration: none;
-	border-bottom: none;
-	font-size: 12px;
-}
-.nav a:hover {
-  	font-weight: bold;
-}
-.nav ul {
-	list-style-type: none;
-	padding: 0;
-}
-.nav ul li {
-	display: inline;
-	margin-right: 10px;
-	line-height: 1.5em;
-}
 
-/* Dropdown styles */
-/* Adjusting the contact item to slide down */
-#links {
-    position: relative;
+#papers .unpublished { margin: 20px 0 0; }
+#papers .unpublished .paper-row {
+	padding-bottom: 12px;
+	margin-bottom: 12px;
+	border-bottom: 1px solid var(--rule);
 }
-
-#links li#contact {
-    transition: transform 0.5s ease;
-    position: relative;
-}
-
-#links .dropdown:hover ~ #contact {
-    transform: translateY(60px); /* Room for Github, LinkedIn, YouTube */
-}
-
-#links .dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-#links .dropdown-content {
-    opacity: 0; /* Initial opacity */
-    visibility: hidden; /* Hide the content */
-    position: absolute;
-    min-width: 80px;
-    z-index: 1;
-    transition: opacity 0.8s ease, visibility 0.8s ease; /* Transition for opacity and visibility */
-}
-
-#links .dropdown-content a {
-	color: rgba(0, 0, 0, 0.8);
-    padding: 2px 0px;
-    text-decoration: underline;
-    display: block;
-}
-  
-#links .dropdown-content a:hover {
-}
-
-#links .dropdown:hover .dropdown-content {
-    opacity: 1; /* Full opacity when hovered */
-    visibility: visible; /* Make the content visible */
-}
-
-#links .dropdown:not(:hover) .dropdown-content {
-    opacity: 0; /* Immediately hide */
-    visibility: hidden; /* Make content hidden */
-    transition: none; /* Disable transition for immediate disappearance */
-}
-
-/* Style for the arrow symbol */
-#links .dropdown .arrow {
-    margin-left: 5px; /* Space between the text and arrow */
-    transition: transform 0.3s ease; /* Smooth transition */
-}
-
-/* Rotate the arrow when the dropdown is hovered */
-#links .dropdown:hover .arrow {
-    content: '▴'; /* Change to up arrow */
+#papers .unpublished .paper-row:last-child {
+	padding-bottom: 0;
+	margin-bottom: 0;
+	border-bottom: 0;
 }

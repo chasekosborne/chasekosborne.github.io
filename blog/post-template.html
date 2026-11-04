@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Copy this file to blog/your-post.html, fill in the TODOs, remove the noindex tag,
+         and add a matching <li class='cl-row blog-post'> entry to blog.html. -->
+    <title>TODO Post Title</title>
+    <meta charset='UTF-8'>
+    <meta content='width=device-width, initial-scale=1' name='viewport'/>
+    <meta name='robots' content='noindex'>
+
+    <meta name='description' content='TODO one-sentence summary.'>
+    <meta name='author' content='Chase K Osborne'>
+    <link rel='canonical' href='https://chasekosborne.github.io/blog/TODO.html' />
+
+    <meta property='og:type' content='article'>
+    <meta property='og:title' content='TODO Post Title'>
+    <meta property='og:description' content='TODO one-sentence summary.'>
+    <meta property='og:site_name' content='Chase K Osborne'>
+
+    <link href='../css/blog.css' rel='stylesheet'/>
+    <link href='../css/blog-sidebar.css' rel='stylesheet'/>
+    <link rel='shortcut icon' href='../image/favicon/favicon.png' />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css" integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js" integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js" integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}], throwOnError: false});"></script>
+</head>
+<body>
+<div class='cl-page post-topbar'>
+    <div class='cl-header'>
+        <a class='cl-logo' href='../index.html'>Chase K. Osborne</a>
+        <ul class='cl-breadcrumbs'>
+            <li><a href='../index.html'>home</a></li>
+            <li><a href='../blog.html'>blog</a></li>
+            <li>TODO Post Title</li>
+        </ul>
+        <div class='cl-header-right'>
+            <a href='../research.html'>research</a> &middot; <a href='mailto:chasekosborne@gmail.com'>email</a>
+        </div>
+    </div>
+</div>
+<div class='content'>
+    <div class='wp-rail'>
+        <ul class='wp-menu'>
+            <li><a href='../index.html'>Main page</a></li>
+            <li><a href='../blog.html'>Blog</a></li>
+            <li><a href='../research.html'>Research</a></li>
+            <li><a href='mailto:chasekosborne@gmail.com'>Contact</a></li>
+        </ul>
+        <div id='blog-sidebar-container' class='blog-sidebar-container'></div>
+    </div>
+    <ul class='wp-tabs'>
+        <li class='selected'><a href='post-template.html'>Article</a></li>
+        <li class='spacer'></li>
+        <li class='selected'><a href='post-template.html'>Read</a></li>
+        <li><a href='https://github.com/chasekosborne/chasekosborne.github.io/blob/main/blog/post-template.html' target='_blank'>View source</a></li>
+    </ul>
+    <div class='wp-catlinks'><b>Categories:</b> <a href='../blog.html?tag=topics'>Topics</a><a href='../blog.html'>Blog posts</a></div>
+
+    <div class='front-matter'>
+        <div class='wrap'>
+            <h1>TODO Post Title</h1>
+            <h4>TODO subtitle, shown as an italic hatnote under the title.</h4>
+            <div class='bylines'>
+                <div class='byline'>
+                    <h3>Published</h3>
+                    <p>TODO 1 January 2026</p>
+                </div>
+            </div>
+            <div class='clear'></div>
+        </div>
+    </div>
+
+    <div class='wrap article'>
+        <table class='wp-infobox'>
+            <caption>TODO Subject</caption>
+            <tr><th>Field</th><td>TODO</td></tr>
+            <tr><th>Prerequisites</th><td>TODO</td></tr>
+        </table>
+
+        <div class='wp-ambox'><span class='wp-ambox-icon'>&#9432;</span><div>Optional notice, e.g. <b>part one</b> of a series.</div></div>
+
+        <p>
+            Lead paragraph. <b>Bold the subject</b> the first time it appears.
+            Inline math works: $e^{i\pi} + 1 = 0$.<sup class='wp-cite'><a href='#ref-1'>[1]</a></sup>
+        </p>
+
+        <h2 id='introduction'>Introduction</h2>
+        <p>Section text.</p>
+
+        $$\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}$$
+
+        <h3>A subsection</h3>
+        <p>Subsection text.</p>
+
+        <div class='figure'>
+            <img src='../image/favicon/favicon.png' alt='' style='max-width: 200px'>
+            <div class='caption'>
+                <span class='caption-label'>Figure 1.</span> Caption text.
+            </div>
+        </div>
+
+        <table class='wp-table'>
+            <tr><th>Column</th><th>Column</th></tr>
+            <tr><td>value</td><td>value</td></tr>
+        </table>
+
+        <h2>Conclusion</h2>
+        <p>Closing text.</p>
+
+        <table class='wp-navbox'>
+            <tr><th colspan='2' class='wp-navbox-title'>Related posts</th></tr>
+            <tr><th class='wp-navbox-group'>Topics</th><td class='wp-navbox-list'><a href='spin-representation.html'>What is Spin?</a><a href='nim.html'>Beating Nim</a></td></tr>
+        </table>
+    </div>
+
+    <div id='bibliography'>
+        <div class='wrap'>
+            <ol class='bibliography'>
+                <li id='ref-1'>TODO Author. (Year). <i>Title</i>.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<script src='../js/blog-sidebar.js'></script>
+</body>
+</html>

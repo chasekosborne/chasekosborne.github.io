@@ -1,562 +1,465 @@
-html {
-  font-family: Helvetica, Arial, sans-serif;
-  color: rgba(0, 0, 0, 0.8);
-  line-height: 1.5em;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
+@import url('retro.css');
+
 body {
-  margin: 0;
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
-  box-sizing: border-box;
+	line-height: 1.5em;
+	overflow-x: hidden;
+	width: 100%;
+	position: relative;
+	box-sizing: border-box;
 }
-body .content {
-  margin-bottom: 120px;
-  position: relative;
+
+/* ===================================================================
+ * Blog index (blog.html)
+ * =================================================================== */
+
+#blog-search {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px 10px;
 }
-a {
-  color: rgba(0, 0, 0, 0.8);
-  text-decoration: underline;
+#blog-search #search-input { width: 220px; }
+#blog-search .tag-group { margin-left: 6px; }
+#blog-search #result-count {
+	margin-left: auto;
+	color: var(--text-faint);
+	font-size: var(--size-small);
 }
-a:hover {
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
+.tag-filter { cursor: pointer; transition: all 0.2s ease; }
+#posts .cl-empty {
+	color: var(--text-muted);
+	font-style: italic;
+	font-size: var(--size-body);
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "New Century Schoolbook", "TeX Gyre Schola", serif;
-  font-weight: normal;
+
+/* ===================================================================
+ * Blog posts (blog/*.html): wikipedia-style article
+ *
+ *   .content is a two-column grid: .wp-rail on the left spans every
+ *   row; tabs, front matter, article, references and categories stack
+ *   in the right column.
+ * =================================================================== */
+
+body > .content {
+	--text:         #202122;
+	--text-muted:   #54595d;
+	--text-faint:   #72777d;
+	--link:         #0645ad;
+	--link-visited: #0b0080;
+	--rule:         #c8ccd1;
+	--rule-strong:  #a2a9b1;
+	--fill:         #f8f9fa;
+	--fill-hover:   #eaecf0;
+	--font-serif:   "Linux Libertine", "Georgia", "Times", serif;
+
+	display: grid;
+	grid-template-columns: 170px minmax(0, 1fr);
+	column-gap: 40px;
+	align-items: start;
+	max-width: 1000px;
+	margin: 0 auto 80px;
+	padding: 0 16px;
+	box-sizing: border-box;
+	position: relative;
+	color: var(--text);
 }
-h1 {
-  line-height: 1.2em;
+body > .content a         { color: var(--link); text-decoration: none; }
+body > .content a:visited { color: var(--link-visited); }
+body > .content a:hover   { color: var(--link); text-decoration: underline; }
+
+body > .content > * { grid-column: 2; min-width: 0; }
+body > .content > .wp-rail {
+	grid-column: 1;
+	grid-row: 1 / span 50;
+	align-self: stretch;
 }
-.clear {
-  clear: both;
-}
-.hidden {
-  display: none;
+body > .content > .wp-catlinks { order: 99; }
+body > .content .wrap {
+	max-width: none;
+	margin: 0;
+	padding: 0;
 }
 .wrap {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0 7px;
-  box-sizing: border-box;
+	max-width: 700px;
+	margin: 0 auto;
+	padding: 0 7px;
+	box-sizing: border-box;
 }
-.mono {
-  font-family: monospace;
+
+/* top bar shared with the blog and research pages */
+.cl-page.post-topbar {
+	max-width: 1000px;
+	padding: 15px 16px 0;
 }
-.nav {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  line-height: 24px;
-  /* Matches publications nav line-height. */
+.cl-page.post-topbar .cl-header { margin-bottom: 24px; }
+
+/* rail */
+body > .content .wp-menu { border-bottom-color: var(--rule); }
+
+/* tabs: blue links, selected tab black with an underline bar */
+body > .content > .wp-tabs {
+	gap: 18px;
+	margin-bottom: 18px;
+	padding: 0;
+	border-bottom: 1px solid var(--rule-strong);
+	font-size: 13px;
 }
-.nav a {
-  color: rgba(0, 0, 0, 0.6);
-  text-decoration: none;
-  border-bottom: none;
-  font-size: 12px;
+body > .content > .wp-tabs li a {
+	display: block;
+	padding: 0 0 6px;
+	color: var(--link);
+	font-weight: normal;
 }
-.nav a:hover {
-  font-weight: bold;
+body > .content > .wp-tabs li a:hover { text-decoration: none; color: var(--text); }
+body > .content > .wp-tabs li.selected a {
+	color: var(--text);
+	border-bottom: 2px solid var(--text);
+	margin-bottom: -1px;
 }
-.nav ul {
-  list-style-type: none;
-  padding: 0;
+
+/* title block: title, byline as the tagline, subtitle as a hatnote */
+.front-matter { padding: 0 0 4px; }
+.front-matter .wrap {
+	display: flex;
+	flex-direction: column;
 }
-.nav ul li {
-  display: inline;
-  margin-right: 10px;
+.front-matter h1 {
+	font-family: var(--font-serif);
+	font-size: 28.8px;
+	font-weight: normal;
+	line-height: 1.3;
+	margin: 0 0 4px;
+	padding: 0 0 2px;
+	border-bottom: 1px solid var(--rule-strong);
 }
-.front-matter {
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
+.front-matter .bylines { order: 1; margin: 0 0 8px; }
 .front-matter h4 {
-  font-family: "New Century Schoolbook", "TeX Gyre Schola", serif;
+	order: 2;
+	font-family: var(--font-sans);
+	font-size: var(--size-body);
+	font-style: italic;
+	font-weight: normal;
+	color: var(--text);
+	margin: 0 0 8px;
+	padding-left: 1.6em;
 }
-.front-matter .bylines .byline {
-  margin-right: 20px;
-  float: left;
-}
+.front-matter .clear { order: 3; }
+.front-matter .bylines .byline { display: inline-block; margin-right: 12px; }
 .front-matter .bylines .byline h3,
 .front-matter .bylines .byline p {
-  margin: 0;
-  font-family: Helvetica, Arial, sans-serif;
+	display: inline;
+	margin: 0;
+	font-family: var(--font-sans);
+	font-size: 12.7px;
+	font-weight: normal;
+	color: var(--text-muted);
 }
-.front-matter .bylines .byline h3 {
-  font-size: 9px;
-  text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.5);
-  font-family: "New Century Schoolbook", "TeX Gyre Schola", serif;
-}
-.front-matter .bylines .byline p {
-  font-size: 10px;
-  line-height: 1.6em;
-}
-.front-matter-image {
-  background-size: 100%;
-}
-.front-matter-image img {
-  width: 100%;
-}
-.front-matter-image h4 {
-  font-family: "New Century Schoolbook", "TeX Gyre Schola", serif;
-}
-.front-matter-image .bylines .byline {
-  margin-right: 20px;
-  float: left;
-}
-.front-matter-image .bylines .byline h3,
-.front-matter-image .bylines .byline p {
-  margin: 0;
-  font-family: Helvetica, Arial, sans-serif;
-}
-.front-matter-image .bylines .byline h3 {
-  font-size: 9px;
-  text-transform: uppercase;
-  color: rgba(0, 0, 0, 0.5);
-  font-family: "New Century Schoolbook", "TeX Gyre Schola", serif;
-}
-.front-matter-image .bylines .byline p {
-  font-size: 10px;
-  line-height: 1.6em;
-}
-.img-left {
-  float: left;
-  width: 49%;
-}
-.img-right {
-  float: right;
-  width: 49%;
-}
-table {
-  font-size: 14px;
-  margin: 0 auto;
-  border-collapse: collapse;
-  border-top: 2px solid black;
-  border-bottom: 1px solid black;
-}
-table thead > tr > th {
-  border-bottom: 1px solid black;
-  padding: 0 8px;
-}
-table td {
-  text-align: center;
-}
-.tag-page h1 span {
-  font-size: 14px;
-}
-.header-with-exit {
-  display: flex;
-   justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding-top: 1em;
-  padding-bottom: 1rem;
-  padding-bottom: 1rem;
-  padding-top: 1em;
-}
+.front-matter .bylines .byline h3::after { content: " "; }
+.front-matter-image { background-size: 100%; }
+.front-matter-image img { width: 100%; }
+
+/* body text */
 .article {
-  font-size: 15px;
-  line-height: 1.6em;
-  color: rgba(0, 0, 0, 0.8);
-  margin-top: 50px;
-  margin-bottom: 50px;
-  width: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
+	font-size: var(--size-base);
+	line-height: 1.6;
+	color: var(--text);
+	margin: 0 0 32px;
+	width: 100%;
+	box-sizing: border-box;
+	overflow-x: hidden;
 }
-.article blockquote {
-  margin: 0;
-  padding: 0 1em;
-  color: #777;
-  border-left: 0.25em solid #ddd;
-}
+.article p { margin: 0.5em 0 1em; }
+.article h1,
 .article h2 {
-  font-size: 26px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 1rem;
-  padding-top: 1em;
+	font-family: var(--font-serif);
+	font-size: 1.5em;
+	font-weight: normal;
+	line-height: 1.3;
+	margin: 1em 0 0.25em;
+	padding: 0;
+	border-bottom: 1px solid var(--rule-strong);
 }
+.article h3 {
+	font-family: var(--font-sans);
+	font-size: 1.2em;
+	font-weight: bold;
+	line-height: 1.6;
+	margin: 0.3em 0 0;
+	padding-top: 0.5em;
+}
+.article h4,
+.article h5,
+.article h6 {
+	font-family: var(--font-sans);
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1.6;
+	margin: 0.3em 0 0;
+	padding-top: 0.5em;
+}
+.article ul,
+.article ol { margin: 0.3em 0 0.5em 1.6em; padding: 0; }
+.article ul { list-style-type: disc; }
+.article li { margin-bottom: 0.1em; }
+.article dl { margin: 0.2em 0 0.5em; }
+.article dt { font-weight: bold; }
+.article dd { margin-left: 1.6em; }
+.article blockquote {
+	margin: 1em 0;
+	padding: 0 1.6em;
+	color: var(--text);
+	border-left: 4px solid var(--fill-hover);
+}
+.article sup { line-height: 1; font-size: 75%; }
+.article hr { border-top-color: var(--rule-strong); }
+
+/* code */
+.article code {
+	background: var(--fill);
+	border: 1px solid var(--fill-hover);
+	border-radius: 2px;
+	padding: 1px 4px;
+	font-family: monospace;
+	font-size: 0.9em;
+	color: #000;
+}
+.article pre {
+	background: var(--fill);
+	border: 1px solid var(--fill-hover);
+	padding: 1em;
+	line-height: 1.3;
+	white-space: pre-wrap;
+	overflow-x: auto;
+}
+.article pre code { background: none; border: 0; padding: 0; }
+.article div.highlight {
+	background: var(--fill);
+	border: 1px solid var(--fill-hover);
+	padding: 0 1em;
+	font-size: 13px;
+	line-height: 1.3;
+}
+
+/* figures become thumbnails: gray frame, small left-aligned caption */
+.article .figure,
 .article .figure-no-caption {
-  margin-bottom: 40px;
-  margin-top: 40px;
-}
-.article .figure-no-caption .caption {
-  padding-top: 15px;
-  color: rgba(0, 0, 0, 0.8);
-  display: inline-block;
-  font-size: 12px;
-  line-height: 1.2em;
-}
-.article .figure {
-  border-top: 1px solid hsla(0, 0%, 0%, 0.2);
-  border-bottom: 1px solid hsla(0, 0%, 0%, 0.2);
-  padding: 20px 0;
-}
-.article .figure .caption {
-  padding-top: 15px;
-  display: inline-block;
-  font-size: 13px;
-  line-height: 1.2em;
-}
-.article .figure .caption-label {
-  font-weight: bold;
+	margin: 0.5em auto 1.3em;
+	padding: 3px;
+	border: 1px solid var(--rule);
+	background: var(--fill);
+	box-sizing: border-box;
 }
 .article .figure img,
 .article .figure svg {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
+	max-width: 100%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+	background: #fff;
+	border: 1px solid var(--rule);
 }
-.article .footnote {
-  line-height: 0;
+.article .figure .caption,
+.article .figure-no-caption .caption {
+	display: block;
+	padding: 4px 3px 2px;
+	font-size: 88%;
+	line-height: 1.4;
+	text-align: left;
 }
-.article div.highlight {
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  font-size: 13px;
-  line-height: 1.3em;
+.article .figure .caption-label { font-weight: bold; }
+
+/* featured video at the top of a post */
+.article .video-figure { margin: 0 0 1.5em; }
+.article .video-embed {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	background: #000;
 }
-.article ul {
-  padding: 0 15px;
+.article .video-embed iframe,
+.article .video-poster {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+	display: block;
 }
-#bibliography {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+.article .video-poster { cursor: pointer; overflow: hidden; }
+.article .figure .video-poster img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border: 0;
+	background: #000;
+}
+.article .video-play {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 68px;
+	height: 48px;
+	margin: -24px 0 0 -34px;
+	background: rgba(204, 0, 0, 0.9);
+	border-radius: 12px;
+	transition: background 0.15s ease;
+}
+.article .video-play::after {
+	content: "";
+	position: absolute;
+	left: 27px;
+	top: 14px;
+	border-style: solid;
+	border-width: 10px 0 10px 17px;
+	border-color: transparent transparent transparent #fff;
+}
+.article .video-poster:hover .video-play { background: #cc0000; }
+.article .footnote { line-height: 0; }
+.img-left  { float: left;  width: 49%; }
+.img-right { float: right; width: 49%; }
+
+/* wikitable */
+.article table:not(#tb):not([class*="wp-"]),
+.eq-table {
+	background: var(--fill);
+	color: var(--text);
+	margin: 1em auto;
+	border: 1px solid var(--rule-strong);
+	border-collapse: collapse;
+	font-size: 14px;
+}
+.article table:not(#tb):not([class*="wp-"]) > caption { font-weight: bold; padding: 0.2em; }
+.article table:not(#tb):not([class*="wp-"]) th,
+.article table:not(#tb):not([class*="wp-"]) td,
+.eq-table th,
+.eq-table td {
+	border: 1px solid var(--rule-strong);
+	padding: 0.2em 0.4em;
+}
+.article table:not(#tb):not([class*="wp-"]) th,
+.eq-table th { background: var(--fill-hover); font-weight: bold; text-align: center; }
+.eq-table {
+	margin-bottom: 32px;
+	min-width: 600px;
+	width: 100%;
+	table-layout: fixed;
+}
+.eq-table th,
+.eq-table td { padding: 12px; font-size: 16px; word-break: break-word; }
+.table-container { width: 100%; overflow-x: auto; }
+
+canvas { border: 1px solid var(--rule) !important; }
+
+/* references */
+#bibliography .wrap::before {
+	content: "References";
+	display: block;
+	font-family: var(--font-serif);
+	font-size: 1.5em;
+	line-height: 1.3;
+	margin: 1em 0 0.25em;
+	border-bottom: 1px solid var(--rule-strong);
+	color: var(--text);
 }
 #bibliography ol.bibliography {
-  padding-left: 15px;
-  padding-top: 30px;
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
+	padding: 0.3em 0 0 2em;
+	margin: 0;
+	font-size: 90%;
+	line-height: 1.5;
+	color: var(--text);
 }
-#blog,
-.tag-page {
-  margin-top: 80px;
-  margin-bottom: 100px;
-}
-#blog #intro,
-.tag-page #intro {
-  font-size: 14px;
-  font-style: italic;
-  line-height: 1.4em;
-  margin-bottom: 40px;
-}
-#blog .quote,
-.tag-page .quote {
-  margin-bottom: 30px;
-}
-#blog .quote p,
-.tag-page .quote p {
-  margin-bottom: 5px;
-}
-#blog .post-date,
-.tag-page .post-date {
-  color: rgba(0, 0, 0, 0.7);
-  font-size: 12px;
-  font-weight: normal;
-  margin-top: 4px;
-  margin-bottom: 4px;
-  font-family: Helvetica, Arial, sans-serif;
-}
-#blog .post-title,
-.tag-page .post-title {
-  display: inline-block;
-  font-weight: bold;
-  margin-bottom: 0;
-  font-family: Helvetica, Arial, sans-serif;
-}
-#blog .post-title a,
-.tag-page .post-title a {
-  font-size: 16px;
-  text-decoration: none;
-}
-#blog .post-title a:hover,
-.tag-page .post-title a:hover {
-  text-decoration: underline;
-}
-#blog .post-subtitle,
-.tag-page .post-subtitle {
-  font-size: 14px;
-  margin-top: 0;
-  margin-bottom: 8px;
-  line-height: 1.5em;
-}
-#blog .post-meta,
-.tag-page .post-meta {
-  font-size: 12px;
-  color: rgba(0, 0, 0, 0.5);
-  margin-top: 0;
-  margin-bottom: 25px;
-}
-#blog .post-reactions,
-.tag-page .post-reactions {
-  display: inline-block;
-  margin-right: 15px;
-  font-family: Helvetica, Arial, sans-serif;
-}
-#blog .year,
-.tag-page .year {
-  font-size: 18px;
-  position: relative;
-  right: 100px;
-  color: rgba(0, 0, 0, 0.5);
-  width: 100px;
-  margin-bottom: -24px;
-}
-#blog #y2017.year,
-.tag-page #y2017.year,
-#blog #y2018.year,
-.tag-page #y2018.year {
-  margin-top: 0px;
-}
-#blog ul#tag-nav,
-.tag-page ul#tag-nav {
-  padding: 0 0 30px 0;
-  line-height: 1.3em;
-}
-#blog ul#tag-nav span,
-.tag-page ul#tag-nav span {
-  font-size: 14px;
-  display: inline-block;
-  padding-right: 15px;
-}
-#blog ul#tag-nav li,
-.tag-page ul#tag-nav li {
-  display: inline;
-  padding-right: 10px;
-}
-#blog ul#tag-nav li a,
-.tag-page ul#tag-nav li a {
-  font-size: 14px;
-  font-weight: normal;
-  text-decoration: none;
-}
-#blog #more,
-.tag-page #more {
-  font-size: 15px;
-  padding-top: 40px;
-}
-#blog #more a,
-.tag-page #more a {
-  font-weight: normal;
-}
-
-.tag-page h2 {
-  font-size: 26px;
-
-}
+#bibliography ol.bibliography li { margin-bottom: 0.1em; }
 .footnotes {
-  margin-top: 100px;
-  font-size: 12px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+	margin-top: 1.5em;
+	font-size: 90%;
+	border-top: 1px solid var(--rule-strong);
+}
+.comments-section { margin-top: 1.5em; }
+.comments-section h2 {
+	font-family: var(--font-serif);
+	font-size: 1.5em;
+	font-weight: normal;
+	border-bottom: 1px solid var(--rule-strong);
+	margin-bottom: 0.5em;
+}
+.header-with-exit {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid var(--rule-strong);
+	padding: 0.5em 0;
+}
+
+/* categories box */
+body > .content > .wp-catlinks {
+	margin: 1em 0 0;
+	padding: 5px 8px;
+	border: 1px solid var(--rule-strong);
+	background: var(--fill);
+	font-size: 12.7px;
+	color: var(--text);
+}
+body > .content > .wp-catlinks b { font-weight: normal; }
+
+/* ===================================================================
+ * KaTeX overflow handling
+ * =================================================================== */
+.katex-display {
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 1em 0;
+	margin: 1em 0;
+	width: 100%;
+	box-sizing: border-box;
+	-webkit-overflow-scrolling: touch;
+}
+.katex-display > .katex {
+	display: inline-block;
+	white-space: nowrap;
+	text-align: initial;
+}
+.katex-display > .katex > .katex-html {
+	display: block;
+	position: relative;
+	overflow-x: auto;
+	overflow-y: hidden;
+	text-align: center;
+	width: 100%;
+}
+.katex-display::-webkit-scrollbar             { height: 3px; }
+.katex-display::-webkit-scrollbar-track       { background: #f1f1f1; }
+.katex-display::-webkit-scrollbar-thumb       { background: #888; border-radius: 3px; }
+.katex-display::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* ===================================================================
+ * Small screens: rail collapses into a top bar
+ * =================================================================== */
+@media screen and (max-width: 820px) {
+	body > .content {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		padding: 12px 10px 0;
+	}
+	body > .content > .wp-rail {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 4px 14px;
+		margin-bottom: 12px;
+	}
+	.wp-rail .wp-logo { margin: 0; }
+	.wp-rail .wp-menu { display: flex; gap: 12px; border: 0; padding: 0; }
+	.wp-tabs li.spacer ~ li { display: none; }
 }
 @media screen and (max-width: 700px) {
-  body {
-    margin: 0;
-    padding: 0 10px;
-    width: 100%;
-    box-sizing: border-box;
-  }
-  .wrap {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  .front-matter-image {
-    display: none;
-  }
-  .article {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 100%;
-  }
-  /* Ensure equations are properly contained on mobile */
-  .katex-display {
-    margin: 1em -10px;
-    padding: 1em 10px;
-    width: calc(100% + 20px);
-  }
-  .katex-display > .katex {
-    padding: 0 10px;
-  }
-}
-
-.katex-display>.katex>.katex-html {
-  display: block;
-  position: relative;
-}
-
-/* Equation overflow handling */
-.katex-display {
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 1em 0;
-    margin: 1em 0;
-    width: 100%;
-    box-sizing: border-box;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-}
-
-.katex-display > .katex {
-    display: inline-block;
-    white-space: nowrap;
-    text-align: initial;
-}
-
-/* Ensure equations don't break layout */
-.katex-display > .katex > .katex-html {
-    display: block;
-    position: relative;
-    overflow-x: auto;
-    overflow-y: hidden;
-    text-align: center;
-    width: 100%;
-}
-
-/* Add a subtle scrollbar for better UX */
-.katex-display::-webkit-scrollbar {
-    height: 3px;
-}
-
-.katex-display::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-
-.katex-display::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 3px;
-}
-
-.katex-display::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
-/* Minimal button styles */
-.minimal-button {
-    background: none;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    color: rgba(0, 0, 0, 0.8);
-    padding: 6px 12px;
-    margin: 0 4px;
-    font-size: 14px;
-    font-family: Helvetica, Arial, sans-serif;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border-radius: 3px;
-}
-
-.minimal-button:hover {
-    background: rgba(0, 0, 0, 0.05);
-    border-color: rgba(0, 0, 0, 0.3);
-}
-
-.minimal-button:active {
-    background: rgba(0, 0, 0, 0.1);
-}
-
-/* Update canvas border to match button style */
-canvas {
-    border: 1px solid rgba(0, 0, 0, 0.1) !important;
-}
-
-.eq-table {
-  margin-bottom: 32px;
-  min-width: 600px;
-  max-width: 100%;
-  width: 100%;
-  table-layout: fixed;
-  margin-left: 0;
-  margin-right: 0;
-}
-
-.table-container {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.eq-table th, .eq-table td {
-  padding: 16px 16px;
-  min-height: 32px;
-  font-size: 16px;
-  width: auto;
-  word-break: break-word;
-}
-
-/* Tag filter active state */
-.tag-filter.active {
-  color: rgba(0, 0, 0, 0.4) !important;
-  text-decoration: none;
-}
-
-.tag-filter {
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-/* Back button styling */
-#back-button-container {
-  margin-top: 10px;
-}
-
-#back-button {
-  font-size: 14px;
-  font-weight: normal;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Smooth transitions for post filtering */
-.blog-post {
-  transition: opacity 0.3s ease;
-}
-
-/* Search bar styling */
-#search-container {
-  margin-bottom: 30px;
-}
-
-#search-input {
-  width: 100%;
-  padding: 8px 12px;
-  font-size: 14px;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-  background: rgba(0, 0, 0, 0.02);
-  box-sizing: border-box;
-  transition: all 0.2s ease;
-}
-
-#search-input:focus {
-  outline: none;
-  border-color: rgba(0, 0, 0, 0.4);
-  background: white;
-}
-
-#search-input::placeholder {
-  color: rgba(0, 0, 0, 0.4);
-}
-
-/* Comments section styling */
-.comments-section {
-  margin-top: 60px;
-  padding-top: 40px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.comments-section h2 {
-  font-size: 20px;
-  margin-bottom: 20px;
-  font-family: "New Century Schoolbook", "TeX Gyre Schola", serif;
+	body { padding: 0 10px; }
+	.wrap { max-width: 100%; margin: 0; padding: 0; }
+	.front-matter-image { display: none; }
+	.katex-display {
+		margin: 1em -10px;
+		padding: 1em 10px;
+		width: calc(100% + 20px);
+	}
+	.katex-display > .katex { padding: 0 10px; }
 }
